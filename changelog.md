@@ -1,0 +1,10 @@
+- 10-09-2025 : *Project setup*
+    - CSS custom properties and global CSS reset
+    - Self hosted variable fonts
+    - CSS Grid, flex box
+    - Setup light/dark system color theme prefernces
+    - CSS modules
+    - Mobile-first workflow
+    - React
+    - vite
+    - Setup netlify development server
