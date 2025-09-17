@@ -2,7 +2,7 @@
 /* DM Sans – variable normal */
 @font-face {
   font-family: 'DM Sans';
-  src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.woff2') format('woff2');
   font-weight: 300 700;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@
 /* DM Sans – variable italic */
 @font-face {
   font-family: 'DM Sans';
-  src: url('/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  src: url('/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.woff2') format('woff2');
   font-weight: 300 700;
   font-style: italic;
   font-display: swap;
@@ -20,7 +20,7 @@
 /* Bricolage Grotesque – variable (bold range) */
 @font-face {
   font-family: 'Bricolage Grotesque';
-  src: url('/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype-variations');
+  src: url('/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -29,7 +29,7 @@
 :root {
   /* fonts */
   --font-sans: 'DM Sans', system-ui, Helvetica, Arial, sans-serif;
-  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'DM Sans', system-ui, sans-serif;
 
   /* Layout breakpoints */
   --container-mobile: 320px;

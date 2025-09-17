@@ -11,7 +11,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "pnpm run build && vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
