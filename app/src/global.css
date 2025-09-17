@@ -2,7 +2,7 @@
 /* DM Sans – variable normal */
 @font-face {
   font-family: 'DM Sans';
-  src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.woff2') format('woff2');
+  src: url('/fonts/DM_Sans/dm-sans-latin-wght-normal.woff2') format('woff2');
   font-weight: 300 700;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@
 /* DM Sans – variable italic */
 @font-face {
   font-family: 'DM Sans';
-  src: url('/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.woff2') format('woff2');
+  src: url('/fonts/DM_Sans/dm-sans-latin-wght-italic.woff2') format('woff2');
   font-weight: 300 700;
   font-style: italic;
   font-display: swap;
@@ -20,7 +20,7 @@
 /* Bricolage Grotesque – variable (bold range) */
 @font-face {
   font-family: 'Bricolage Grotesque';
-  src: url('/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.woff2') format('woff2');
+  src: url('/fonts/Bricolage_Grotesque/bricolage-grotesque-latin-700-normal.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
