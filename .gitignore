@@ -15,7 +15,7 @@ app/node_modules
 .env.production.local
 
 # Testing
-/coverage
+app/coverage
 
 # Production
 app/build
