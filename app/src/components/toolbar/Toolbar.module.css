@@ -1,0 +1,8 @@
+.toolbar {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    min-width: 1rem;
+}

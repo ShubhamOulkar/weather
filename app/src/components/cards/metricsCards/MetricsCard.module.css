@@ -1,0 +1,19 @@
+.metrics_container {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+}
+
+.metric_card {
+    padding: 1rem;
+    gap: 0.5rem;
+
+    >h5 {
+        color: var(--neutral-200);
+        font-weight: 400;
+    }
+
+    >p {
+        color: var(--neutral-0);
+        font-size: 1.5rem;
+    }
+}
+

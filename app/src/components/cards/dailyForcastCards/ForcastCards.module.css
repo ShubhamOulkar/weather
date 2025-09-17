@@ -1,0 +1,16 @@
+.forcast_container {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 90px), 1fr));
+}
+
+.daily_forcast_card {
+    padding: 0.5rem;
+    align-items: center;
+    cursor: pointer;
+
+    >div {
+        width: 100%;
+        justify-content: space-between;
+        font-size: 1rem;
+    }
+}
+

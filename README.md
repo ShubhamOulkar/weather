@@ -1,4 +1,4 @@
-# Frontend Mentor - Weather app solution 
+# Weather app
 
 ## Table of contents
 
@@ -13,6 +13,7 @@
   - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
+- [Changelog](/changelog.md)
 
 ## Overview
 
@@ -20,7 +21,9 @@
 
 Users should be able to:
 
-- Search for weather information by entering a location in the search bar
+Implement in phase 1
+- Search for weather information by entering a location city or zip code or device current location in the search bar
+- Show recent locations on search bar with clear all recent locations functionallity.
 - View current weather conditions including temperature, weather icon, and location details
 - See additional weather metrics like "feels like" temperature, humidity percentage, wind speed, and precipitation amounts
 - Browse a 7-day weather forecast with daily high/low temperatures and weather icons
@@ -32,13 +35,18 @@ Users should be able to:
 - See hover and focus states for all interactive elements on the page
 - Add geolocation detection to automatically show weather for the user's current location on first visit
 - Implement a favorites/saved locations system where users can bookmark frequently checked locations
-- Implement a "Compare Locations" feature to view weather side-by-side for multiple locations
-- Include UV index, visibility, and air pressure data (available via Open-Meteo)
+- Include UV index, visibility, air pressure data, air quality index, and allergy outlook (available via Open-Meteo)
 - Add sunrise/sunset times with visual indicators
 - Add animated weather backgrounds that change based on current conditions
-- Implement voice search functionality
 - Create dark/light mode themes that adapt to the time of day
 - Add progressive web app (PWA) capabilities for mobile installation
+- Implement voice search functionality
+
+Implement in phase 2
+- Implement a "Compare Locations" feature to view weather side-by-side for multiple locations
+- Implement a map views for clouds, temperature, etc.
+- Show weather comparison for two locations with map higlighting geological items like mountain, rivers, seashow, deserts.
+- Implement chatbot to answer weather related queries.
 
 ### Screenshot
 
@@ -76,4 +84,4 @@ Users should be able to:
 
 ## License
 
-Content submitted by [shubham oulkar](https://github.com/ShubhamOulkar) is Creative Commons Attribution 4.0 International licensed, as found in the [LICENSE.md](/LICENSE) file.
+Content submitted by [shubham oulkar](https://github.com/ShubhamOulkar) is Creative Commons Attribution 4.0 International licensed, as found in the [LICENSE](/LICENSE) file.

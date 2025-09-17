@@ -1,0 +1,34 @@
+.drop_places {
+    background-color: var(--btn-color-bg);
+    border-radius: var(--border-radius);
+    position: absolute;
+    left: 0;
+    bottom: -6.3rem;
+    width: 100%;
+    height: 150px;
+    z-index: 10;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+ul[role="list"] {
+    padding: 0.9rem;
+    >li {
+        padding-inline: 0.5rem;
+        cursor: pointer;
+        &:not(:nth-child(1)) {
+            margin-top: 0.5rem;
+        }
+
+        &:hover {
+            background-color: var(--neutral-700);
+            border-radius: var(--border-radius);
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .drop_places {
+        bottom: -9.8rem;
+    }
+}
