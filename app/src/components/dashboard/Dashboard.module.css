@@ -1,0 +1,32 @@
+.dashboard {
+    display: flex;
+    gap: 2rem;
+}
+
+.hourly_forcast_container {
+    padding: 1rem;
+    >div {
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .dashboard {
+        height: 35.4rem;
+    }
+
+   .hourly_forcast_container {
+    width: fit-content;
+   }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .hourly_forcast_container {
+        height: 50dvh;
+    }
+}

@@ -1,0 +1,17 @@
+.title {
+    font-family: var(--font-display);
+    text-align: center;
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-block: 1.5rem;
+
+    span {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .title span {
+        display: inline;
+    }
+}

@@ -1,0 +1,17 @@
+.hourly_forcast_card {
+    width: 300px;
+    height: 100px;
+    background-color: var(--neutral-700);
+    border-radius: var(--border-radius);
+    margin-right: 0.5rem;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+    .hourly_forcast_card {
+        width: 97%;
+    }
+}
