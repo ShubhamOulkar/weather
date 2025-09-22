@@ -1,0 +1,37 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-btn);
+    gap: 0.5rem;
+    color: var(--btn-color-text);
+    border: none;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+
+    &:focus {
+        outline: var(--focus-outline);
+        outline-offset: var(--btn-outline-offset);
+    }
+}
+
+.unit {
+   background-color: var(--btn-color-bg);
+}
+
+.day {
+    background-color: var(--neutral-600);
+}
+
+@media screen and (min-width:768px) {
+    .btn {
+        padding-block: 0.8rem;
+        padding-inline: 1rem;
+    }
+
+    .day {
+        padding-block: 0.6rem;
+        padding-inline: 0.8rem;
+    }
+}
