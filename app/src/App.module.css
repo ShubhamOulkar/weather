@@ -20,7 +20,7 @@
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .layout {
         > :nth-child(2) {
             justify-self: unset;
