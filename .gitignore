@@ -16,6 +16,7 @@ app/node_modules
 
 # Testing
 app/coverage
+app/html
 
 # Production
 app/build

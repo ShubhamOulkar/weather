@@ -52,8 +52,7 @@ Implement in phase 2
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Live website url](https://weatherfem.netlify.app/)
 
 ## My process
 
