@@ -1,6 +1,6 @@
 import IconSnowing from "../../../assets/images/icon-snow.webp"
 import styles from "./ForcastCards.module.css"
-import cnr from "../../../utils/cnr"
+import cnr from "../../../utils/class_resolver/cnr"
 
 export default function DailyForcastCards() {
     const days: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
