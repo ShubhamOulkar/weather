@@ -69,6 +69,12 @@
 
   /* grid auto fit card */
   --grid-card: repeat(auto-fit, minmax(min(100%, var(--card-width)), 1fr));
+
+  /* border style */
+  --border-style : 1px solid var(--neutral-600);
+
+  /* dropdown z-index */
+  --dropdown-z-index: 10;
 }
 
 @media (prefers-color-scheme: light) {
@@ -252,4 +258,12 @@ h4 {
 .icon-3rem {
     width: 3rem;
     aspect-ratio: 1;
+}
+
+.wd-100 {
+  width: 100%;
+}
+
+.txt-no-wrap {
+  text-wrap: nowrap;
 }

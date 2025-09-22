@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest"
-import cnr from "../../src/utils/cnr";
+import cnr from "./cnr";
 
 describe("cnr utility", () => {
   it("should return single class", () => {
@@ -26,6 +26,7 @@ describe("cnr utility", () => {
     expect(cnr("foo", ["bar", { baz: true, qux: false }], "zap"))
       .toBe("foo bar baz zap")
   })
+  
   it("logs error on invalid type", () => {
     let consoleErrSpy = vi.spyOn(console, "error").mockImplementation(()=>{})
     // @ts-expect-error

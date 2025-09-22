@@ -1,6 +1,6 @@
 .hourly_forcast_card {
-    width: 300px;
-    height: 100px;
+    width: 95%;
+    height: clamp(50px, 5vh, 100px);
     background-color: var(--neutral-700);
     border-radius: var(--border-radius);
     margin-right: 0.5rem;
@@ -8,6 +8,7 @@
     padding-block: 0.5rem;
     align-items: center;
     justify-content: space-between;
+    border: var(--border-style);
 }
 
 @media screen and (max-width: 768px) {

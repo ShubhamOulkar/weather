@@ -3,26 +3,16 @@
     border-radius: var(--border-radius);
     position: absolute;
     left: 0;
-    bottom: -9.8rem;
-    width: 100%;
+    top: 100%;
     height: 150px;
-    z-index: 10;
+    z-index: var(--dropdown-z-index);
     max-height: 150px;
     overflow-y: auto;
+    margin-top: 0.5rem;
+    width: 100%;
 }
 
 ul[role="list"] {
-    padding: 0.9rem;
-    >li {
-        padding-inline: 0.5rem;
-        cursor: pointer;
-        &:not(:nth-child(1)) {
-            margin-top: 0.5rem;
-        }
-
-        &:hover {
-            background-color: var(--neutral-700);
-            border-radius: var(--border-radius);
-        }
-    }
+    padding: 0.5rem;
+    font-size: 0.9rem;
 }
