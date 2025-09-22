@@ -1,5 +1,5 @@
 import styles from "./MetricsCard.module.css"
-import cnr from "../../../utils/cnr"
+import cnr from "../../../utils/class_resolver/cnr"
 
 export default function MetricsCards() {
     const metrics: string[] = ['Feels Like', 'Humidity', 'Wind', 'Precipitation', 'AQI']
