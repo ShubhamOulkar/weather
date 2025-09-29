@@ -18,6 +18,9 @@ app/node_modules
 app/coverage
 app/html
 
+# utils
+app/src/utils/openmeteo
+
 # Production
 app/build
 app/dist
