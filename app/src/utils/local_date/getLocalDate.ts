@@ -8,7 +8,7 @@ import type { FormattedDateParts } from "../../types/types";
  * @param locale The desired locale (e.g., 'fr-FR', 'en-US'). Defaults to user's system locale.
  * @returns An object containing the formatted date parts.
  */
-export function getLocalDate(dateStr?: string, format?: Intl.DateTimeFormatOptions, locale: string | string[] = 'en-US'): FormattedDateParts {
+export function getLocalDate(dateStr?: string | Date, format?: Intl.DateTimeFormatOptions, locale: string | string[] = 'en-US'): FormattedDateParts {
     let date: Date;
 
     if (!dateStr) {

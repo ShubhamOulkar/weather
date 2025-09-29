@@ -55,13 +55,13 @@ export default function useLocationWeather(input?: LocationInput) {
     initialData: {
       place: 'Hupari, MH, IN',
       date: getLocalDate(),
-      temp: '20 °F',
+      temp: '20 °C',
       wmo: 96,
       metrics: [
-        { value: "10 °F", key: "Feels Like" },
+        { value: "10 °C", key: "Feels Like" },
         { value: "8 %", key: "Humidity" },
-        { value: "mph", key: "Wind" },
-        { value: "mm", key: "Precipitation" }
+        { value: "10 km/h", key: "Wind" },
+        { value: "2 mm", key: "Precipitation" }
       ],
       latitude: 16.61622093,
       longitude: 74.4059719,
