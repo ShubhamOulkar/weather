@@ -17,6 +17,9 @@ importers:
       react-dom:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
+      zod:
+        specifier: ^4.1.11
+        version: 4.1.11
     devDependencies:
       '@eslint/js':
         specifier: ^9.33.0
@@ -2042,8 +2045,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@4.1.5:
-    resolution: {integrity: sha512-rcUUZqlLJgBC33IT3PNMgsCq6TzLQEG/Ei/KTCU0PedSWRMAXoOUN+4t/0H+Q8bdnLPdqUYnvboJT0bn/229qg==}
+  zod@4.1.11:
+    resolution: {integrity: sha512-WPsqwxITS2tzx1bzhIKsEs19ABD5vmCVa4xBo2tq/SrV4RNZtfws1EnCWQXM6yh8bD08a1idvkB5MZSBiZsjwg==}
 
 snapshots:
 
@@ -2322,7 +2325,7 @@ snapshots:
       '@eslint-react/eff': 1.53.0
       '@typescript-eslint/utils': 8.43.0(eslint@9.35.0)(typescript@5.8.3)
       ts-pattern: 5.8.0
-      zod: 4.1.5
+      zod: 4.1.11
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -2334,7 +2337,7 @@ snapshots:
       '@eslint-react/kit': 1.53.0(eslint@9.35.0)(typescript@5.8.3)
       '@typescript-eslint/utils': 8.43.0(eslint@9.35.0)(typescript@5.8.3)
       ts-pattern: 5.8.0
-      zod: 4.1.5
+      zod: 4.1.11
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -4012,4 +4015,4 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@4.1.5: {}
+  zod@4.1.11: {}
