@@ -3,7 +3,7 @@ import Button from "../../common/button/Button"
 import UnitsDropdown from "../../dropdowns/units/UnitsDropdown"
 import classes from "./ToolbarRight.module.css"
 import { useState } from "react"
-import { useDismissalOutside } from "../../../hooks/useDismissalOutside"
+import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismissalOutside"
 
 export function ToolbarRight() {
     const [open, setOpen] = useState(false)
