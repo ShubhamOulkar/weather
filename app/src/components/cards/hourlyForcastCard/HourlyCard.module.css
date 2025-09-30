@@ -1,3 +1,8 @@
+.hourly_forcast_container {
+    padding: 1rem;
+    height: inherit;
+}
+
 .hourly_forcast_card {
     width: 95%;
     height: clamp(50px, 5vh, 100px);
@@ -11,8 +16,17 @@
     border: var(--border-style);
 }
 
+.hourly_icon {
+    width: 2rem;
+    aspect-ratio: 1;
+}
+
 @media screen and (max-width: 768px) {
     .hourly_forcast_card {
         width: 97%;
+    }
+
+    .hourly_forcast_container {
+        height: 70dvh;
     }
 }
