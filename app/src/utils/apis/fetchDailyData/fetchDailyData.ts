@@ -9,7 +9,7 @@ export const DAILY_DATA_QUERY_KEY = ["dailyData"];
  * @returns A promise that resolves to daily data.
  */
 export async function fetchDailyWeather({ latitude, longitude }: Cooradinates) {
-    const url: string = import.meta.env.VITE_OPEN_METEO_DAILY || 'https://climate-api.open-meteo.com/v1/climate';
+    const url: string = import.meta.env.VITE_OPEN_METEO_DAILY;
 
     if (!url) {
         throw new Error("Missing VITE_OPEN_METEO_DAILY API endpoint environment variable.");

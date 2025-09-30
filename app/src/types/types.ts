@@ -14,6 +14,7 @@ export interface FormattedDateParts {
     month: string;
     year: string;
     fullDate: string;
+    time: string;
 }
 
 
@@ -74,3 +75,24 @@ export interface DailyData {
     max_temp: string;
     min_temp: string;
 }
+
+export interface HourlyWeather {
+    time: Date[];
+    temperature_2m: Float32Array<ArrayBufferLike> | null;
+    weather_code: Float32Array<ArrayBufferLike> | null;
+    timezone: string | null;
+}
+
+export interface HourlyEntry {
+    time: string;
+    temperature: number;
+    weather_code: number;
+}
+
+interface HourlyWeatherIndex {
+    [date: string]: HourlyEntry[];
+}
+
+export type HourlyByDay = HourlyWeatherIndex & {
+    weekDays: string[];
+};

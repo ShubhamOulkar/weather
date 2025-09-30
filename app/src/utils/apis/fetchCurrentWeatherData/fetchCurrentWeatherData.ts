@@ -92,7 +92,7 @@ export async function fetchCurrentWeatherData({ latitude, longitude }: Cooradina
             });
         });
 
-        if (!mainTemperature || !weather_code) {
+        if (!mainTemperature || weather_code === null) {
             throw new Error("temperature_2m/weather_code is not found in the response.");
         }
 
