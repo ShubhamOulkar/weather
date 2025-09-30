@@ -35,7 +35,7 @@ interface UnitsSectionsArg {
 function UnitsSections({ title, unit1, unit2 }: UnitsSectionsArg) {
     return <ul className={styles.unit_sections}>
         <li><p className={styles.unit_title}>{title}</p></li>
-        <li><DropBtn btnTitle={unit1}/></li>
-        <li><DropBtn btnTitle={unit2}/></li>
+        <li><DropBtn btnTitle={unit1} onClick={()=>{}} showCheck={false}/></li>
+        <li><DropBtn btnTitle={unit2} onClick={()=>{}} showCheck={true}/></li>
     </ul>
 }
