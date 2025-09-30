@@ -3,16 +3,22 @@
 }
 
 .search_form {
-    --height: 3rem;
     gap: 0.8rem;
     position: relative;
+}
 
-    >button[type='submit'] {
+.form_btn_container {
+    --height: 3rem;
+
+    >button {
+        padding-inline: 1rem;
         height: var(--height);
         border-radius: var(--border-radius);
         border: none;
         background-color: var(--blue-500);
         cursor: pointer;
+        gap: 0.5rem;
+        width: 100%;
 
         &:focus {
             outline: var(--btn-outline-size) solid var(--blue-500);
@@ -21,12 +27,13 @@
     }
 }
 
-.search_container { 
+.search_container {
     --height: 3rem;
     position: relative;
+    border-radius: var(--border-radius);
 
     >.input_container {
-        border-radius: var(--border-radius);
+        border-radius: inherit;
         height: var(--height);
         background-color: var(--btn-color-bg);
         cursor: pointer;
@@ -63,14 +70,54 @@
     }
 }
 
+.input_error {
+    outline: 2px solid var(--orange-500);
+    outline-offset: var(--btn-outline-offset);
+}
+
+.error {
+    font-size: 0.875rem;
+    padding: 0.1rem 0.75rem;
+    border-radius: var(--border-radius);
+    color: var(--neutral-0);
+    background-color: var(--orange-500);
+    position: absolute;
+    top: -2rem;
+    left: 0;
+    z-index: 50;
+    white-space: nowrap;
+    animation: fadeIn 0.3s ease-out;
+    margin-bottom: 0.2rem;
+}
+
+/* Fade-in animation for the error message */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(0) translateY(10%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+
 @media screen and (min-width: 768px) {
     .search_form {
         flex-direction: row;
         gap: 2rem;
         justify-content: center;
+    }
 
+    .form_btn_container {
         >button[type='submit'] {
             width: 10rem;
+        }
+
+        >button[type='button'] {
+            width: auto;
         }
     }
 
