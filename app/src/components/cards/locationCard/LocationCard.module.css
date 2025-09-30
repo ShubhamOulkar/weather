@@ -46,21 +46,15 @@
 .location_weather_icon {
     width: 6rem;
     aspect-ratio: 1;
-    align-self: self-end;
 }
 
 .location_temp {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 700;
     font-style: italic;
 }
 
 @media screen and (min-width: 768px) {
-    .location {
-        height: 75%;
-        padding: 2rem;
-    }
-
     .location_details {
         flex-direction: row;
         text-align: left;
@@ -85,7 +79,7 @@
     }
 
     .location_temp {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 }
 
@@ -95,7 +89,7 @@
     }
 
     .location_temp {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 
     .location_weather_icon {

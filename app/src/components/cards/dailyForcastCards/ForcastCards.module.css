@@ -15,3 +15,7 @@
     }
 }
 
+.daily_icon {
+    width: 2.5rem;
+    aspect-ratio: 1;
+}

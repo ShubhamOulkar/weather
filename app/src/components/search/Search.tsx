@@ -1,26 +1,104 @@
-import { useState, type FormEvent, type KeyboardEventHandler } from "react"
+import { useState, useEffect, type ChangeEvent, type FormEvent, type KeyboardEventHandler } from "react"
 import IconSearch from "../../assets/images/icon-search.svg?react"
+import IconLocation from "../../assets/images/icon-location.svg?react"
+import IconError from "../../assets/images/icon-error.svg?react"
 import DropdownSearch from "../dropdowns/search/DropdownSearch"
 import cnr from "../../utils/class_resolver/cnr"
-import { useDismissalOutside } from "../../hooks/useDismissalOutside"
+import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside"
 import styles from "./Search.module.css"
+import { useLocation } from "../../context/location/Location"
+import { SearchSchema } from "../../validation/searchValidation"
+import { useGpsLocation } from "../../hooks/useGpsLocation/useGpsLocation"
+import { useLiveSearch } from "../../hooks/useLiveSearch/useLiveSearch"
+import type { Cooradinates } from "../../types/types"
 
 export default function SearchForm() {
     const [dropdown, setShowDropDown] = useState(false)
+    const [search, setSearch] = useState("")
+    const [validateSearch, setValidateSearch] = useState("")
+    const { setLocation } = useLocation()
+    const [error, setError] = useState<string | null>(null)
+    const { coord, gpsErr, getLocation } = useGpsLocation()
+    // debounce search
+    const { data: liveData, isFetching, flush } = useLiveSearch(validateSearch)
 
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLDivElement>({
         onDismissalEvent: () => setShowDropDown(false),
     })
 
+    const handlerGpsLocation = () => {
+        getLocation()
+        setError(null)
+    }
+
+    useEffect(() => {
+        if (coord) {
+            setLocation({ coords: coord })
+        }
+    }, [coord, setLocation])
+
+    // this error should be set on toast not on search error
+    useEffect(() => {
+        if (gpsErr) setError(gpsErr)
+    }, [gpsErr])
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
+        // get latest debounced value
+        flush()
+        // clear previous errors 
+        setError(null)
+        // validate
+        const results = SearchSchema.safeParse({ search: search })
+
+        if (!results.success) {
+            const errMsg = results.error.issues[0].message
+            setError(errMsg)
+            return
+        }
+
+        // on validation success
+        setSearch("")
+        setLocation({ city: search })
+        setError(null)
+        setValidateSearch("")
+    }
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value;
+        // clear previous errors 
+        setError(null)
+        // set new value 
+        setSearch(newValue)
+        // validate
+        const results = SearchSchema.safeParse({ search: newValue })
+
+        if (!results.success) {
+            const errMsg = results.error.issues[0].message
+            setError(errMsg)
+            setValidateSearch("")
+            return
+        }
+
+        setValidateSearch(newValue)
+        setError(null)
+    }
+
+    // set search field and close drop down
+    const handleSelect = (place: string, coords: Cooradinates) => {
+        setSearch(place)
+        setLocation({
+            city: place,
+            coords: coords
+        })
+        setShowDropDown(false)
     }
 
     const showDropDown = () => setShowDropDown(true)
 
     const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
         // If the Escape key is pressed, close the dropdown
-        if (e.key === 'Escape' || e.key === ' ') {
+        if (e.key === 'Escape') {
             setShowDropDown(false)
             e.preventDefault()
         }
@@ -29,11 +107,21 @@ export default function SearchForm() {
         if (e.key === 'Enter' && !dropdown) showDropDown()
     }
 
-    return <search className={styles.form_container}>
+    return <search className={styles.form_container} title="search">
         <form onSubmit={handleSubmit}
-            className={cnr('flexcol', styles.search_form)}
-        >
-            <div className={styles.search_container}>
+            className={cnr('flexcol', styles.search_form)} >
+            <div className={cnr(styles.search_container, error && styles.input_error)}>
+                {error && (
+                    <p
+                        className={styles.error}
+                        aria-label={`${error}`}
+                        role="alert"
+                        aria-live="polite"
+                        title="error"
+                    >
+                        <IconError aria-hidden="true" width={12} height={12} fill="white" /> {error}
+                    </p>
+                )}
                 <div ref={userRef}
                     className={cnr('flex', styles.input_container)} >
                     <label htmlFor="search">
@@ -44,9 +132,11 @@ export default function SearchForm() {
                         type="search"
                         id="search"
                         name="search"
-                        placeholder="Search for a place..."
+                        value={search}
+                        placeholder="Search for place..."
                         onFocus={showDropDown}
                         onKeyDown={handleKeyDown}
+                        onChange={handleChange}
                         role="combobox"
                         aria-autocomplete="list"
                         aria-haspopup="listbox"
@@ -54,9 +144,23 @@ export default function SearchForm() {
                         aria-controls="searchDropdown"
                         autoComplete="off" />
                 </div>
-                <DropdownSearch id="searchDropdown" dismissRef={nodeRef} dropdown={dropdown}/>
+                <DropdownSearch id="searchDropdown"
+                    dismissRef={nodeRef}
+                    dropdown={dropdown}
+                    searchData={liveData}
+                    isLoading={isFetching}
+                    onSelect={handleSelect} />
             </div>
-            <button type="submit">Search</button>
+            <div className={cnr('flex', 'gap-1rem', styles.form_btn_container)}>
+                <button type="submit" title="search location">Search</button>
+                <button type="button"
+                    className="flex flexcenter"
+                    onClick={handlerGpsLocation}
+                    title="use my location"
+                    aria-label="use GPS location">
+                    <IconLocation /> Locate me
+                </button>
+            </div>
         </form>
     </search>
 }

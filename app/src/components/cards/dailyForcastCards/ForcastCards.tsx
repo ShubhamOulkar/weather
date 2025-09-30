@@ -1,23 +1,71 @@
-import IconSnowing from "../../../assets/images/icon-snow.webp"
 import styles from "./ForcastCards.module.css"
 import cnr from "../../../utils/class_resolver/cnr"
+import { getLocalDate } from "../../../utils/local_date/getLocalDate"
+import WeatherIcon from "../../common/WeatherIcon/WeatherIcon"
+import { useDailyData } from "../../../hooks/useDailyData/useDailyData"
+import { useLocation } from "../../../context/location/Location"
+import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
+import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
 
 export default function DailyForcastCards() {
-    const days: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    return <div className='flexcol margin-top'>
-        <h4>Daily forcast</h4>
-        <div className={cnr('grid_container', styles.forcast_container)}>{
-            days.map(d => (
-                <div className={cnr('flexcol', 'gap-1rem', styles.daily_forcast_card, 'card_design')} key={d}>
-                    <p>{d}</p>
-                    <img className="icon-3rem" src={IconSnowing} alt="Snowing" />
-                    <div className="flex">
-                        <p>16<sup>o</sup></p>
-                        <p>32<sup>o</sup></p>
-                    </div>
-                </div>
-            ))
-        }
+    const { data: currData } = useLocation()
+    const { data: dailyData, isLoading, isFetching } = useDailyData({
+        latitude: currData.latitude,
+        longitude: currData.longitude
+    })
+    const { unitSystem, getTemp } = useUnits()
+    const isBusy = isLoading || isFetching
+    const days = dailyData?.time ?? Array.from({ length: 7 }) // fallback 
+    const cleanTemp = (temp: number): string => {
+        const str = getTemp(temp)
+        if (unitSystem.temperature === 'fahrenheit') return str.replace("F", "")
+        return str.replace("C", "")
+    }
+    return (
+        <div className="flexcol margin-top">
+            <h4>Daily forecast</h4>
+            <div className={cnr("grid_container", styles.forcast_container)}>
+                {days.map((d, i) => {
+                    const weekday = dailyData
+                        ? getLocalDate(d, { weekday: "short" }).weekday
+                        : getLocalDate(undefined, { weekday: 'short' }).weekday
+                    const maxtemp = dailyData?.temperature_2m_max?.[i] ?? 20
+                    const mintemp = dailyData?.temperature_2m_min?.[i] ?? 10
+                    const wmo = dailyData?.weather_code?.[i] ?? 80
+
+                    return (
+                        <div
+                            className={cnr(
+                                "flexcol",
+                                "gap-1rem",
+                                styles.daily_forcast_card,
+                                "card_design"
+                            )}
+                            key={weekday + i}
+                        >
+                            <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
+                                <p>{weekday}</p>
+                            </LoaderWrapper>
+
+                            <WeatherIcon
+                                wmo={wmo}
+                                isLoading={isBusy}
+                                loaderClass="loader-xs"
+                                iconClass={styles.daily_icon}
+                            />
+
+                            <div className="flex">
+                                <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
+                                    <p>{cleanTemp(mintemp)}</p>
+                                </LoaderWrapper>
+                                <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
+                                    <p>{cleanTemp(maxtemp)}</p>
+                                </LoaderWrapper>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
-    </div>
+    )
 }

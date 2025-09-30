@@ -17,11 +17,14 @@
     "test:preview": "vite preview --outDir html"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.90.2",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@tanstack/eslint-plugin-query": "^5.90.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
@@ -38,6 +41,7 @@
     "eslint-plugin-react-x": "^1.53.0",
     "globals": "^16.3.0",
     "jsdom": "^27.0.0",
+    "openmeteo": "^1.2.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
