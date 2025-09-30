@@ -96,3 +96,25 @@ interface HourlyWeatherIndex {
 export type HourlyByDay = HourlyWeatherIndex & {
     weekDays: string[];
 };
+
+export interface UnitSystem {
+    system: "metric" | "imperial";
+    temperature: "celsius" | "fahrenheit";
+    wind: "kmh" | "mph";
+    precipitation: "mm" | "inch";
+}
+
+export interface UnitsContextType {
+    unitSystem: UnitSystem;
+    // global system controls
+    setSystem: (system: UnitSystem["system"]) => void;
+    toggleSystem: () => void;
+    // per-metric setters
+    setTemperatureUnit: (unit: UnitSystem["temperature"]) => void;
+    setWindUnit: (unit: UnitSystem["wind"]) => void;
+    setPrecipitationUnit: (unit: UnitSystem["precipitation"]) => void;
+    // converters
+    getTemp: (degree: number) => string;
+    getWind: (speed: number) => string;
+    getPrecipitation: (mm: number) => string;
+}

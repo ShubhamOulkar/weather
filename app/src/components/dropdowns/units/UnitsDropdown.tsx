@@ -1,7 +1,9 @@
-import styles from "./UnitsDropdown.module.css"
+import { useCallback } from "react";
+import styles from "./UnitsDropdown.module.css";
 import cnr from "../../../utils/class_resolver/cnr";
 import type { Ref } from "react";
-import DropBtn from "../../common/dropButton/DropBtn";
+import { SubUnitSections } from "./UnitSections";
+import { useUnits } from "../../../context/unitsSystem/UnitsSystem";
 
 interface CompArg {
     id: string;
@@ -10,32 +12,70 @@ interface CompArg {
 }
 
 export default function UnitsDropdown({ id, dismissRef, open }: CompArg) {
+    const {
+        unitSystem,
+        toggleSystem,
+        setPrecipitationUnit,
+        setTemperatureUnit,
+        setWindUnit,
+    } = useUnits();
 
-    return <div ref={dismissRef}
-        id={id}
-        role="listbox"
-        className={cnr(open ? 'show' : 'hidden', styles.units_dropdown)}
-        aria-hidden={!open}
-        aria-live="polite">
-        <ul className={styles.unit_sections}>
-            <li><button className={styles.unit_btn} type="button">Switch to imperial</button></li>
-            <UnitsSections title="Temperature" unit1="Celsius (°C)" unit2="Fahrenheit (°F)" />
-            <UnitsSections title="Wind Speed" unit1="km/h" unit2="mph" />
-            <UnitsSections title="Precipitation" unit1="Millimeters (mm)" unit2="Inches (in)" />
-        </ul>
-    </div>
-}
+    const setTempC = useCallback(() => setTemperatureUnit("celsius"), [setTemperatureUnit]);
+    const setTempF = useCallback(() => setTemperatureUnit("fahrenheit"), [setTemperatureUnit]);
 
-interface UnitsSectionsArg {
-    title: string;
-    unit1: string;
-    unit2: string;
-}
+    const setWindKmh = useCallback(() => setWindUnit("kmh"), [setWindUnit]);
+    const setWindMph = useCallback(() => setWindUnit("mph"), [setWindUnit]);
 
-function UnitsSections({ title, unit1, unit2 }: UnitsSectionsArg) {
-    return <ul className={styles.unit_sections}>
-        <li><p className={styles.unit_title}>{title}</p></li>
-        <li><DropBtn btnTitle={unit1} onClick={()=>{}} showCheck={false}/></li>
-        <li><DropBtn btnTitle={unit2} onClick={()=>{}} showCheck={true}/></li>
-    </ul>
+    const setPrecMm = useCallback(() => setPrecipitationUnit("mm"), [setPrecipitationUnit]);
+    const setPrecIn = useCallback(() => setPrecipitationUnit("inch"), [setPrecipitationUnit]);
+
+    return (
+        <div
+            ref={dismissRef}
+            id={id}
+            role="listbox"
+            className={cnr(open ? "show" : "hidden", styles.units_dropdown)}
+            aria-hidden={!open}
+            aria-live="polite"
+        >
+            <ul className={styles.unit_sections}>
+                <li>
+                    <button
+                        className={styles.unit_btn}
+                        type="button"
+                        onClick={toggleSystem}
+                    >
+                        Switch to {unitSystem.system === "metric" ? "Imperial" : "Metric"}
+                    </button>
+                </li>
+
+                <SubUnitSections
+                    title="Temperature"
+                    unit1="Celsius (°C)"
+                    unit2="Fahrenheit (°F)"
+                    unit1Setter={setTempC}
+                    unit2Setter={setTempF}
+                    showCheck={unitSystem.temperature === "celsius"}
+                />
+
+                <SubUnitSections
+                    title="Wind Speed"
+                    unit1="km/h"
+                    unit2="mph"
+                    unit1Setter={setWindKmh}
+                    unit2Setter={setWindMph}
+                    showCheck={unitSystem.wind === "kmh"}
+                />
+
+                <SubUnitSections
+                    title="Precipitation"
+                    unit1="Millimeters (mm)"
+                    unit2="Inches (in)"
+                    unit1Setter={setPrecMm}
+                    unit2Setter={setPrecIn}
+                    showCheck={unitSystem.precipitation === "mm"}
+                />
+            </ul>
+        </div>
+    );
 }

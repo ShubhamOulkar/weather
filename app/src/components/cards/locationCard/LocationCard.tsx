@@ -5,10 +5,11 @@ import styles from "./LocationCard.module.css"
 import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
 import { useLocation } from "../../../context/location/Location"
 import WeatherIcon from "../../common/WeatherIcon/WeatherIcon"
+import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
 
 
 export default function LocationCard() {
-
+    const { getTemp } = useUnits()
     const { data: locWeather, isLoading } = useLocation()
 
     return <div className={styles.location}>
@@ -37,7 +38,7 @@ export default function LocationCard() {
 
                 <p className={styles.location_temp} >
                     <LoaderWrapper isLoading={isLoading} loaderClass="loader-sq">
-                        {locWeather.temp}
+                        {getTemp(locWeather.temp)}
                     </LoaderWrapper>
                 </p>
             </div>

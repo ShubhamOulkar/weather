@@ -3,11 +3,11 @@ import type { Cooradinates } from "../../../types/types";
 
 interface MetricData {
     key: string;
-    value: string;
+    value: number;
 }
 
 interface CurrentWeatherMetrics {
-    temp: string;
+    temp: number;
     wmo: number;
     metrics: MetricData[];
 }
@@ -40,13 +40,13 @@ export async function fetchCurrentWeatherData({ latitude, longitude }: Cooradina
     };
 
     // Define units and the desired display name for each variable
-    const variableMap: { [key: string]: { unit: string; name: string } } = {
-        temperature_2m: { unit: "°C", name: "Temperature" },
-        apparent_temperature: { unit: "°C", name: "Feels Like" },
-        relative_humidity_2m: { unit: "%", name: "Humidity" },
-        wind_speed_10m: { unit: "km/h", name: "Wind" },
-        precipitation: { unit: "mm", name: "Precipitation" },
-        weather_code: {unit: "", name: "wmo"}
+    const variableMap: { [key: string]: string } = {
+        temperature_2m: "Temperature",
+        apparent_temperature: "Feels Like",
+        relative_humidity_2m: "Humidity",
+        wind_speed_10m: "Wind",
+        precipitation: "Precipitation",
+        weather_code: "wmo"
     };
 
     try {
@@ -65,7 +65,7 @@ export async function fetchCurrentWeatherData({ latitude, longitude }: Cooradina
         }
 
         const metricsArray: MetricData[] = [];
-        let mainTemperature: string | null = null;
+        let mainTemperature: number | null = null;
         let weather_code: number | null = null;
 
         // Iterate through all requested variables
@@ -78,16 +78,16 @@ export async function fetchCurrentWeatherData({ latitude, longitude }: Cooradina
                 console.warn(`Missing data or map entry for variable: ${variableName}`);
                 return;
             }
-    
-            const value = `${variable.value().toFixed(0)} ${mapEntry.unit}`;
 
-            if(variableName === "weather_code") return weather_code = variable.value()
+            const value = variable.value();
+
+            if (variableName === "weather_code") return weather_code = variable.value()
 
             if (variableName === "temperature_2m") return mainTemperature = value;
 
             // Add all other variables to the metrics array for the cards
             metricsArray.push({
-                key: mapEntry.name,
+                key: mapEntry,
                 value: value,
             });
         });

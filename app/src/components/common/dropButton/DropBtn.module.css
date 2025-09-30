@@ -1,6 +1,6 @@
 .drop_btn {
     font-size: 1rem;
-    width: 12rem;
+    width: 13rem;
     cursor: pointer;
     background-color: var(--btn-color-bg);
     border: none;
@@ -27,7 +27,7 @@
 
 @media screen and (min-width: 769px) {
     .drop_btn {
-        gap: 4rem;
+        gap: 2rem;
         padding-inline: 0.8rem;
     }
 }

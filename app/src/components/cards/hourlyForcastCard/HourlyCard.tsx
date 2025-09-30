@@ -7,11 +7,13 @@ import { useLocation } from "../../../context/location/Location"
 import WeatherIcon from "../../common/WeatherIcon/WeatherIcon"
 import type { HourlyEntry } from "../../../types/types"
 import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
+import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
 
 export default function HourlyForcastCard() {
     const { data: currLoc } = useLocation()
     const { data: hourly, isFetching, isLoading } = useHourlyData({ latitude: currLoc.latitude, longitude: currLoc.longitude })
     const [today, setToday] = useState(0)
+    const { getTemp } = useUnits()
 
     const isBusy = isLoading || isFetching
 
@@ -48,7 +50,7 @@ export default function HourlyForcastCard() {
                                 </LoaderWrapper>
                             </div>
                             <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
-                                <p>{temperature}°</p>
+                                <p>{getTemp(temperature)}</p>
                             </LoaderWrapper>
                         </div>
                     );
