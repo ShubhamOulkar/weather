@@ -1,6 +1,6 @@
 .btn {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     font-size: var(--font-size-btn);
     gap: 0.5rem;
@@ -9,6 +9,7 @@
     padding: 0.5rem;
     border-radius: var(--border-radius);
     cursor: pointer;
+    width: 8rem;
 
     &:focus {
         outline: var(--focus-outline);
