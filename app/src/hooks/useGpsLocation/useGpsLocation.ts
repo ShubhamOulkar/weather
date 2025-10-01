@@ -23,8 +23,8 @@ export function useGpsLocation() {
 
         const options: PositionOptions = {
             enableHighAccuracy: true, // Test TODO: might use more battery and gps resourses on a mobile
-            timeout: 10000, // 10 seconds max time to wait for a fix
-            maximumAge: 0,   // Don't use a cached position
+            timeout: 30000, // 30 seconds max time to wait for a fix, mobile needs more time
+            maximumAge: 0,   // do not use cache position
         };
 
         navigator.geolocation.getCurrentPosition(

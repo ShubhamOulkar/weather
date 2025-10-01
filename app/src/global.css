@@ -74,7 +74,7 @@
   --border-style: 1px solid var(--neutral-600);
 
   /* dropdown z-index */
-  --dropdown-z-index: 10;
+  --dropdown-z-index: 100;
 }
 
 @media (prefers-color-scheme: light) {

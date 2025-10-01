@@ -52,7 +52,7 @@ Implement in phase 2
 
 ### Links
 
-- [Live website url](https://weatherfem.netlify.app/)
+- [Live website url](https://weather-inky-delta.vercel.app/)
 
 ## My process
 
@@ -65,7 +65,8 @@ Implement in phase 2
 - CSS modules
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- vite
+- React query (Tanstack) to query data
+- vite, vite test, react testing library
 
 ### What I learned
 
