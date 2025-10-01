@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, type ReactNode } from "react";
-import type { LocationInput } from "../../types/types";
+import type { LocationInput, LookUpReturn } from "../../types/types";
 import useLocationWeather from "../../hooks/useLocationWeather/useLocationWeather";
+import { useIpLookUp } from "../../hooks/useIpLookUp/useIpLookUp";
 
 interface LocationContext {
     location?: LocationInput;
@@ -8,6 +9,8 @@ interface LocationContext {
     data: ReturnType<typeof useLocationWeather>["data"];
     isLoading: boolean;
     refetch: () => void;
+    ipData: LookUpReturn | undefined;
+    ipLoading: boolean;
 }
 
 const LocationContext = createContext<LocationContext | undefined>(undefined)
@@ -15,10 +18,13 @@ const LocationContext = createContext<LocationContext | undefined>(undefined)
 export function LocationProvider({ children }: { children: ReactNode }) {
     const [location, setLocation] = useState<LocationInput | undefined>(undefined)
 
-    // centralise weather data
-    const { data, isFetching: isLoading, refetch } = useLocationWeather(location)
+    // ip lookup
+    const { data: ipData, isLoading: ipLoading } = useIpLookUp()
 
-    return <LocationContext value={{ location, setLocation, data, isLoading, refetch }}>
+    // centralise weather data
+    const { data, isFetching: isLoading, refetch } = useLocationWeather(location, ipData)
+
+    return <LocationContext value={{ location, setLocation, data, ipData, ipLoading, isLoading, refetch }}>
         {children}
     </LocationContext>
 }

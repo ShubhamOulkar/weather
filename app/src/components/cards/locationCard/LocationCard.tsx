@@ -11,6 +11,7 @@ import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
 export default function LocationCard() {
     const { getTemp } = useUnits()
     const { data: locWeather, isLoading } = useLocation()
+    const { date, time, fullDate } = locWeather.locDate
 
     return <div className={styles.location}>
         <picture className={styles.location_bg}>
@@ -24,11 +25,11 @@ export default function LocationCard() {
                         {locWeather.place}
                     </LoaderWrapper>
                 </h2>
-                <sub >
+                <time dateTime={date.toISOString()}>
                     <LoaderWrapper isLoading={isLoading} loaderClass="loader-lg">
-                        {locWeather.date.fullDate}
+                        {fullDate}
                     </LoaderWrapper>
-                </sub>
+                </time>
             </div>
             <div className="flex">
                 <WeatherIcon wmo={locWeather.wmo}
@@ -36,7 +37,13 @@ export default function LocationCard() {
                     loaderClass="loader-sq"
                     iconClass={styles.location_weather_icon} />
 
-                <p className={styles.location_temp} >
+                <p className={cnr('flex', 'flexcol', 'gap-1rem', 'flexcenter', styles.location_temp)} >
+                    <LoaderWrapper isLoading={isLoading} loaderClass="loader-xs">
+                        <time className={styles.updated_at} dateTime={date.toISOString()}
+                            aria-label={`Data update at ${time} for ${locWeather.place}`}>
+                            Last update {time}
+                        </time>
+                    </LoaderWrapper>
                     <LoaderWrapper isLoading={isLoading} loaderClass="loader-sq">
                         {getTemp(locWeather.temp)}
                     </LoaderWrapper>

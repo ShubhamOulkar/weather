@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
-import { doIpLookUp } from "../../utils/apis/doIpLookUp/doIpLookUp"
 import { fetchCityData } from "../../utils/apis/fetchCityData/fetchCityData"
 import { fetchCurrentWeatherData } from "../../utils/apis/fetchCurrentWeatherData/fetchCurrentWeatherData"
-import type { LocationInput, FormattedDateParts, Cooradinates } from "../../types/types"
+import type { LocationInput, FormattedDateParts, Cooradinates, LookUpReturn } from "../../types/types"
 import { getLocalDate } from "../../utils/local_date/getLocalDate"
 import { fetchLocationByCoords } from "../../utils/apis/fetchLocByCoords/fetchLocByCoords"
 import formatBtnTitle from "../../utils/formatBtnTitle/formatBtnTitle"
@@ -10,20 +9,23 @@ import formatBtnTitle from "../../utils/formatBtnTitle/formatBtnTitle"
  * This hook return weather data by city name and GPS with fallback to ip address
  */
 
-export default function useLocationWeather(input?: LocationInput) {
+export default function useLocationWeather(input?: LocationInput, ipData?: LookUpReturn) {
+  const getDate = () => {
+    return getLocalDate(undefined,
+      { minute: '2-digit' })
+  }
   return useQuery({
-    queryKey: ["locWeather", input],
+    queryKey: ["locWeather", input, ipData],
     queryFn: async () => {
       let coords: Cooradinates
       let place: string
-      let date: FormattedDateParts = getLocalDate()
+      let date: FormattedDateParts = getDate()
 
       if (!input) {
         // fallback: get location data from ip
-        const ipData = await doIpLookUp()
-        const res = await fetchCityData(ipData.capital!, 1)
+        const res = await fetchCityData(ipData?.capital!, 1)
         coords = res[0].coords
-        place = `${ipData.capital}, ${ipData.country}`
+        place = `${ipData?.capital}, ${ipData?.country}`
       } else if (input.city) {
         // here two search action happens
         // 1st on when user types and select place from drop down then
@@ -54,7 +56,7 @@ export default function useLocationWeather(input?: LocationInput) {
     },
     initialData: {
       place: 'Hupari, MH, IN',
-      date: getLocalDate(),
+      date: getDate(),
       temp: 20,
       wmo: 96,
       metrics: [
@@ -65,6 +67,10 @@ export default function useLocationWeather(input?: LocationInput) {
       ],
       latitude: 16.61622093,
       longitude: 74.4059719,
-    }
+      locDate: getDate(),
+    },
+    enabled: !!ipData,
+    refetchOnWindowFocus: false,
+    refetchInterval: 300000,
   })
 }
