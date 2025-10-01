@@ -2,3 +2,8 @@
     margin-left: auto;
     position: relative;
 }
+
+.user_time_country {
+    cursor: pointer;
+    border-bottom: 2px solid var(--neutral-0);
+}

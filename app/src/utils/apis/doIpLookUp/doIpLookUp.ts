@@ -21,18 +21,20 @@ export async function doIpLookUp(): Promise<LookUpReturn> {
         }
 
         // Parse JSON Data
-        const data: IpData = await res.json();
+        const resObj: IpData = await res.json();
 
         // API check
-        if (!data.success) {
-            const apiMessage = data.message || 'Unknown API failure reported in response body.';
+        if (!resObj.success) {
+            const apiMessage = 'Unknown API failure reported in response body.';
             throw new Error(`API Error: IP Lookup failed. Message: ${apiMessage}`);
         }
-
+        
         // Data Transformation
         return {
-            capital: data.capital,
-            country: data.country,
+            capital: resObj.data.capital,
+            country: resObj.data.country,
+            country_code: resObj.data.countryCode,
+            country_icon: resObj.data.flag.flag_Icon,
         };
 
     } catch (error) {

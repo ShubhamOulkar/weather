@@ -1,19 +1,14 @@
 import type { FormattedDateParts } from "../../types/types";
 
 /**
- * Parses a date string and returns separate formatted components, including time.
- * Defaults to the current date if no valid string is provided.
- * 
- * @param dateStr An optional date string (e.g., from an API).
- * @param format Optional Intl.DateTimeFormatOptions for customizing date parts.
- * @param locale The desired locale (default: 'en-US').
- * @param timezone The desired timezone (default: 'UTC').
- * @returns An object containing the formatted date parts and time.
+ * Parses a date string or Date and returns formatted components, including time.
+ * Defaults to the current date if no valid value is provided.
  */
-export function getLocalDate(dateStr?: string | Date,
+export function getLocalDate(
+    dateStr?: string | Date,
     format?: Intl.DateTimeFormatOptions,
-    locale: string | string[] = 'en-US',
-    timezone: string = 'UTC'
+    locale: string | string[] = "en-US",
+    timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
 ): FormattedDateParts {
     let date: Date;
 
@@ -21,41 +16,41 @@ export function getLocalDate(dateStr?: string | Date,
         date = new Date();
     } else {
         date = new Date(dateStr);
-
         if (isNaN(date.getTime())) {
-            console.error(`getLocalDate received an invalid date string: ${dateStr}. Falling back to current date.`);
+            console.error(
+                `getLocalDate received an invalid date string: ${dateStr}. Falling back to current date.`
+            );
             date = new Date();
         }
     }
 
-    const options: Intl.DateTimeFormatOptions = { timeZone: timezone };
+    const baseOptions: Intl.DateTimeFormatOptions = { timeZone: timezone, ...format };
 
-    // format a specific part
-    const formatter = (part: Intl.DateTimeFormatOptions): string => {
-        return date.toLocaleDateString(locale, { ...options, ...part });
-    };
+    // Helper to format a specific part cleanly
+    const formatter = (opts: Intl.DateTimeFormatOptions): string =>
+        new Intl.DateTimeFormat(locale, { ...baseOptions, ...opts }).format(date);
 
     const fullOptions: Intl.DateTimeFormatOptions = {
-        weekday: format?.weekday || 'long',
-        month: format?.month || 'short',
-        day: format?.day || 'numeric',
+        weekday: format?.weekday || "long",
+        month: format?.month || "short",
+        day: format?.day || "numeric",
         year: format?.year || "numeric",
+        timeZone: timezone,
     };
 
-    const time = date.toLocaleTimeString(locale, {
-        ...options,
-        hour: '2-digit',
-        hour12: true
-    });
+    const time = new Intl.DateTimeFormat(locale, {
+        ...baseOptions,
+        hour: "2-digit",
+        hour12: true,
+    }).format(date);
 
-date.toLocaleTimeString
     return {
         date: date,
-        weekday: formatter({ weekday: format?.weekday || 'long' }),
-        day: formatter({ day: format?.day || 'numeric' }),
-        month: formatter({ month: format?.month || 'short' }),
-        year: formatter({ year: format?.year || 'numeric' }),
-        fullDate: date.toLocaleDateString(locale, fullOptions),
-        time: time,
+        weekday: formatter({ weekday: format?.weekday || "long" }),
+        day: formatter({ day: format?.day || "numeric" }),
+        month: formatter({ month: format?.month || "short" }),
+        year: formatter({ year: format?.year || "numeric" }),
+        fullDate: new Intl.DateTimeFormat(locale, fullOptions).format(date),
+        time,
     };
 }
