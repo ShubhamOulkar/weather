@@ -1,4 +1,17 @@
-.toolbar_right_container{
+.toolbar_right_container {
     margin-left: auto;
     position: relative;
+}
+
+.user_time_country {
+    cursor: pointer;
+    border-bottom: 2px solid var(--neutral-0);
+    font-size: 1rem;
+}
+
+@media screen and (max-width:480px) {
+    .toolbar_right_container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

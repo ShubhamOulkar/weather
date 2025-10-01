@@ -28,7 +28,7 @@ export async function fetchDailyWeather({ latitude, longitude }: Cooradinates) {
         if (!responses || responses.length === 0) {
             throw new Error("OpenMeteo API returned an empty daily weather response array.");
         }
-        const utcOffsetSeconds = responses[0].utcOffsetSeconds()
+
         const daily = responses[0].daily();
 
         if (!daily) {
@@ -38,7 +38,7 @@ export async function fetchDailyWeather({ latitude, longitude }: Cooradinates) {
         const weatherData = {
             daily: {
                 time: [...Array((Number(daily.timeEnd()) - Number(daily.time())) / daily.interval())].map(
-                    (_, i) => new Date((Number(daily.time()) + i * daily.interval() + utcOffsetSeconds) * 1000)
+                    (_, i) => new Date((Number(daily.time()) + i * daily.interval()) * 1000)
                 ),
                 temperature_2m_max: daily.variables(0)!.valuesArray(),
                 temperature_2m_min: daily.variables(1)!.valuesArray(),

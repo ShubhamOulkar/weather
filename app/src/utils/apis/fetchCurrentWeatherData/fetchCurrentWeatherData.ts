@@ -1,5 +1,6 @@
 import { fetchWeatherApi } from "openmeteo";
-import type { Cooradinates } from "../../../types/types";
+import type { Cooradinates, FormattedDateParts } from "../../../types/types";
+import { getLocalDate } from "../../local_date/getLocalDate";
 
 interface MetricData {
     key: string;
@@ -10,6 +11,7 @@ interface CurrentWeatherMetrics {
     temp: number;
     wmo: number;
     metrics: MetricData[];
+    locDate: FormattedDateParts;
 }
 
 /**
@@ -58,7 +60,8 @@ export async function fetchCurrentWeatherData({ latitude, longitude }: Cooradina
         }
 
         const response = responses[0];
-        const current = response.current();
+        const current = response.current()!;
+        const time = new Date((Number(current.time())) * 1000)
 
         if (!current) {
             throw new Error("OpenMeteo response structure is missing current weather data.");
@@ -100,6 +103,7 @@ export async function fetchCurrentWeatherData({ latitude, longitude }: Cooradina
             temp: mainTemperature,
             wmo: weather_code,
             metrics: metricsArray,
+            locDate: getLocalDate(time, {minute: '2-digit'}, 'en-US', response.timezone()!)
         };
 
         return results;

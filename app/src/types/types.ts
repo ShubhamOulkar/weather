@@ -1,10 +1,13 @@
 export interface IpData {
-    success: boolean,
-    country: string,
-    country_code: string,
-    timezone: { id: string, current_time: string },
-    message: string | null,
-    capital: string
+    success: boolean;
+    data: {
+        country: string;
+        countryCode: string;
+        capital: string;
+        flag: {
+            flag_Icon: string;
+        }
+    }
 }
 
 export interface FormattedDateParts {
@@ -21,7 +24,8 @@ export interface FormattedDateParts {
 export interface LookUpReturn {
     capital?: string;
     country?: string;
-    date?: FormattedDateParts
+    country_code?: string;
+    country_icon?: string;
 }
 
 export interface Cooradinates {

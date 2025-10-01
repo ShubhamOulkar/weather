@@ -107,10 +107,10 @@ export default function SearchForm() {
         if (e.key === 'Enter' && !dropdown) showDropDown()
     }
 
-    return <search className={styles.form_container} title="search">
+    return <search className={styles.form_container}>
         <form onSubmit={handleSubmit}
             className={cnr('flexcol', styles.search_form)} >
-            <div className={cnr(styles.search_container, error && styles.input_error)}>
+            <div title="search" className={cnr(styles.search_container, error && styles.input_error)}>
                 {error && (
                     <p
                         className={styles.error}

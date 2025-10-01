@@ -40,7 +40,7 @@ export function useDismissalOutside<
 } {
     const [node, setNode] = useState<NodeRef | null>(null)
     const ownerDocument = node?.ownerDocument ?? globalThis.document
-    let handleClickRef = useRef(() => {})
+    let handleClickRef = useRef(() => { })
     const nodeRef = useCallback<RefCallback<NodeRef>>((el) => setNode(el), [])
     /*
         This refrence to current pointer element, if this element is
@@ -103,10 +103,14 @@ export function useDismissalOutside<
             }
         }
 
-        ownerDocument.addEventListener('pointerdown', handlePointerDown)
+        const timerId = window.setTimeout(() => {
+            ownerDocument.addEventListener('pointerdown', handlePointerDown);
+        }, 0);
         return () => {
-            ownerDocument.removeEventListener("pointerdown", handlePointerDown)
-        }
+            window.clearTimeout(timerId);
+            ownerDocument.removeEventListener('pointerdown', handlePointerDown);
+            ownerDocument.removeEventListener('click', handleClickRef.current);
+        };
     }, [node, ownerDocument])
 
     // focus in
@@ -119,7 +123,7 @@ export function useDismissalOutside<
             // TODO: Implement test for element which fires both events 
             // on pointer down interation and also get focused.
             if (target === pointerDownEle.current) return
-        
+
             if (node.contains(target) || userRef.current?.contains(target)) return
 
             const customEvent = new CustomEvent("focusOutside", {

@@ -3,14 +3,16 @@ import { fetchHourlyWeather, HOURLY_DATA_QUERY_KEY } from "../../utils/apis/fetc
 import { groupHourlyByDay } from "../../utils/groupHourlyByDay/groupHourlyByDay";
 import type { Cooradinates } from "../../types/types";
 
-export function useHourlyData(coords: Cooradinates) { 
+export function useHourlyData(coords: Cooradinates) {
     return useQuery({
         queryKey: [...HOURLY_DATA_QUERY_KEY, coords],
         queryFn: async () => {
             const res = await fetchHourlyWeather(coords)
             const data = groupHourlyByDay(res)
             return data
-        } ,
-        enabled: !!coords
+        },
+        enabled: !!coords,
+        refetchOnWindowFocus: false,
+        refetchInterval: 300000,
     })
 }

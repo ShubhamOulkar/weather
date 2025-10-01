@@ -17,7 +17,7 @@
 }
 
 .location_details {
-    --gap : 2rem;
+    --gap: 2rem;
     --padding: 1rem;
     text-align: center;
     gap: var(--gap);
@@ -54,10 +54,15 @@
     font-style: italic;
 }
 
+.updated_at {
+    font-size: 1rem;
+}
+
 @media screen and (min-width: 768px) {
     .location_details {
         flex-direction: row;
         text-align: left;
+
         div:nth-child(1) {
             width: clamp(200px, 29vw, 450px);
             justify-content: center;
