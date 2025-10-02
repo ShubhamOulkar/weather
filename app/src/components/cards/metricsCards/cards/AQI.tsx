@@ -22,7 +22,7 @@ export default function AQICard({ latitude, longitude, classname }: AQIProp) {
         </h5>
         <p>
             <LoaderWrapper isLoading={isAqiLoading} loaderClass="loader-xs">
-                {index?.value || 'N/A'} ppm
+                {index?.value || 'N/A'}
             </LoaderWrapper>
         </p>
     </div>

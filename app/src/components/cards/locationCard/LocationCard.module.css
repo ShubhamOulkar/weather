@@ -1,8 +1,9 @@
 .location {
+    --height: 17rem;
     position: relative;
-    padding: 3rem;
-    width: 100%;
-    height: fit-content;
+    padding: 1rem;
+    height: var(--height);
+    max-height: var(--height);
 }
 
 /* background image */
@@ -13,38 +14,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0.8rem;
-}
-
-.location_details {
-    --gap: 2rem;
-    --padding: 1rem;
-    text-align: center;
-    gap: var(--gap);
-    padding: var(--padding);
-
-    div:nth-child(1) {
-        >h2 {
-            font-size: 2rem;
-        }
-
-        >sub {
-            font-size: 1rem;
-            color: var(--neutral-200);
-            font-weight: 500;
-        }
-    }
-
-    div:nth-child(2) {
-        align-items: center;
-        justify-content: space-around;
-        width: 100%;
-        gap: var(--gap);
-    }
+    border-radius: var(--border-radius);
 }
 
 .location_weather_icon {
-    width: 6rem;
+    width: 5rem;
     aspect-ratio: 1;
 }
 
@@ -52,59 +26,36 @@
     font-size: 4rem;
     font-weight: 700;
     font-style: italic;
+    align-self: baseline;
 }
 
-.updated_at {
-    font-size: 1rem;
-}
+.favorite_btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
 
-@media screen and (min-width: 768px) {
-    .location_details {
-        flex-direction: row;
-        text-align: left;
-
-        div:nth-child(1) {
-            width: clamp(200px, 29vw, 450px);
-            justify-content: center;
-        }
-
-        div:nth-child(2) {
-            justify-content: flex-end;
-        }
+    >svg {
+        width: 2rem;
     }
 
-    .location_bg img {
-        border-radius: var(--border-radius);
+    >svg:is(:hover, :focus) {
+        fill: var(--neutral-0);
+        transform: scale(1.3);
     }
 }
 
-@media screen and (max-width: 440px) {
-    .location_weather_icon {
-        width: 4rem;
-    }
-
-    .location_temp {
-        font-size: 2.5rem;
-    }
+.search_time {
+    font-size: var(--font-size-btn);
+    color: var(--btn-color-text);
+    border: none;
+    padding-block: 0.3rem;
+    padding-inline: 0.5rem;
+    border-radius: var(--border-radius);
+    background-color: hsl(243deg 21.22% 50.22% / 35%);
 }
 
-@media screen and (max-width: 1080px) {
-    .location_details {
-        --gap: 1rem;
-    }
-
-    .location_temp {
-        font-size: 3rem;
-    }
-
-    .location_weather_icon {
-        width: 4rem;
-        align-self: center;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .location_details {
-        --padding: 0.3rem;
+@media screen and (max-width:550px) {
+    .flexcol {
+        flex-direction: column;
     }
 }

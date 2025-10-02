@@ -216,12 +216,24 @@ h4 {
   align-items: center;
 }
 
+.align-items-center {
+  align-items: center;
+}
+
+.margin-block-auto {
+  margin-block: auto;
+}
+
 .gap-1rem {
   gap: 1rem;
 }
 
 .gap-2rem {
   gap: 2rem;
+}
+
+.gap-4rem {
+  gap: 4rem;
 }
 
 .margin-top {
@@ -317,6 +329,11 @@ h4 {
 .loader-sq {
   width: 4rem;
   height: 4rem;
+}
+
+.loader-rect {
+  width: 8rem;
+  height: 5rem;
 }
 
 .loader-xs {

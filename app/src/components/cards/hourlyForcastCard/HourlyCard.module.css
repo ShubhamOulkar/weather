@@ -4,7 +4,6 @@
 }
 
 .hourly_forcast_card {
-    width: 95%;
     height: clamp(50px, 5vh, 100px);
     background-color: var(--neutral-700);
     border-radius: var(--border-radius);
@@ -21,12 +20,12 @@
     aspect-ratio: 1;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
     .hourly_forcast_card {
         width: 97%;
     }
 
     .hourly_forcast_container {
-        height: 70dvh;
+        height: 60dvh;
     }
 }

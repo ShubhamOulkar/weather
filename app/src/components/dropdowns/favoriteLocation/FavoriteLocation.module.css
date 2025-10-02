@@ -1,0 +1,28 @@
+.fav_container {
+    position: relative;
+}
+
+.tool_fav_btn {
+    background: transparent;
+    border: none;
+}
+
+.fav_loc_drop {
+    background-color: var(--btn-color-bg);
+    width: 200px;
+    padding: 0;
+    position: absolute;
+    left: -100px;
+    top: 100%;
+    z-index: var(--dropdown-z-index);
+    margin-top: 1rem;
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    border: var(--border-style);
+}
+
+@media screen and (max-width: 400px) {
+    .fav_loc_drop {
+        left: -50px;
+    }
+}

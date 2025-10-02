@@ -27,15 +27,14 @@ export default function HourlyForcastCard() {
 
     const dataToDisplay = hourlyForecastForSelectedDay.length > 0
         ? hourlyForecastForSelectedDay
-        : Array.from({ length: 10 }, () => ({ time: '00 AM', temperature: 10, weather_code: 80 }) as HourlyEntry);
+        : Array.from({ length: 24 }, () => ({ time: '00 AM', temperature: 10, weather_code: 80 }) as HourlyEntry);
 
-    return < div className={cnr('flexcol', 'gap-1rem', styles.hourly_forcast_container, 'card_design', 'wd-100')} >
+    return < div className={cnr('flexcol', 'gap-1rem', styles.hourly_forcast_container, 'card_design')} >
         <DaysDropDown weekDays={days} today={today} setToday={setToday} />
         <div className="flexcol gap-1rem scroll" tabIndex={-1}>
             {
                 dataToDisplay.map((hourEntry, i) => {
                     const { time, weather_code, temperature } = hourEntry;
-
                     return (
                         <div className={cnr('flex', styles.hourly_forcast_card)} key={`${time}-${i}`}>
                             <div className="flex gap-1rem flexcenter">

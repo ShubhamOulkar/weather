@@ -9,7 +9,7 @@
     padding: 0.5rem;
     border-radius: var(--border-radius);
     cursor: pointer;
-    width: 8rem;
+    width: 6rem;
 
     &:focus {
         outline: var(--focus-outline);
@@ -29,6 +29,7 @@
     .btn {
         padding-block: 0.8rem;
         padding-inline: 1rem;
+        width: 8rem;
     }
 
     .day {

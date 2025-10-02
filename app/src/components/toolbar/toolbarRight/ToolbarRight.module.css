@@ -4,14 +4,20 @@
 }
 
 .user_time_country {
+    font-size: var(--font-size-btn);
+    color: var(--btn-color-text);
+    border: none;
+    padding-block: 0.3rem;
+    padding-inline: 0.5rem;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    border-bottom: 2px solid var(--neutral-0);
-    font-size: 1rem;
+    background-color: var(--btn-color-bg);
 }
 
-@media screen and (max-width:480px) {
-    .toolbar_right_container {
-        flex-direction: column;
-        align-items: flex-start;
+
+@media screen and (min-width:768px) {
+    .user_time_country {
+        padding-block: 0.6rem;
+        padding-inline: 0.5rem;
     }
 }

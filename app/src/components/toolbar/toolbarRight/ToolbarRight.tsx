@@ -7,6 +7,7 @@ import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismi
 import { useLocation } from "../../../context/location/Location"
 import cnr from "../../../utils/class_resolver/cnr"
 import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
+import FavoriteLocationDropdown from "../../dropdowns/favoriteLocation/FavoriteLocation"
 
 export function ToolbarRight() {
     const [open, setOpen] = useState(false)
@@ -18,6 +19,7 @@ export function ToolbarRight() {
     })
 
     return <div className={cnr('flex', 'gap-1rem', 'flexcenter', styles.toolbar_right_container)} >
+        <FavoriteLocationDropdown />
         <p title={ipData?.country} className={styles.user_time_country}>
             <LoaderWrapper isLoading={ipLoading} loaderClass="loader-sm">
                 <time dateTime={date.date.toISOString()} aria-label={`${date.time} in ${ipData?.country}`}>{date.time} | </time>
