@@ -92,24 +92,13 @@ export function useDismissalOutside<
                 }
             };
 
-            if (event.pointerType === "touch") {
-                ownerDocument.removeEventListener("click", handleClickRef.current);
-                handleClickRef.current = dispatch;
-                ownerDocument.addEventListener("click", handleClickRef.current, {
-                    once: true,
-                });
-            } else {
-                dispatch();
-            }
+            dispatch();
         }
 
-        const timerId = window.setTimeout(() => {
-            ownerDocument.addEventListener('pointerdown', handlePointerDown);
-        }, 0);
+        ownerDocument.addEventListener('pointerdown', handlePointerDown);
+
         return () => {
-            window.clearTimeout(timerId);
             ownerDocument.removeEventListener('pointerdown', handlePointerDown);
-            ownerDocument.removeEventListener('click', handleClickRef.current);
         };
     }, [node, ownerDocument])
 

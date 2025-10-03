@@ -7,7 +7,7 @@
     font-size: var(--font-size-btn);
     color: var(--btn-color-text);
     border: none;
-    padding-block: 0.3rem;
+    padding-block: 0.4rem;
     padding-inline: 0.5rem;
     border-radius: var(--border-radius);
     cursor: pointer;
