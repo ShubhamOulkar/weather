@@ -1,12 +1,4 @@
-# Weather App  
-
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)  
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  
-![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)  
-![CSS Modules](https://img.shields.io/badge/CSS%20Modules-000000?style=for-the-badge&logo=css3&logoColor=blue)  
-![License](https://img.shields.io/github/license/ShubhamOulkar/weather-app?style=for-the-badge)  
-![Build](https://img.shields.io/github/actions/workflow/status/ShubhamOulkar/weather-app/ci.yml?style=for-the-badge&label=build)  
-![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)  
+# Weather App   
 
 A modern weather web application that provides real-time weather data, forecasts, and interactive features to enhance the user experience.
 
@@ -21,7 +13,6 @@ A modern weather web application that provides real-time weather data, forecasts
 - [My Process](#my-process)
   - [Built With](#built-with)
   - [What I Learned](#what-i-learned)
-  - [Continued Development](#continued-development)
   - [Useful Resources](#useful-resources)
 - [Installation](#installation)
 - [Changelog](/changelog.md)
