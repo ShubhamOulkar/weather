@@ -1,10 +1,10 @@
 import styles from "./ForcastCards.module.css"
 import cnr from "../../../utils/class_resolver/cnr"
 import { getLocalDate } from "../../../utils/local_date/getLocalDate"
-import WeatherIcon from "../../common/weatherIcon/WeatherIcon"
+import WeatherIcon from "../../common/WeatherIcon/WeatherIcon"
 import { useDailyData } from "../../../hooks/useDailyData/useDailyData"
 import { useLocation } from "../../../context/location/Location"
-import LoaderWrapper from "../../common/loderWrapper/LoaderWrapper"
+import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
 import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
 
 export default function DailyForcastCards() {

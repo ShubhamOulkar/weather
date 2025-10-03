@@ -5,7 +5,7 @@ import styles from "./ToolbarRight.module.css"
 import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismissalOutside"
 import { useLocation } from "../../../context/location/Location"
 import cnr from "../../../utils/class_resolver/cnr"
-import LoaderWrapper from "../../common/loderWrapper/LoaderWrapper"
+import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
 import FavoriteLocationDropdown from "../../dropdowns/favoriteLocation/FavoriteLocation"
 import { useToggle } from "../../../hooks/useToggle/useToggle"
 export function ToolbarRight() {
