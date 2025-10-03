@@ -11,9 +11,10 @@ import { SearchSchema } from "../../validation/searchValidation"
 import { useGpsLocation } from "../../hooks/useGpsLocation/useGpsLocation"
 import { useLiveSearch } from "../../hooks/useLiveSearch/useLiveSearch"
 import type { Cooradinates } from "../../types/types"
+import { useToggle } from "../../hooks/useToggle/useToggle"
 
 export default function SearchForm() {
-    const [dropdown, setShowDropDown] = useState(false)
+    const { open, setOpen } = useToggle()
     const [search, setSearch] = useState("")
     const [validateSearch, setValidateSearch] = useState("")
     const { setLocation } = useLocation()
@@ -23,7 +24,7 @@ export default function SearchForm() {
     const { data: liveData, isFetching, flush } = useLiveSearch(validateSearch)
 
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLDivElement>({
-        onDismissalEvent: () => setShowDropDown(false),
+        onDismissalEvent: () => setOpen(false),
     })
 
     const handlerGpsLocation = () => {
@@ -91,20 +92,18 @@ export default function SearchForm() {
             city: place,
             coords: coords
         })
-        setShowDropDown(false)
+        setOpen(false)
     }
-
-    const showDropDown = () => setShowDropDown(true)
 
     const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
         // If the Escape key is pressed, close the dropdown
         if (e.key === 'Escape') {
-            setShowDropDown(false)
+            setOpen(false)
             e.preventDefault()
         }
 
         // if the enter key pressed open the dropdown if it is closed
-        if (e.key === 'Enter' && !dropdown) showDropDown()
+        if (e.key === 'Enter' && !open) setOpen(true)
     }
 
     return <search className={styles.form_container}>
@@ -134,19 +133,19 @@ export default function SearchForm() {
                         name="search"
                         value={search}
                         placeholder="Search for place..."
-                        onFocus={showDropDown}
+                        onFocus={() => setOpen(true)}
                         onKeyDown={handleKeyDown}
                         onChange={handleChange}
                         role="combobox"
                         aria-autocomplete="list"
                         aria-haspopup="listbox"
-                        aria-expanded={dropdown}
+                        aria-expanded={open}
                         aria-controls="searchDropdown"
                         autoComplete="off" />
                 </div>
                 <DropdownSearch id="searchDropdown"
                     dismissRef={nodeRef}
-                    dropdown={dropdown}
+                    dropdown={open}
                     searchData={liveData}
                     isLoading={isFetching}
                     onSelect={handleSelect} />

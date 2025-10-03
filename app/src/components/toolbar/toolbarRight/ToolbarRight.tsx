@@ -2,17 +2,15 @@ import IconUnits from "../../../assets/images/icon-units.svg?react"
 import Button from "../../common/button/Button"
 import UnitsDropdown from "../../dropdowns/units/UnitsDropdown"
 import styles from "./ToolbarRight.module.css"
-import { useState } from "react"
 import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismissalOutside"
 import { useLocation } from "../../../context/location/Location"
 import cnr from "../../../utils/class_resolver/cnr"
 import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
 import FavoriteLocationDropdown from "../../dropdowns/favoriteLocation/FavoriteLocation"
-
+import { useToggle } from "../../../hooks/useToggle/useToggle"
 export function ToolbarRight() {
-    const [open, setOpen] = useState(false)
+    const {open, setOpen, toggle} = useToggle()
     const { data, ipData, ipLoading } = useLocation()
-    const showDropdown = () => setOpen(!open)
     const { date } = data
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLButtonElement>({
         onDismissalEvent: () => setOpen(false)
@@ -30,7 +28,7 @@ export function ToolbarRight() {
             btnTitle="Units"
             BtnIcon={IconUnits}
             userRef={userRef}
-            onClickHandler={showDropdown}
+            onClickHandler={toggle}
             state={open}
             ariaControls="unitsList"
             styleType="unit" />

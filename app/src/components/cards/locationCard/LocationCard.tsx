@@ -5,7 +5,7 @@ import { useLocation } from "../../../context/location/Location"
 import WeatherIcon from "../../common/WeatherIcon/WeatherIcon"
 import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
 import IconFavorite from "../../../assets/images/icon-favorite.svg?react"
-
+import IconUpdate from "../../../assets/images/icon-update.svg?react"
 
 export default function LocationCard() {
     const { getTemp } = useUnits()
@@ -18,12 +18,17 @@ export default function LocationCard() {
             <img src="/bg-today-small.svg" aria-hidden="true" />
         </picture>
         <div className="flex flex-bet">
-            <button className={styles.favorite_btn} type="button" title="favorites" aria-label="Add to location to favorites"><IconFavorite /></button>
+            <button
+                className={styles.favorite_btn}
+                type="button" title="favorites"
+                aria-label="Add to location to favorites">
+                <IconFavorite />
+            </button>
             <div title={`Last update at ${time} for ${locWeather.place}`}>
                 <LoaderWrapper isLoading={isLoading} loaderClass="loader-xs">
-                    <time className={styles.search_time} dateTime={date.toISOString()}
+                    <time className={cnr("flex", "flexcenter", styles.search_time)} dateTime={date.toISOString()}
                         aria-label={`Data update at ${time} for ${locWeather.place}`}>
-                        {time}
+                        <IconUpdate /> {time}
                     </time>
                 </LoaderWrapper>
             </div>

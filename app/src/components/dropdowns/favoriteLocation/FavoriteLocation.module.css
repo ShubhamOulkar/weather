@@ -5,6 +5,19 @@
 .tool_fav_btn {
     background: transparent;
     border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+
+    &:is(:hover, :focus) {
+        fill: var(--neutral-0);
+        background-color: var(--btn-color-bg);
+    }
+
+    &:focus {
+        outline: var(--focus-outline);
+        outline-offset: var(--btn-outline-offset);
+    }
 }
 
 .fav_loc_drop {

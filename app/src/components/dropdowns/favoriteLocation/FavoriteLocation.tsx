@@ -1,18 +1,16 @@
-import { useState } from "react"
 import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismissalOutside"
 import IconFavorite from "../../../assets/images/icon-favorite.svg?react"
 import cnr from "../../../utils/class_resolver/cnr"
 import style from "./FavoriteLocation.module.css"
-import DropBtn from "../../common/dropButton/DropBtn"
+import { useToggle } from "../../../hooks/useToggle/useToggle"
 
 export default function FavoriteLocationDropdown() {
-    const [open, setOpen] = useState(false)
+    const { open, setOpen, toggle } = useToggle()
 
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLButtonElement>({
         onDismissalEvent: () => setOpen(false)
     })
 
-    const showFavorites = () => setOpen(!open)
     return <div className={style.fav_container}>
         <button
             role="combobox"
@@ -22,7 +20,7 @@ export default function FavoriteLocationDropdown() {
             aria-controls="favoriteDropdown"
             className={cnr('flex', 'flexcenter', style.tool_fav_btn)}
             type="button" ref={userRef}
-            onClick={showFavorites}>
+            onClick={toggle}>
             <IconFavorite />
         </button>
         <div
