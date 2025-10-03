@@ -30,6 +30,7 @@ export async function fetchDailyWeather({ latitude, longitude }: Cooradinates) {
         }
 
         const daily = responses[0].daily();
+        const utcOffsetSeconds = responses[0].utcOffsetSeconds()
 
         if (!daily) {
             throw new Error("OpenMeteo response structure is missing daily data.");
@@ -38,7 +39,7 @@ export async function fetchDailyWeather({ latitude, longitude }: Cooradinates) {
         const weatherData = {
             daily: {
                 time: [...Array((Number(daily.timeEnd()) - Number(daily.time())) / daily.interval())].map(
-                    (_, i) => new Date((Number(daily.time()) + i * daily.interval()) * 1000)
+                    (_, i) => new Date((Number(daily.time()) + i * daily.interval() + utcOffsetSeconds) * 1000)
                 ),
                 temperature_2m_max: daily.variables(0)!.valuesArray(),
                 temperature_2m_min: daily.variables(1)!.valuesArray(),

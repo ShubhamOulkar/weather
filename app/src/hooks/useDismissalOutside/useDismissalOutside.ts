@@ -40,7 +40,6 @@ export function useDismissalOutside<
 } {
     const [node, setNode] = useState<NodeRef | null>(null)
     const ownerDocument = node?.ownerDocument ?? globalThis.document
-    let handleClickRef = useRef(() => { })
     const nodeRef = useCallback<RefCallback<NodeRef>>((el) => setNode(el), [])
     /*
         This refrence to current pointer element, if this element is
