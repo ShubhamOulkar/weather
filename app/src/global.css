@@ -75,6 +75,10 @@
 
   /* dropdown z-index */
   --dropdown-z-index: 100;
+
+  /* favorite animation */
+  --animation-duration: 0.25s;
+  --transition-timing: ease-out;
 }
 
 @media (prefers-color-scheme: light) {
@@ -313,7 +317,7 @@ h4 {
 
 .loader-sm {
   width: 6rem;
-  height: 1rem;
+  height: 2rem;
 }
 
 .loader-md {

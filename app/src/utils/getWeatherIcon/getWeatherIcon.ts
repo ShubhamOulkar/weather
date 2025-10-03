@@ -4,7 +4,7 @@
  * These numbers are taken from weather_code parameter
 */
 export const getWeatherIcon: Record<number, { file: string; alt: string }> = {
-    0: { file: "icon-sunny.webp", alt: "sunny" },
+    0: { file: "icon-sunny.webp", alt: "Clear sky" },
     1: { file: "icon-partly-cloudy.webp", alt: "partly cloudy" },
     2: { file: "icon-partly-cloudy.webp", alt: "partly cloudy" },
     3: { file: "icon-overcast.webp", alt: "overcast" },

@@ -5,6 +5,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LocationProvider } from './context/location/Location.tsx'
 import { UnitsProvider } from './context/unitsSystem/UnitsSystem.tsx'
+import { FavoritesProvider } from './context/favoritesLocation/FavoritesContext.tsx'
 import styles from './App.module.css'
 
 const queryClient = new QueryClient();
@@ -12,18 +13,20 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <UnitsProvider>
-        <LocationProvider>
-          <main className={styles.layout}>
-            <Toolbar />
-            <div className="flex_container">
-              <Title />
-              <SearchForm />
-            </div>
-            <Dashboard />
-          </main>
-        </LocationProvider>
-      </UnitsProvider>
+      <FavoritesProvider>
+        <UnitsProvider>
+          <LocationProvider>
+            <main className={styles.layout}>
+              <Toolbar />
+              <div className="flex_container">
+                <Title />
+                <SearchForm />
+              </div>
+              <Dashboard />
+            </main>
+          </LocationProvider>
+        </UnitsProvider>
+      </FavoritesProvider>
     </QueryClientProvider>
   )
 }

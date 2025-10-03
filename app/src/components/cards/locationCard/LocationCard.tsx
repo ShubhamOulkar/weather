@@ -1,10 +1,10 @@
 import cnr from "../../../utils/class_resolver/cnr"
 import styles from "./LocationCard.module.css"
-import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
+import LoaderWrapper from "../../common/loderWrapper/LoaderWrapper"
 import { useLocation } from "../../../context/location/Location"
-import WeatherIcon from "../../common/WeatherIcon/WeatherIcon"
+import WeatherIcon from "../../common/weatherIcon/WeatherIcon"
 import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
-import IconFavorite from "../../../assets/images/icon-favorite.svg?react"
+import FavoritesBtn from "../../common/favoriteBtn/FavoriteBtn"
 import IconUpdate from "../../../assets/images/icon-update.svg?react"
 
 export default function LocationCard() {
@@ -18,14 +18,9 @@ export default function LocationCard() {
             <img src="/bg-today-small.svg" aria-hidden="true" />
         </picture>
         <div className="flex flex-bet">
-            <button
-                className={styles.favorite_btn}
-                type="button" title="favorites"
-                aria-label="Add to location to favorites">
-                <IconFavorite />
-            </button>
+            <FavoritesBtn />
             <div title={`Last update at ${time} for ${locWeather.place}`}>
-                <LoaderWrapper isLoading={isLoading} loaderClass="loader-xs">
+                <LoaderWrapper isLoading={isLoading} loaderClass="loader-sm">
                     <time className={cnr("flex", "flexcenter", styles.search_time)} dateTime={date.toISOString()}
                         aria-label={`Data update at ${time} for ${locWeather.place}`}>
                         <IconUpdate /> {time}

@@ -69,7 +69,7 @@ export default function DropdownSearch({
         {!isLoading &&
           searchData?.map((btn, i) => {
             const title = formatBtnTitle(btn)
-            return <li key={`${btn.name}-${i}`}>
+            return <li key={`${btn.name}-${i}`} role="option">
               <DropBtn
                 classname={styles.search_btn}
                 btnTitle={title}

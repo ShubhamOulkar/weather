@@ -1,7 +1,7 @@
 import getAqiIndex from "../../../../utils/getAqiIndex/getAqiIndex"
 import { useAQI } from "../../../../hooks/useAQI/useAQI";
 import cnr from "../../../../utils/class_resolver/cnr";
-import LoaderWrapper from "../../../common/LoderWrapper/LoaderWrapper";
+import LoaderWrapper from "../../../common/loderWrapper/LoaderWrapper";
 import AQILabel from "../../../common/aqiLabel/AqiLabel";
 
 interface AQIProp {
