@@ -24,9 +24,9 @@ A modern weather web application that provides real-time weather data, forecasts
   - [Continued Development](#continued-development)
   - [Useful Resources](#useful-resources)
 - [Installation](#installation)
+- [Changelog](/changelog.md)
 - [Author](#author)
 - [License](#license)
-- [Changelog](/changelog.md)
 
 ---
 
@@ -75,6 +75,7 @@ Users can:
 - Managing geolocation APIs and permissions. 
 - Creating a scalable and responsive UI with CSS Grid and Flexbox.  
 - Implementing accessibility best practices for interactive UI elements.  
+- Testing react query
 
 ### Useful Resources
 - [OpenMeteo API](https://open-meteo.com/) – Free weather data API used.  
@@ -114,6 +115,9 @@ for build and preview
 ```bash
 pnpm preview
 ```
+## Changelog 
+ - [changelog](./changelog.md)
+
 ## Author
 
 - LinkedIn - [@shubham](www.linkedin.com/in/shubham-oulkar)
