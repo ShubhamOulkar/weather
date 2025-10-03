@@ -7,7 +7,7 @@ import { getLocalDate } from "../local_date/getLocalDate";
  * @param timezone Optional timezone for formatting times (default: 'UTC')
  * @returns Hourly data grouped by full date
  */
-export function groupHourlyByDay(hourlyData: HourlyWeather): HourlyByDay {
+export function groupHourlyByDay(hourlyData: HourlyWeather, date: Date): HourlyByDay {
     const grouped: HourlyByDay = { weekDays: [] };
 
     if (!hourlyData.timezone || !hourlyData.temperature_2m || !hourlyData.weather_code) {
@@ -16,6 +16,7 @@ export function groupHourlyByDay(hourlyData: HourlyWeather): HourlyByDay {
 
     for (let i = 0; i < hourlyData.time.length; i++) {
         const dateObj = hourlyData.time[i];
+        if (dateObj < date) continue
         const temp = hourlyData.temperature_2m[i];
         const code = hourlyData.weather_code[i];
 
@@ -30,7 +31,7 @@ export function groupHourlyByDay(hourlyData: HourlyWeather): HourlyByDay {
         if (!grouped[weekday]) {
             grouped[weekday] = [];
         }
-        
+
         !grouped.weekDays.includes(weekday) && grouped.weekDays.push(weekday)
         grouped[weekday].push(hourEntry);
     }

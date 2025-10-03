@@ -1,7 +1,7 @@
 import getAqiIndex from "../../../../utils/getAqiIndex/getAqiIndex"
 import { useAQI } from "../../../../hooks/useAQI/useAQI";
 import cnr from "../../../../utils/class_resolver/cnr";
-import LoaderWrapper from "../../../common/LoderWrapper/LoaderWrapper";
+import LoaderWrapper from "../../../common/loderWrapper/LoaderWrapper";
 import AQILabel from "../../../common/aqiLabel/AqiLabel";
 
 interface AQIProp {
@@ -22,7 +22,7 @@ export default function AQICard({ latitude, longitude, classname }: AQIProp) {
         </h5>
         <p>
             <LoaderWrapper isLoading={isAqiLoading} loaderClass="loader-xs">
-                {index?.value || 'N/A'} ppm
+                {index?.value || 'N/A'}
             </LoaderWrapper>
         </p>
     </div>

@@ -40,7 +40,6 @@ export function useDismissalOutside<
 } {
     const [node, setNode] = useState<NodeRef | null>(null)
     const ownerDocument = node?.ownerDocument ?? globalThis.document
-    let handleClickRef = useRef(() => { })
     const nodeRef = useCallback<RefCallback<NodeRef>>((el) => setNode(el), [])
     /*
         This refrence to current pointer element, if this element is
@@ -92,24 +91,13 @@ export function useDismissalOutside<
                 }
             };
 
-            if (event.pointerType === "touch") {
-                ownerDocument.removeEventListener("click", handleClickRef.current);
-                handleClickRef.current = dispatch;
-                ownerDocument.addEventListener("click", handleClickRef.current, {
-                    once: true,
-                });
-            } else {
-                dispatch();
-            }
+            dispatch();
         }
 
-        const timerId = window.setTimeout(() => {
-            ownerDocument.addEventListener('pointerdown', handlePointerDown);
-        }, 0);
+        ownerDocument.addEventListener('pointerdown', handlePointerDown);
+
         return () => {
-            window.clearTimeout(timerId);
             ownerDocument.removeEventListener('pointerdown', handlePointerDown);
-            ownerDocument.removeEventListener('click', handleClickRef.current);
         };
     }, [node, ownerDocument])
 

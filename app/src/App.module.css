@@ -6,7 +6,8 @@
     'dashboard';
     gap: 2rem;
     margin-bottom: 1rem;
-
+    padding-block-start: 2rem;
+    
     > :nth-child(1) {
         grid-area: toolbar;
     }
@@ -22,6 +23,7 @@
 
 @media screen and (max-width: 800px) {
     .layout {
+        padding-block-start: 0;
         > :nth-child(2) {
             justify-self: unset;
         }

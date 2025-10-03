@@ -1,5 +1,5 @@
 import cnr from "../../../../utils/class_resolver/cnr"
-import LoaderWrapper from "../../../common/LoderWrapper/LoaderWrapper";
+import LoaderWrapper from "../../../common/loderWrapper/LoaderWrapper";
 
 interface CommonMetricProps {
     classname: string;
