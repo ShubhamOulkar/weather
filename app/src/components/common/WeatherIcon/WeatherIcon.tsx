@@ -1,4 +1,4 @@
-import LoaderWrapper from "../LoderWrapper/LoaderWrapper";
+import LoaderWrapper from "../loderWrapper/LoaderWrapper";
 import { getWeatherIcon } from "../../../utils/getWeatherIcon/getWeatherIcon";
 
 interface WeatherIcon {

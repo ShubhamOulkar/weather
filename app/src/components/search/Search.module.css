@@ -109,6 +109,7 @@
         flex-direction: row;
         gap: 2rem;
         justify-content: center;
+        padding-inline-start: 10rem;
     }
 
     .form_btn_container {
@@ -122,6 +123,15 @@
     }
 
     .search_container {
-        width: 36.5rem;
+        width: 33.6rem;
+    }
+}
+
+@media screen and (768px < width < 1080px) {
+    .search_form{
+        padding-inline-start: 5rem;
+    }
+    .search_container {
+        width: 23.6rem;
     }
 }

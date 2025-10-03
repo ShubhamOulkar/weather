@@ -122,3 +122,9 @@ export interface UnitsContextType {
     getWind: (speed: number) => string;
     getPrecipitation: (mm: number) => string;
 }
+
+export interface FavoriteLocation {
+    name: string;
+    lat: number;
+    lon: number;
+}

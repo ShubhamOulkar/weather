@@ -1,87 +1,128 @@
-# Weather app
+# Weather App  
 
-## Table of contents
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)  
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  
+![TanStack Query](https://img.shields.io/badge/TanStack%20Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)  
+![CSS Modules](https://img.shields.io/badge/CSS%20Modules-000000?style=for-the-badge&logo=css3&logoColor=blue)  
+![License](https://img.shields.io/github/license/ShubhamOulkar/weather-app?style=for-the-badge)  
+![Build](https://img.shields.io/github/actions/workflow/status/ShubhamOulkar/weather-app/ci.yml?style=for-the-badge&label=build)  
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)  
+
+A modern weather web application that provides real-time weather data, forecasts, and interactive features to enhance the user experience.
+
+---
+
+## Table of Contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
+  - [Features](#features)
   - [Screenshot](#screenshot)
   - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+- [My Process](#my-process)
+  - [Built With](#built-with)
+  - [What I Learned](#what-i-learned)
+  - [Continued Development](#continued-development)
+  - [Useful Resources](#useful-resources)
+- [Installation](#installation)
 - [Changelog](/changelog.md)
+- [Author](#author)
+- [License](#license)
+
+---
 
 ## Overview
 
-### The challenge
+### Features (The Challenge)
 
-Users should be able to:
+Users can:  
+- 🔍 Search for weather by entering a city or using device geolocation.  
+- 🌡 View current conditions: temperature, weather icon, and location details.  
+- 📊 Explore metrics: "feels like", humidity, wind speed, precipitation, AQI.  
+- 📅 Check a **7-day forecast** with highs/lows and weather icons.  
+- 🕒 Browse **hourly forecasts** with temperature trends.  
+- 📌 Switch between days in the hourly forecast.  
+- 🔄 Toggle between **Metric** and **Imperial** units (C°/F°, km/h/mph, mm/inch).  
+- 📱 Enjoy responsive layouts optimized for all devices.  
+- 🖱 Experience hover/focus states for all interactive elements.  
+- 📍 Detect current location automatically (first visit).  
+- ⭐ Save favorite locations for quick access.  
+- 🌞 View sunrise/sunset times with visual indicators.  
+- ☀️🌧 Animated weather backgrounds based on live conditions.  
+- 📲 Install as a **PWA** (Progressive Web App).  
+- 🎙 Use voice search to find weather quickly.  
 
-Implement in phase 1
-- Search for weather information by entering a location city or zip code or device current location in the search bar
-- Show recent locations on search bar with clear all recent locations functionallity.
-- View current weather conditions including temperature, weather icon, and location details
-- See additional weather metrics like "feels like" temperature, humidity percentage, wind speed, and precipitation amounts
-- Browse a 7-day weather forecast with daily high/low temperatures and weather icons
-- View an hourly forecast showing temperature changes throughout the day
-- Switch between different days of the week using the day selector in the hourly forecast section
-- Toggle between Imperial and Metric measurement units via the units dropdown 
-- Switch between specific temperature units (Celsius and Fahrenheit) and measurement units for wind speed (km/h and mph) and precipitation (millimeters) via the units dropdown
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-- Add geolocation detection to automatically show weather for the user's current location on first visit
-- Implement a favorites/saved locations system where users can bookmark frequently checked locations
-- Include UV index, visibility, air pressure data, air quality index, and allergy outlook (available via Open-Meteo)
-- Add sunrise/sunset times with visual indicators
-- Add animated weather backgrounds that change based on current conditions
-- Create dark/light mode themes that adapt to the time of day
-- Add progressive web app (PWA) capabilities for mobile installation
-- Implement voice search functionality
-
-Implement in phase 2
-- Implement a "Compare Locations" feature to view weather side-by-side for multiple locations
-- Implement a map views for clouds, temperature, etc.
-- Show weather comparison for two locations with map higlighting geological items like mountain, rivers, seashow, deserts.
-- Implement chatbot to answer weather related queries.
-
-### Screenshot
+### Screenshot  
+![Project Preview](/docs/project_preview.png)
 
 ### Links
+- 🚀 [Live Demo](https://weather-inky-delta.vercel.app/)  
+- 📂 [Repository](https://github.com/ShubhamOulkar/weather-app)
 
-- [Live website url](https://weather-inky-delta.vercel.app/)
+---
 
-## My process
+## My Process
 
-### Built with
+### Built With
+- ⚡ **Vite** (bundler)  
+- ⚛️ **React** + **React Query (TanStack)**  
+- 🎨 **CSS Modules** with custom properties & variable fonts  
+- 📱 **Mobile-first workflow**  
+- 🌗 Light/Dark mode via system preference  
+- 🧪 **Vitest** + **React Testing Library** for testing  
 
-- CSS custom properties
-- Self hosted variable fonts
-- CSS Grid, flex box
-- light/dark mode color system prefernce
-- CSS modules
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- React query (Tanstack) to query data
-- vite, vite test, react testing library
+### What I Learned
+- Efficient data fetching and caching using React Query.  
+- Managing geolocation APIs and permissions. 
+- Creating a scalable and responsive UI with CSS Grid and Flexbox.  
+- Implementing accessibility best practices for interactive UI elements.  
+- Testing react query
 
-### What I learned
+### Useful Resources
+- [OpenMeteo API](https://open-meteo.com/) – Free weather data API used.  
+- [TanStack Query Docs](https://tanstack.com/query/latest) – React Query documentation.  
+- [PWA Guide](https://web.dev/learn/pwa/) – Best practices for Progressive Web Apps.  
 
-### Continued development
+---
 
-### Useful resources
+## Installation
+
+Clone and set up the project locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/ShubhamOulkar/weather-app.git
+
+# Navigate to project
+cd weather-app
+
+# Install dependencies
+pnpm install
+
+# Create .env file and add your API keys if needed
+cp .env.example .env
+
+# Start development server
+pnpm dev
+```
+for testing
+
+```bash
+pnpm test 
+pnpm coverage
+pnpm test:preview
+```
+for build and preview
+```bash
+pnpm preview
+```
+## Changelog 
+ - [changelog](./changelog.md)
 
 ## Author
 
 - LinkedIn - [@shubham](www.linkedin.com/in/shubham-oulkar)
 - Frontend Mentor - [@shubham](https://www.frontendmentor.io/profile/ShubhamOulkar)
 - X - [@shubham](https://x.com/shubhuoulkar)
-
-## Acknowledgments
-
 ## License
 
 Content submitted by [shubham oulkar](https://github.com/ShubhamOulkar) is Creative Commons Attribution 4.0 International licensed, as found in the [LICENSE](/LICENSE) file.

@@ -14,6 +14,7 @@ interface ImportMetaEnv {
   readonly VITE_OPEN_METEO_AQI: string;
   readonly VITE_OPEN_METEO_DAILY: string;
   readonly VITE_OPEN_METEO_HOURLY: string;
+  readonly VITE_FAVORITES_STORAGE_KEY: string;
 }
 
 interface ImportMeta {

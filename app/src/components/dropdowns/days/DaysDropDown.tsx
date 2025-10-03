@@ -3,7 +3,8 @@ import Button from "../../common/button/Button"
 import DropBtn from "../../common/dropButton/DropBtn"
 import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismissalOutside"
 import styles from "./DaysDropDown.module.css"
-import { useState, type Dispatch, type SetStateAction } from "react"
+import type { Dispatch, SetStateAction } from "react"
+import { useToggle } from "../../../hooks/useToggle/useToggle"
 
 interface DaysDropDown {
     weekDays: string[];
@@ -12,21 +13,20 @@ interface DaysDropDown {
 }
 
 export default function DaysDropDown({ weekDays, today, setToday }: DaysDropDown) {
-    const [open, setOpen] = useState(false)
+    const { open, setOpen, toggle } = useToggle()
 
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLButtonElement>({
         onDismissalEvent: () => {
             setOpen(false)
         }
     })
-    const showDropdown = () => setOpen(!open)
 
     return <div className={cnr('flex', styles.day_drop_down)}>
         <h4>Hourly forecast</h4>
         <Button
             btnTitle={weekDays[today]}
             userRef={userRef}
-            onClickHandler={showDropdown}
+            onClickHandler={toggle}
             state={open}
             ariaControls="daysList"
             styleType="day" />
@@ -42,8 +42,8 @@ export default function DaysDropDown({ weekDays, today, setToday }: DaysDropDown
                     weekDays.map((d, i) => (
                         <li key={d}>
                             <DropBtn btnTitle={d}
-                                onClick={() => setToday(i)} 
-                                showCheck={today === i}/>
+                                onClick={() => setToday(i)}
+                                showCheck={today === i} />
                         </li>
                     ))
                 }
