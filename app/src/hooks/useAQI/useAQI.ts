@@ -7,8 +7,6 @@ export function useAQI(coords: Cooradinates) {
         queryKey: ['aqi', coords],
         queryFn: () => fetchCurrentAqi(coords),
         enabled: !!coords,
-        initialData: 30,
-        refetchOnWindowFocus: false,
-        refetchInterval: 300000,
+        throwOnError: true,
     })
 }

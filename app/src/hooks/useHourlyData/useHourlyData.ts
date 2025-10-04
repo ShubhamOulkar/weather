@@ -16,7 +16,6 @@ export function useHourlyData(coords: Cooradinates) {
             return data
         },
         enabled: !!coords,
-        refetchOnWindowFocus: false,
-        refetchInterval: 300000,
+        throwOnError: true
     })
 }

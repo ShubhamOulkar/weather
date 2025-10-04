@@ -19,7 +19,7 @@
 
 .location_weather_icon {
     width: 5rem;
-    aspect-ratio: 1;
+    height: 5rem;
 }
 
 .location_temp {
@@ -35,7 +35,7 @@
     border: none;
     padding-block: 0.3rem;
     padding-inline: 0.5rem;
-    gap: 0.3rem;
+    gap: 0.4rem;
     border-radius: var(--border-radius);
     background-color: hsl(243deg 21.22% 50.22% / 35%);
 }

@@ -21,7 +21,8 @@ export default function Button({ btnTitle, BtnIcon, userRef, onClickHandler, sta
         role="combobox"
         aria-controls={ariaControls}
         aria-haspopup="listbox"
-        aria-expanded={state}>
+        aria-expanded={state}
+        aria-label={btnTitle}>
         {BtnIcon && <BtnIcon aria-hidden="true" />}
         {btnTitle}
         <DropIcon aria-hidden="true"/>

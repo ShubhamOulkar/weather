@@ -1,6 +1,6 @@
 # Weather App   
 
-A modern weather web application that provides real-time weather data, forecasts, and interactive features to enhance the user experience.
+A modern weather web application that provides real-time weather data, forecasts, and interactive features to enhance the user experience. Design is focused on separation of concerns and maintainability.
 
 ---
 
@@ -12,6 +12,7 @@ A modern weather web application that provides real-time weather data, forecasts
   - [Links](#links)
 - [My Process](#my-process)
   - [Built With](#built-with)
+  - [Error handling](#error-handling)
   - [What I Learned](#what-i-learned)
   - [Useful Resources](#useful-resources)
 - [Installation](#installation)
@@ -47,7 +48,6 @@ Users can:
 
 ### Links
 - 🚀 [Live Demo](https://weather-inky-delta.vercel.app/)  
-- 📂 [Repository](https://github.com/ShubhamOulkar/weather-app)
 
 ---
 
@@ -59,7 +59,12 @@ Users can:
 - 🎨 **CSS Modules** with custom properties & variable fonts  
 - 📱 **Mobile-first workflow**  
 - 🌗 Light/Dark mode via system preference  
-- 🧪 **Vitest** + **React Testing Library** for testing  
+- 🧪 **Vitest** + **React Testing Library** for testing
+
+### Error handling
+Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.
+This setup ensures query errors and runtime errors are gracefully isolated to their component scope.
+The Retry button in the fallback UI calls both the local ErrorBoundary.reset() and React Query’s reset() to trigger automatic re-fetching of failed data.
 
 ### What I Learned
 - Efficient data fetching and caching using React Query.  
@@ -67,11 +72,12 @@ Users can:
 - Creating a scalable and responsive UI with CSS Grid and Flexbox.  
 - Implementing accessibility best practices for interactive UI elements.  
 - Testing react query
+- Error Boundaries : Error handling in react query. Catching runtime errors that happen during rendering, and react properly to them by displaying a fallback UI instead.
 
 ### Useful Resources
 - [OpenMeteo API](https://open-meteo.com/) – Free weather data API used.  
 - [TanStack Query Docs](https://tanstack.com/query/latest) – React Query documentation.  
-- [PWA Guide](https://web.dev/learn/pwa/) – Best practices for Progressive Web Apps.  
+- [React query error handling](https://tkdodo.eu/blog/react-query-error-handling) - TkDodo's blog post on react query handling
 
 ---
 
@@ -81,7 +87,7 @@ Clone and set up the project locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/ShubhamOulkar/weather-app.git
+git clone https://github.com/ShubhamOulkar/weather.git
 
 # Navigate to project
 cd weather-app

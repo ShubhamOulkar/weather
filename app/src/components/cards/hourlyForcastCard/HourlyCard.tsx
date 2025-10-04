@@ -55,6 +55,9 @@ export default function HourlyForcastCard() {
                     );
                 })
             }
+            <button type="button" className={cnr('flex', 'pointer', styles.hourly_forcast_card)} onClick={() => today === 6 ? setToday(0) : setToday(today + 1)}>
+                Go to next day forcast
+            </button>
         </div>
     </div >
 }

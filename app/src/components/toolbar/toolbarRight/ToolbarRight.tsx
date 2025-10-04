@@ -8,20 +8,27 @@ import cnr from "../../../utils/class_resolver/cnr"
 import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
 import FavoriteLocationDropdown from "../../dropdowns/favoriteLocation/FavoriteLocation"
 import { useToggle } from "../../../hooks/useToggle/useToggle"
+import IconErr from "../../../assets/images/icon-error.svg?react"
+
 export function ToolbarRight() {
-    const {open, setOpen, toggle} = useToggle()
-    const { data, ipData, ipLoading } = useLocation()
-    const { date } = data
+    const { open, setOpen, toggle } = useToggle()
+    const { data, ipData, ipLoading, isIpError } = useLocation()
+    const { date } = data!
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLButtonElement>({
         onDismissalEvent: () => setOpen(false)
     })
 
+    const checker = () => {
+        if(isIpError) return 'Error in Ip fetching'
+        return ipData?.country
+    }
+
     return <div className={cnr('flex', 'gap-1rem', 'flexcenter', styles.toolbar_right_container)} >
         <FavoriteLocationDropdown />
-        <p title={ipData?.country} className={styles.user_time_country}>
+        <p title={checker()} className={cnr('flex', 'flexcenter', 'gap-0_3', styles.user_time_country)}>
             <LoaderWrapper isLoading={ipLoading} loaderClass="loader-sm">
                 <time dateTime={date.date.toISOString()} aria-label={`${date.time} in ${ipData?.country}`}>{date.time} | </time>
-                <span aria-label={`${ipData?.country} (${ipData?.country_code})`}>{ipData?.country_icon}</span>
+                {isIpError ? <IconErr aria-label={checker()}/> : <span aria-label={`${ipData?.country} (${ipData?.country_code})`}>{ipData?.country_icon}</span>}
             </LoaderWrapper>
         </p>
         <Button

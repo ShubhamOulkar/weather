@@ -68,9 +68,6 @@ export default function useLocationWeather(input?: LocationInput, ipData?: LookU
       latitude: 16.61622093,
       longitude: 74.4059719,
       locDate: getDate(),
-    },
-    enabled: !!ipData,
-    refetchOnWindowFocus: false,
-    refetchInterval: 300000,
+    }
   })
 }
