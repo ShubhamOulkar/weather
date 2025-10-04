@@ -6,6 +6,7 @@ import WeatherIcon from "../../common/WeatherIcon/WeatherIcon"
 import { useUnits } from "../../../context/unitsSystem/UnitsSystem"
 import FavoritesBtn from "../../common/favoriteBtn/FavoriteBtn"
 import IconUpdate from "../../../assets/images/icon-update.svg?react"
+import { getWeatherIcon } from "../../../utils/getWeatherIcon/getWeatherIcon"
 
 export default function LocationCard() {
     const { getTemp } = useUnits()
@@ -19,9 +20,10 @@ export default function LocationCard() {
         </picture>
         <div className="flex flex-bet">
             <FavoritesBtn />
-            <div title={`Last update at ${time} for ${locWeather.place}`}>
+            <div title={`Last update at ${time} for ${locWeather.place}`} className={cnr("flex", styles.search_time)}>
                 <LoaderWrapper isLoading={isLoading} loaderClass="loader-sm">
-                    <time className={cnr("flex", "flexcenter", styles.search_time)} dateTime={date.toISOString()}
+                    <p>{getWeatherIcon[locWeather.wmo].alt || 'Clear sky'} |</p>
+                    <time className="flex flexcenter gap-0_3" dateTime={date.toISOString()}
                         aria-label={`Data update at ${time} for ${locWeather.place}`}>
                         <IconUpdate /> {time}
                     </time>

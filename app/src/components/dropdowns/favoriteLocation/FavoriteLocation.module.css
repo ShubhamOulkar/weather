@@ -47,16 +47,20 @@
 
 
 .fav_loc_drop {
+    --width : 15rem;
     background-color: var(--btn-color-bg);
-    width: max-content;
+    width: var(--width);
     position: absolute;
-    left: -100px;
+    left: -6rem;
     top: 100%;
     z-index: var(--dropdown-z-index);
     margin-top: 0.5rem;
     border-radius: var(--border-radius);
     padding: 0.2rem;
     border: var(--border-style);
+    height: fit-content;
+    max-height: 10rem;
+    overflow-y: scroll;
 
     >ul[role="list"] {
         padding: 0;
