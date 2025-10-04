@@ -155,11 +155,6 @@ select {
   font-size: inherit;
 }
 
-/* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
-  min-height: 10em;
-}
-
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;
@@ -185,8 +180,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-div[id='root'] {
+/* do not change */
+main[id='root'] {
   width: 100%;
   min-width: var(--container-mobile);
   max-width: var(--container-desktop);
