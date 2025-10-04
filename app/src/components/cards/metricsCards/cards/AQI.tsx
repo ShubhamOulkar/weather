@@ -14,12 +14,12 @@ export default function AQICard({ latitude, longitude, classname }: AQIProp) {
     const { data: aqi, isFetching: isAqiLoading } = useAQI({ latitude: latitude, longitude: longitude });
     const index = getAqiIndex(aqi)
     return <div className={cnr('flexcol', classname, 'card_design')}>
-        <h5 className="flex flex-bet">
+        <h3 className="flex flex-bet">
             AQI
             <LoaderWrapper isLoading={isAqiLoading} loaderClass="loader-xs">
                 <AQILabel index={index!} />
             </LoaderWrapper>
-        </h5>
+        </h3>
         <p>
             <LoaderWrapper isLoading={isAqiLoading} loaderClass="loader-xs">
                 {index?.value || 'N/A'}

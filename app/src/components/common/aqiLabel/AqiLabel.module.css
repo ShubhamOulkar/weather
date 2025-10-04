@@ -11,7 +11,7 @@
     text-align: center;
     white-space: nowrap;
     transition: all 0.3s ease;
-    color: #fff;
+    color: var(--neutral-900);
     width: fit-content;
     cursor: pointer;
 }
@@ -19,12 +19,10 @@
 /* Background colors based on AQI category */
 .Good {
     background-color: #00e400;
-    color: #111;
 }
 
 .Moderate {
     background-color: #ffff00;
-    color: #111;
 }
 
 .Bad {

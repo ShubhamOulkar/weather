@@ -22,50 +22,47 @@ export default function DailyForcastCards() {
         return str.replace("C", "")
     }
     return (
-        <div className="flexcol margin-top">
-            <h4>Daily forecast</h4>
-            <div className={cnr("grid_container", styles.forcast_container)}>
-                {days.map((d, i) => {
-                    const weekday = dailyData
-                        ? getLocalDate(d, { weekday: "short" }).weekday
-                        : getLocalDate(undefined, { weekday: 'short' }).weekday
-                    const maxtemp = dailyData?.temperature_2m_max?.[i] ?? 20
-                    const mintemp = dailyData?.temperature_2m_min?.[i] ?? 10
-                    const wmo = dailyData?.weather_code?.[i] ?? 80
+        <div className={cnr("grid_container", styles.forcast_container)}>
+            {days.map((d, i) => {
+                const weekday = dailyData
+                    ? getLocalDate(d, { weekday: "short" }).weekday
+                    : getLocalDate(undefined, { weekday: 'short' }).weekday
+                const maxtemp = dailyData?.temperature_2m_max?.[i] ?? 20
+                const mintemp = dailyData?.temperature_2m_min?.[i] ?? 10
+                const wmo = dailyData?.weather_code?.[i] ?? 80
 
-                    return (
-                        <div
-                            className={cnr(
-                                "flexcol",
-                                "gap-1rem",
-                                styles.daily_forcast_card,
-                                "card_design"
-                            )}
-                            key={weekday + i}
-                        >
+                return (
+                    <div
+                        className={cnr(
+                            "flexcol",
+                            "gap-1rem",
+                            styles.daily_forcast_card,
+                            "card_design"
+                        )}
+                        key={weekday + i}
+                    >
+                        <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
+                            <p>{weekday}</p>
+                        </LoaderWrapper>
+
+                        <WeatherIcon
+                            wmo={wmo}
+                            isLoading={isBusy}
+                            loaderClass="loader-xs"
+                            iconClass={styles.daily_icon}
+                        />
+
+                        <div className="flex">
                             <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
-                                <p>{weekday}</p>
+                                <p>{cleanTemp(mintemp)}</p>
                             </LoaderWrapper>
-
-                            <WeatherIcon
-                                wmo={wmo}
-                                isLoading={isBusy}
-                                loaderClass="loader-xs"
-                                iconClass={styles.daily_icon}
-                            />
-
-                            <div className="flex">
-                                <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
-                                    <p>{cleanTemp(mintemp)}</p>
-                                </LoaderWrapper>
-                                <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
-                                    <p>{cleanTemp(maxtemp)}</p>
-                                </LoaderWrapper>
-                            </div>
+                            <LoaderWrapper isLoading={isBusy} loaderClass="loader-xs">
+                                <p>{cleanTemp(maxtemp)}</p>
+                            </LoaderWrapper>
                         </div>
-                    )
-                })}
-            </div>
+                    </div>
+                )
+            })}
         </div>
     )
 }

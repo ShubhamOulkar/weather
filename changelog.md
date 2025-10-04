@@ -1,4 +1,10 @@
-- 03-10-2025 : feat: add to favorite location
+- 04-10-2025 : feat: Error handling [(PR #10)](https://github.com/ShubhamOulkar/weather/pull/10)
+    - Error handling in react query and react error boundaries
+    - improve design for visual interaction
+    - SEO
+    - Accessibility
+    
+- 03-10-2025 : feat: add to favorite location [(PR #09)](https://github.com/ShubhamOulkar/weather/pull/9)
     - added favorite location context
     - User can add locations into favorites list
     - reduce JS bundle by `6kb`. Logo and background are rendered as images using picture element.

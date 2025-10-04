@@ -2,15 +2,19 @@ import { createContext, useState, useContext, type ReactNode } from "react";
 import type { LocationInput, LookUpReturn } from "../../types/types";
 import useLocationWeather from "../../hooks/useLocationWeather/useLocationWeather";
 import { useIpLookUp } from "../../hooks/useIpLookUp/useIpLookUp";
+import { logger } from "../../utils/logger/logger";
 
 interface LocationContext {
     location?: LocationInput;
     setLocation: (loc?: LocationInput) => void;
     data: ReturnType<typeof useLocationWeather>["data"];
     isLoading: boolean;
-    refetch: () => void;
     ipData: LookUpReturn | undefined;
     ipLoading: boolean;
+    isIpError: boolean;
+    isWeatherError: boolean;
+    error: Error[];
+    refetch: () => void;
 }
 
 const LocationContext = createContext<LocationContext | undefined>(undefined)
@@ -19,12 +23,34 @@ export function LocationProvider({ children }: { children: ReactNode }) {
     const [location, setLocation] = useState<LocationInput | undefined>(undefined)
 
     // ip lookup
-    const { data: ipData, isLoading: ipLoading } = useIpLookUp()
+    const { data: ipData, isLoading: ipLoading, isError: isIpError, error: ipError } = useIpLookUp()
+
+
+    if (isIpError && ipError) {
+        logger.error("IP lookup failed", { context: "LocationProvider", error: ipError });
+    }
 
     // centralise weather data
-    const { data, isFetching: isLoading, refetch } = useLocationWeather(location, ipData)
+    const { data, isFetching: isLoading, isError: isWeatherError, error: weatherError, refetch } = useLocationWeather(location, ipData)
 
-    return <LocationContext value={{ location, setLocation, data, ipData, ipLoading, isLoading, refetch }}>
+    if (isWeatherError && weatherError) {
+        logger.error("Weather fetch failed", { context: "LocationProvider", error: weatherError });
+    }
+
+    const provideValue = {
+        location,
+        setLocation,
+        data,
+        isLoading,
+        ipLoading,
+        ipData,
+        isIpError,
+        isWeatherError,
+        error: [ipError!, weatherError!],
+        refetch
+    }
+
+    return <LocationContext value={provideValue}>
         {children}
     </LocationContext>
 }

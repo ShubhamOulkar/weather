@@ -7,7 +7,6 @@ export function useDailyData(coords: Cooradinates) {
         queryKey: [...DAILY_DATA_QUERY_KEY, coords],
         queryFn: () => fetchDailyWeather(coords),
         enabled: !!coords,
-        refetchOnWindowFocus: false,
-        refetchInterval: 300000,
+        throwOnError: true,
     })
 }

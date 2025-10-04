@@ -4,22 +4,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Weather Forecast & Real-Time Updates | WeatherApp</title>
+  <meta name="description"
+    content="Get accurate, real-time weather forecasts for any location. Check temperature, humidity, wind speed, and daily predictions with our easy-to-use weather app." />
+  <meta name="keywords" content="weather, forecast, live weather, temperature, weather app, real-time weather" />
+  <link rel="canonical" href="https://weather-inky-delta.vercel.app/" /> 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <!-- Preload DM Sans variable fonts -->
+
+  <meta property="og:title" content="Live Weather Forecast | WeatherApp" />
+  <meta property="og:description"
+    content="Accurate, real-time weather forecasts for your location." />
+  <meta property="og:image" content="https://weather-inky-delta.vercel.app/project_preview.png" /> 
+  <meta property="og:url" content="https://weather-inky-delta.vercel.app/" /> 
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Live Weather Forecast | WeatherApp" />
+  <meta name="twitter:description"
+    content="Accurate, real-time weather forecasts for your location." />
+  <meta name="twitter:image" content="https://weather-inky-delta.vercel.app/project_preview.png" /> 
+
   <link rel="preload" href="/fonts/DM_Sans/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/DM_Sans/dm-sans-latin-wght-italic.woff2" as="font" type="font/woff2"
     crossorigin>
-
-  <!-- Preload Bricolage Grotesque -->
   <link rel="preload" href="/fonts/Bricolage_Grotesque/bricolage-grotesque-latin-700-normal.woff2" as="font"
     type="font/woff2" crossorigin>
 
-  <title>Weather app | Frontend Mentor</title>
   <style>
     body {
       color: hsl(0, 0%, 100%);
       background-color: hsl(243, 96%, 9%);
     }
+
     .attribution {
       font-size: 11px;
       text-align: center;
@@ -32,12 +48,19 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <main id="root">
+    <noscript>
+      <h1>Welcome to WeatherApp</h1>
+      <p>Please enable JavaScript to view real-time weather forecasts.</p>
+    </noscript>
+  </main>
 
   <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-    Coded by <a href="https://github.com/ShubhamOulkar" target="_blank">Shubham oulkar</a>.
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener noreferrer">Frontend
+      Mentor</a>.
+    Coded by <a href="https://github.com/ShubhamOulkar" target="_blank" rel="noopener noreferrer">Shubham oulkar</a>.
   </footer>
+  
   <script type="module" src="/src/main.tsx"></script>
 </body>
 

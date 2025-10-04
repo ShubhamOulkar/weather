@@ -128,3 +128,10 @@ export interface FavoriteLocation {
     lat: number;
     lon: number;
 }
+
+export type LogLevel = "info" | "warn" | "error";
+
+export interface LoggerOptions {
+  context?: string;
+  error?: Error;
+}

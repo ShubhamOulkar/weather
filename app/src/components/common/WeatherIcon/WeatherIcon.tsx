@@ -9,7 +9,7 @@ interface WeatherIcon {
 }
 
 export default function WeatherIcon({ wmo, isLoading, loaderClass, iconClass }: WeatherIcon) {
-    const icon = getWeatherIcon[wmo] || { file: "icon-sunny.webp", alt: "sunny" }
+    const icon = getWeatherIcon[wmo] || { file: "icon-sunny.webp", alt: "Clear sky" }
 
     return <LoaderWrapper isLoading={isLoading} loaderClass={loaderClass}>
         <img className={iconClass}
