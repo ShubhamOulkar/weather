@@ -12,6 +12,7 @@ A modern weather web application that provides real-time weather data, forecasts
   - [Links](#links)
 - [My Process](#my-process)
   - [Built With](#built-with)
+  - [Error handling](#error-handling)
   - [What I Learned](#what-i-learned)
   - [Useful Resources](#useful-resources)
 - [Installation](#installation)
@@ -58,7 +59,12 @@ Users can:
 - 🎨 **CSS Modules** with custom properties & variable fonts  
 - 📱 **Mobile-first workflow**  
 - 🌗 Light/Dark mode via system preference  
-- 🧪 **Vitest** + **React Testing Library** for testing  
+- 🧪 **Vitest** + **React Testing Library** for testing
+
+### Error handling
+Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.
+This setup ensures query errors and runtime errors are gracefully isolated to their component scope.
+The Retry button in the fallback UI calls both the local ErrorBoundary.reset() and React Query’s reset() to trigger automatic re-fetching of failed data.
 
 ### What I Learned
 - Efficient data fetching and caching using React Query.  
