@@ -19,7 +19,7 @@
 
 .location_weather_icon {
     width: 5rem;
-    aspect-ratio: 1;
+    height: 5rem;
 }
 
 .location_temp {

@@ -13,7 +13,7 @@ interface CommonMetricProps {
 export default function CommonMetric({ classname, heading, isLoading, value, isError }: CommonMetricProps) {
     if (isError) return <ErrorCard />
     return <div className={cnr('flexcol', classname, 'card_design')}>
-        <h5>{heading}</h5>
+        <h3>{heading}</h3>
         <p>
             <LoaderWrapper isLoading={isLoading} loaderClass="loader-xs">
                 {value}
