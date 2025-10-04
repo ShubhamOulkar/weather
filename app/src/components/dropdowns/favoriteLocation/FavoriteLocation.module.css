@@ -47,7 +47,7 @@
 
 
 .fav_loc_drop {
-    --width : 15rem;
+    --width: 15rem;
     background-color: var(--btn-color-bg);
     width: var(--width);
     position: absolute;
@@ -80,6 +80,7 @@
     width: 100%;
     padding: 0.3rem;
     gap: 1rem;
+    background-color: transparent;
 }
 
 .remove_btn {

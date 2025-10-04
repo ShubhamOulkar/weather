@@ -8,7 +8,16 @@ import { UnitsProvider } from './context/unitsSystem/UnitsSystem.tsx'
 import { FavoritesProvider } from './context/favoritesLocation/FavoritesContext.tsx'
 import styles from './App.module.css'
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3,
+      refetchOnWindowFocus: false,
+      refetchInterval: 300000,
+    }
+  }
+});
+
 function App() {
 
   return (
