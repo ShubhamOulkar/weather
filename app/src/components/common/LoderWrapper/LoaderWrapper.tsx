@@ -1,9 +1,9 @@
 import cnr from "../../../utils/class_resolver/cnr"
 
 interface LoaderWrapperProps {
-  isLoading: boolean
+  isLoading?: boolean
   loaderClass?: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export default function LoaderWrapper({

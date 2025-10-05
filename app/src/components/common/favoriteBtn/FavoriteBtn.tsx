@@ -7,7 +7,7 @@ import cnr from '../../../utils/class_resolver/cnr';
 
 export default function FavoritesBtn() {
     const { data: weatherData } = useLocation()
-    const { addFavorite, favorites } = useFavorites()
+    const { addFavorite, favorites, hydrated } = useFavorites()
 
     // State to trigger the animation
     const [isAnimating, setIsAnimating] = useState(false);

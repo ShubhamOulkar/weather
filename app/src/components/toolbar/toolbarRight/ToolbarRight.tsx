@@ -8,20 +8,37 @@ import cnr from "../../../utils/class_resolver/cnr"
 import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper"
 import FavoriteLocationDropdown from "../../dropdowns/favoriteLocation/FavoriteLocation"
 import { useToggle } from "../../../hooks/useToggle/useToggle"
+import { useEffect, useState } from "react"
+
 export function ToolbarRight() {
-    const {open, setOpen, toggle} = useToggle()
+    const { open, setOpen, toggle } = useToggle()
     const { data, ipData, ipLoading } = useLocation()
-    const { date } = data
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLButtonElement>({
         onDismissalEvent: () => setOpen(false)
     })
+
+    const [hydrated, setHydrated] = useState(false);
+    useEffect(() => setHydrated(true), []);
 
     return <div className={cnr('flex', 'gap-1rem', 'flexcenter', styles.toolbar_right_container)} >
         <FavoriteLocationDropdown />
         <p title={ipData?.country} className={styles.user_time_country}>
             <LoaderWrapper isLoading={ipLoading} loaderClass="loader-sm">
-                <time dateTime={date.date.toISOString()} aria-label={`${date.time} in ${ipData?.country}`}>{date.time} | </time>
-                <span aria-label={`${ipData?.country} (${ipData?.country_code})`}>{ipData?.country_icon}</span>
+                {hydrated ? (
+                    <>
+                        <time
+                            dateTime={data.date.date.toISOString()}
+                            aria-label={`${data.date.time} in ${ipData?.country}`}
+                        >
+                            {data.date.time} |{" "}
+                        </time>
+                        <span aria-label={`${ipData?.country} (${ipData?.country_code})`}>
+                            {ipData?.country_icon}
+                        </span>
+                    </>
+                ) : (
+                    <time aria-hidden="true">--:-- |</time>
+                )}
             </LoaderWrapper>
         </p>
         <Button
