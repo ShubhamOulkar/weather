@@ -1,3 +1,7 @@
+- 05-10-2025 : feat + testing [PR#13](https://github.com/ShubhamOulkar/weather/pull/13)
+    - Add animations
+    - add react query hooks testing
+
 - 04-10-2025 : feat: Error handling [(PR #10)](https://github.com/ShubhamOulkar/weather/pull/10)
     - Error handling in react query and react error boundaries
     - improve design for visual interaction
