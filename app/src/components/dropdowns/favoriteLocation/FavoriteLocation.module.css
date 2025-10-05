@@ -64,7 +64,7 @@
     overflow-y: scroll;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 
-    >ul[role="list"] {
+    >ul {
         padding: 0;
 
         >li:is(:hover, :focus, :focus-within) {

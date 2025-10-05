@@ -65,7 +65,7 @@ export default function FavoriteLocationDropdown() {
                 aria-live="polite"
                 className={cnr(open ? "show" : "hidden", style.fav_loc_drop)}
                 ref={nodeRef}>
-                <ul role="list">
+                <ul>
                     {hasFavorites ? (
                         favorites.map((loc) => (
                             <li

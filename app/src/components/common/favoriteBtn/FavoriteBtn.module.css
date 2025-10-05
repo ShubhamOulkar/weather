@@ -41,11 +41,11 @@
 }
 
 .itsFav {
-    fill: var(--orange-500) !important; 
+    fill: var(--orange-500); 
     transform: scale(1);
 
     .favorite_btn:is(:hover, :focus) & {
-        fill: color-mix(in srgb, var(--orange-500) 80%, black) !important;
+        fill: color-mix(in srgb, var(--orange-500) 80%, black);
         transform: scale(1.1);
     }
 }

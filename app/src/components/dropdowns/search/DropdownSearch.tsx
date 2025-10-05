@@ -44,7 +44,7 @@ export default function DropdownSearch({
         dropdown ? 'show' : 'hidden'
       )}
     >
-      <ul role="list">
+      <ul>
         {
           !isLoading && searchData === undefined && (
             <li className={cnr(styles.message)} role="status">Search format e.g. Mumbai, MH, IN</li>

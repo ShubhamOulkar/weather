@@ -20,7 +20,7 @@
     aspect-ratio: 1;
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 59.37rem) {
     .hourly_forcast_card {
         width: 97%;
     }

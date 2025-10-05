@@ -10,20 +10,20 @@
     height: fit-content;
 }
 
-@media screen and (max-width:1160px) {
+@media screen and (max-width:72.5rem) {
     .dashboard {
         height: 47rem;
     }
 }
 
-@media screen and (951px < width < 1080px) {
+@media screen and (59.43rem < width < 67.5rem) {
     .dashboard {
         grid-template-columns: 64% 32%;
         height: 54.5rem;
     }
 }
 
-@media screen and (max-width:950px) {
+@media screen and (max-width:59.37rem) {
     .dashboard {
         grid-template-columns: 1fr;
         height: fit-content;

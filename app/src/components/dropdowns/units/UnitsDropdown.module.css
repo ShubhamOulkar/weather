@@ -1,7 +1,6 @@
 .units_dropdown {
     background-color: var(--btn-color-bg);
     width: max-content;
-    padding: 0;
     position: absolute;
     right: 0;
     top: 100%;

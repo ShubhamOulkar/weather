@@ -15,7 +15,7 @@
 }
 
 
-@media screen and (min-width:768px) {
+@media screen and (min-width:48rem) {
     .user_time_country {
         padding-block: 0.6rem;
         padding-inline: 0.5rem;
