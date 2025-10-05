@@ -2,7 +2,7 @@
     display: grid;
     gap: 2rem;
     grid-template-columns: 64% 33%;
-    height: 37.40rem;
+    height: 37rem;
     align-items: start;
 }
 
