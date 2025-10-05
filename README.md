@@ -16,6 +16,8 @@ A modern weather web application that provides real-time weather data, forecasts
   - [useDismissalOutside hook](#useDismissalOutside-hook)
   - [Voice search features](#voice-search-features)
   - [Error handling](#error-handling)
+  - [Testing](#testing)
+  - [SSR with expressjs](#ssr-with-expressjs)
   - [What I Learned](#what-i-learned)
   - [Useful Resources](#useful-resources)
 - [Installation](#installation)
@@ -31,7 +33,8 @@ A modern weather web application that provides real-time weather data, forecasts
 ![Project Preview](/docs/project_submission.png)
 
 ### Links
-- 🚀 [Live Demo](https://weather-inky-delta.vercel.app/) 
+- [Live CSR Demo](https://weather-inky-delta.vercel.app/) 
+- [Live SSR Demo](https://weatherssr.onrender.com/)
 
 ### Features (The Challenge)
 
@@ -91,6 +94,14 @@ Key Features:
   Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.
   This setup ensures query errors and runtime errors are gracefully isolated to their component scope.
   The Retry button in the fallback UI calls both the local ErrorBoundary.reset() and React Query’s reset() to trigger automatic re-fetching of failed data.
+
+### SSR with expressjs
+  To ensure optimal performance, particularly for initial load speed and SEO, the website utilizes a Server-Side Rendered (SSR) architecture powered by Express.js. This approach resulted in a huge difference in performance compared to a purely Client-Side Rendered (CSR) setup, especially for high-speed metrics like First Contentful Paint. 
+
+  - Demo url :- https://weatherssr.onrender.com/
+  - PR#15 :- https://github.com/ShubhamOulkar/weather/pull/15
+
+  > Note: Keep separate for learning purpose. And I am still learning and experimenting with react API `renderToPipeableStream()`.
 
 ### Testing
   Vitest for the test runner and React Testing Library (RTL) to ensure the hook functions correctly from a user's perspective.
