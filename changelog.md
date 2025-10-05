@@ -1,6 +1,13 @@
 - 05-10-2025 : feat + testing [PR#13](https://github.com/ShubhamOulkar/weather/pull/13)
     - Add animations
     - add react query hooks testing
+    
+- 05-10-2025 : feat : voice search [PR #14](https://github.com/ShubhamOulkar/weather/pull/14)
+    - Starts listening when the button is clicked.
+    - Automatically stops after 10 seconds.
+    - Updates the search query live while listening.
+    - Validates the search input using `SearchSchema`.
+    - Shows toast notifications for errors and info.
 
 - 04-10-2025 : feat: Error handling [(PR #10)](https://github.com/ShubhamOulkar/weather/pull/10)
     - Error handling in react query and react error boundaries

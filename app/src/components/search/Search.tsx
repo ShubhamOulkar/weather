@@ -12,8 +12,11 @@ import { useGpsLocation } from "../../hooks/useGpsLocation/useGpsLocation"
 import { useLiveSearch } from "../../hooks/useLiveSearch/useLiveSearch"
 import type { Cooradinates } from "../../types/types"
 import { useToggle } from "../../hooks/useToggle/useToggle"
+import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic"
+import { useToast } from "../../context/toast/ToastContext"
 
 export default function SearchForm() {
+    const { addToast } = useToast()
     const { open, setOpen } = useToggle()
     const [search, setSearch] = useState("")
     const [validateSearch, setValidateSearch] = useState("")
@@ -40,7 +43,7 @@ export default function SearchForm() {
 
     // this error should be set on toast not on search error
     useEffect(() => {
-        if (gpsErr) setError(gpsErr)
+        if (gpsErr) addToast(gpsErr)
     }, [gpsErr])
 
     const handleSubmit = (e: FormEvent) => {
@@ -67,6 +70,8 @@ export default function SearchForm() {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
+        console.log("new value", newValue)
+        setOpen(true)
         // clear previous errors 
         setError(null)
         // set new value 
@@ -109,7 +114,8 @@ export default function SearchForm() {
     return <search className={styles.form_container}>
         <form onSubmit={handleSubmit}
             className={cnr('flexcol', styles.search_form)} >
-            <div title="search" className={cnr(styles.search_container, error && styles.input_error)}>
+            <div title="search"
+                className={cnr(styles.search_container, error && styles.input_error)}>
                 {error && (
                     <p
                         className={cnr('flex', 'flexcenter', 'gap-0_3', styles.error)}
@@ -118,7 +124,11 @@ export default function SearchForm() {
                         aria-live="polite"
                         title="error"
                     >
-                        <IconError aria-hidden="true" width={12} height={12} fill="white" /> {error}
+                        <IconError
+                            aria-hidden="true"
+                            width={12} height={12}
+                            fill="white" />
+                        {error}
                     </p>
                 )}
                 <div ref={userRef}
@@ -127,6 +137,7 @@ export default function SearchForm() {
                         <IconSearch aria-hidden="true" />
                         <span className="sr_only">Search for a place</span>
                     </label>
+
                     <input
                         type="search"
                         id="search"
@@ -142,6 +153,12 @@ export default function SearchForm() {
                         aria-expanded={open}
                         aria-controls="searchDropdown"
                         autoComplete="off" />
+
+                    <SpeechRecognitionMic
+                        setOpen={setOpen}
+                        setError={setError}
+                        setSearch={setSearch}
+                        setValidateSearch={setValidateSearch} />
                 </div>
                 <DropdownSearch id="searchDropdown"
                     dismissRef={nodeRef}

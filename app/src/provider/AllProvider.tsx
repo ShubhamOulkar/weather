@@ -3,6 +3,7 @@ import { LocationProvider } from '../context/location/Location.tsx'
 import { UnitsProvider } from '../context/unitsSystem/UnitsSystem.tsx'
 import { FavoritesProvider } from '../context/favoritesLocation/FavoritesContext.tsx'
 import type { ReactNode } from 'react'
+import { ToastProvider } from '../context/toast/ToastContext.tsx'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -18,13 +19,15 @@ export default function AllProvider({ children }: { children: ReactNode }) {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <FavoritesProvider>
-                <UnitsProvider>
-                    <LocationProvider>
-                        {children}
-                    </LocationProvider>
-                </UnitsProvider>
-            </FavoritesProvider>
+            <ToastProvider>
+                <FavoritesProvider>
+                    <UnitsProvider>
+                        <LocationProvider>
+                            {children}
+                        </LocationProvider>
+                    </UnitsProvider>
+                </FavoritesProvider>
+            </ToastProvider>
         </QueryClientProvider>
     )
 }
