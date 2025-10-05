@@ -7,12 +7,12 @@ import type { Cooradinates } from "../../../types/types";
  * @param coordinates The coordinates object {latitude, longitude}.
  * @returns A promise that resolves to current AQI.
  */
-export async function fetchCurrentAqi({ latitude, longitude }: Cooradinates):Promise<number | undefined> {
+export async function fetchCurrentAqi({ latitude, longitude }: Cooradinates):Promise<number> {
 
     const url: string = import.meta.env.VITE_OPEN_METEO_AQI;
 
     if (!url) {
-        throw new Error("Missing VITE_OPEN_METEO_WEATHER API endpoint environment variable.");
+        throw new Error("Missing VITE_OPEN_METEO_AQI API endpoint environment variable.");
     }
 
     const params = {
@@ -31,12 +31,13 @@ export async function fetchCurrentAqi({ latitude, longitude }: Cooradinates):Pro
 
         const response = responses[0];
         const current = response.current();
+        const aqi = current?.variables(0)?.value()
 
-        if (!current) {
+        if (!aqi) {
             throw new Error("OpenMeteo response structure is missing current AQI data.");
         }
 
-        return current.variables(0)?.value()
+        return aqi
 
     } catch (error) {
         if (error instanceof Error) {
