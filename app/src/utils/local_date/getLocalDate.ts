@@ -26,7 +26,7 @@ export function getLocalDate(
 
     const baseOptions: Intl.DateTimeFormatOptions = { timeZone: timezone, ...format };
 
-    // Helper to format a specific part cleanly
+    // Helper to format a specific part
     const formatter = (opts: Intl.DateTimeFormatOptions): string =>
         new Intl.DateTimeFormat(locale, { ...baseOptions, ...opts }).format(date);
 

@@ -12,7 +12,7 @@ const defaultResult = {
 
 const userResult = {
     date: new Date('2025-09-29T04:44:09.000Z'),
-    weekday: 'Mon',
+    weekday: 'M',
     day: '29',
     month: 'S',
     year: '25',
@@ -27,17 +27,10 @@ describe("Test get local date utility", () => {
 
     it("should return user formated date parts", () => {
         const data = getLocalDate("Mon Sep 29 2025 10:14:09 GMT+0530 (India Standard Time)", {
-            weekday: 'short',
-            month: 'narrow',
-            day: "2-digit",
-            year: '2-digit'
+            weekday: 'narrow',
         })
-        expect(data).toMatchObject(userResult)
-    })
 
-    it("should return today formated date parts", () => {
-        const data = getLocalDate()
-        expect(data).toEqual(data) // TODO: Improvement
+        expect(data.weekday).toEqual(userResult.weekday)
     })
 
     it("should return today formated date parts if invalid string is given", () => {

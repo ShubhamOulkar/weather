@@ -112,7 +112,7 @@ export default function SearchForm() {
             <div title="search" className={cnr(styles.search_container, error && styles.input_error)}>
                 {error && (
                     <p
-                        className={styles.error}
+                        className={cnr('flex', 'flexcenter', 'gap-0_3', styles.error)}
                         aria-label={`${error}`}
                         role="alert"
                         aria-live="polite"

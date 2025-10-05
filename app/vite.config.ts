@@ -9,6 +9,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    reporters: ['html']
+    reporters: ['html'],
+    clearMocks: true,
   }
 })

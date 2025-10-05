@@ -36,7 +36,6 @@
     --height: 3rem;
     position: relative;
     border-radius: var(--border-radius);
-    transition: transform 0.2s ease-in-out;
 
     >.input_container {
         border-radius: inherit;
@@ -44,6 +43,7 @@
         background-color: var(--btn-color-bg);
         cursor: pointer;
         width: 100%;
+        transition: transform 0.2s ease-in-out;
 
         >input[type='search'] {
             border: none;
@@ -73,10 +73,10 @@
             outline: var(--focus-outline);
             outline-offset: var(--btn-outline-offset);
         }
-    }
 
-    &:hover {
-        transform: scale(1.01)
+        &:hover {
+            transform: scale(1.01);
+        }
     }
 }
 

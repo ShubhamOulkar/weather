@@ -15,7 +15,7 @@ export default function LocationCardDetails() {
     return <>
         <div className="flex flex-bet">
             <FavoritesBtn />
-            <div title={`Last update at ${time} for ${locWeather?.place}`} className={cnr("flex", styles.search_time)}>
+            <div title={`Last update at ${time} for ${locWeather?.place}`} className={cnr("flex","flecenter", styles.search_time)}>
                 <LoaderWrapper isLoading={isLoading} loaderClass="loader-sm">
                     <p>{getWeatherIcon[locWeather.wmo].alt || 'Clear sky'} |</p>
                     <time className="flex flexcenter gap-0_3" dateTime={date.toISOString()}
