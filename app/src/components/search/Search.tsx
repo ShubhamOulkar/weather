@@ -125,7 +125,7 @@ export default function SearchForm() {
                     className={cnr('flex', styles.input_container)} >
                     <label htmlFor="search">
                         <IconSearch aria-hidden="true" />
-                        <span className="hidden">Search for a place</span>
+                        <span className="sr_only">Search for a place</span>
                     </label>
                     <input
                         type="search"

@@ -19,10 +19,15 @@
         cursor: pointer;
         gap: 0.5rem;
         width: 100%;
+        transition: transform 0.2s ease-in-out;
 
         &:focus {
             outline: var(--btn-outline-size) solid var(--blue-500);
             outline-offset: var(--btn-outline-offset);
+        }
+
+        &:hover {
+            transform: scale(1.01)
         }
     }
 }
@@ -31,6 +36,7 @@
     --height: 3rem;
     position: relative;
     border-radius: var(--border-radius);
+    transition: transform 0.2s ease-in-out;
 
     >.input_container {
         border-radius: inherit;
@@ -67,6 +73,10 @@
             outline: var(--focus-outline);
             outline-offset: var(--btn-outline-offset);
         }
+    }
+
+    &:hover {
+        transform: scale(1.01)
     }
 }
 
@@ -128,9 +138,10 @@
 }
 
 @media screen and (768px < width < 1080px) {
-    .search_form{
+    .search_form {
         padding-inline-start: 5rem;
     }
+
     .search_container {
         width: 23.6rem;
     }
