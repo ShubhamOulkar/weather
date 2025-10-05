@@ -27,9 +27,8 @@ describe("Test get local date utility", () => {
 
     it("should return user formated date parts", () => {
         const data = getLocalDate("Mon Sep 29 2025 10:14:09 GMT+0530 (India Standard Time)", {
-            weekday: 'narrow',
+            weekday: 'short'
         })
-
         expect(data.weekday).toEqual(userResult.weekday)
     })
 
