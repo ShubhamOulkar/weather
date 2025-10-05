@@ -1,0 +1,32 @@
+.micContainer {
+    width: 3rem;
+    height: 3rem;
+    position: relative;
+}
+
+.micContainer button {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    padding-inline: 0.3rem;
+    border-radius: var(--border-radius);
+}
+
+.micContainer button:hover svg,
+.micContainer button:focus svg {
+    fill: var(--neutral-0);
+}
+
+.micContainer button svg {
+    fill: var(--neutral-300);
+}
+
+.micContainer button:disabled {
+    background-color: rgba(165, 42, 42, 0.155);
+}
+
+.micContainer button:disabled svg {
+    fill: var(--neutral-900);
+}
