@@ -180,6 +180,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 /* do not change */
 main[id='root'] {
   width: 100%;
@@ -192,12 +193,20 @@ h4 {
 }
 
 /* global classes */
-.hidden {
+.sr_only {
   display: none;
 }
 
+.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+}
+
 .show {
-  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }
 
 .flex {
@@ -367,7 +376,7 @@ h4 {
   width: 100%;
   height: 100%;
   padding: 1.5rem;
-  
+
   >h1 {
     font-size: 1.2rem;
   }

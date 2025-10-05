@@ -38,10 +38,7 @@ Users can:
 - 📱 Enjoy responsive layouts optimized for all devices.  
 - 🖱 Experience hover/focus states for all interactive elements.  
 - 📍 Detect current location automatically (first visit).  
-- ⭐ Save favorite locations for quick access.  
-- 🌞 View sunrise/sunset times with visual indicators.  
-- ☀️🌧 Animated weather backgrounds based on live conditions.  
-- 📲 Install as a **PWA** (Progressive Web App).  
+- ⭐ Save favorite locations for quick access.   
 - 🎙 Use voice search to find weather quickly.  
 
 ### Screenshot  
@@ -55,12 +52,12 @@ Users can:
 ## My Process
 
 ### Built With
-- ⚡ **Vite** (bundler)  
-- ⚛️ **React** + **React Query (TanStack)**  
-- 🎨 **CSS Modules** with custom properties & variable fonts  
-- 📱 **Mobile-first workflow**  
-- 🌗 Light/Dark mode via system preference  
-- 🧪 **Vitest** + **React Testing Library** for testing
+- **Vite** (bundler)  
+- **React** + **React Query (TanStack)**  
+- **CSS Modules** with custom properties & variable fonts  
+- **Mobile-first workflow**  
+- Light/Dark mode via system preference  
+- **Vitest** + **React Testing Library** for testing
 
 ### Voice search features
   - Starts listening when the button is clicked.

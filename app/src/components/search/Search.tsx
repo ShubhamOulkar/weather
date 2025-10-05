@@ -118,7 +118,7 @@ export default function SearchForm() {
                 className={cnr(styles.search_container, error && styles.input_error)}>
                 {error && (
                     <p
-                        className={styles.error}
+                        className={cnr('flex', 'flexcenter', 'gap-0_3', styles.error)}
                         aria-label={`${error}`}
                         role="alert"
                         aria-live="polite"
@@ -135,7 +135,7 @@ export default function SearchForm() {
                     className={cnr('flex', styles.input_container)} >
                     <label htmlFor="search">
                         <IconSearch aria-hidden="true" />
-                        <span className="hidden">Search for a place</span>
+                        <span className="sr_only">Search for a place</span>
                     </label>
 
                     <input

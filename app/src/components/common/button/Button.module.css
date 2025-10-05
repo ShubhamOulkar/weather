@@ -10,10 +10,15 @@
     border-radius: var(--border-radius);
     cursor: pointer;
     width: 6rem;
+    transition: transform 0.2s ease;
 
     &:focus {
         outline: var(--focus-outline);
         outline-offset: var(--btn-outline-offset);
+    }
+
+    &:hover {
+        transform: scale(1.02)
     }
 }
 
