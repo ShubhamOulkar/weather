@@ -7,6 +7,9 @@ jobs:
   test:
     name: Run tests and collect coverage
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npx vitest run --coverage
+        run: npx run coverage
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
