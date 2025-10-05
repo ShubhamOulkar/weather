@@ -27,7 +27,7 @@ describe('useIpLookUp', () => {
     let wrapper: ({ children }: { children: ReactNode }) => JSX.Element;
 
     beforeEach(() => {
-        fetchMock = vi.spyOn(global, 'fetch') as Mock;
+        fetchMock = vi.spyOn(globalThis, 'fetch') as Mock;
         wrapper = createQueryWrapper();
     })
 

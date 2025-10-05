@@ -79,6 +79,7 @@ export default function SpeechRecognitionMic({
     return (
         <div className={styles.micContainer}>
             <button
+                type="button"
                 onClick={startListening}
                 disabled={listening}
                 className="flex flexcenter"

@@ -7,11 +7,13 @@ A modern weather web application that provides real-time weather data, forecasts
 ## Table of Contents
 
 - [Overview](#overview)
-  - [Features](#features)
   - [Screenshot](#screenshot)
   - [Links](#links)
+  - [Features](#features)
 - [My Process](#my-process)
   - [Built With](#built-with)
+  - [Keyboard Search functionality](#search-functionality)
+  - [useDismissalOutside hook](#useDismissalOutside-hook)
   - [Voice search features](#voice-search-features)
   - [Error handling](#error-handling)
   - [What I Learned](#what-i-learned)
@@ -24,6 +26,12 @@ A modern weather web application that provides real-time weather data, forecasts
 ---
 
 ## Overview
+
+### Screenshot  
+![Project Preview](/docs/project_submission.png)
+
+### Links
+- 🚀 [Live Demo](https://weather-inky-delta.vercel.app/) 
 
 ### Features (The Challenge)
 
@@ -39,13 +47,7 @@ Users can:
 - 🖱 Experience hover/focus states for all interactive elements.  
 - 📍 Detect current location automatically (first visit).  
 - ⭐ Save favorite locations for quick access.   
-- 🎙 Use voice search to find weather quickly.  
-
-### Screenshot  
-![Project Preview](/docs/project_preview.png)
-
-### Links
-- 🚀 [Live Demo](https://weather-inky-delta.vercel.app/)  
+- 🎙 Use voice search to find weather quickly(🚧).   
 
 ---
 
@@ -59,7 +61,26 @@ Users can:
 - Light/Dark mode via system preference  
 - **Vitest** + **React Testing Library** for testing
 
-### Voice search features
+### Keyboard search functionality
+The SearchForm component is a feature-rich, interactive input for location-based search. It combines immediate feedback (live search), client-side validation, accessibility features, and GPS integration to provide a robust user experience.
+
+Key Features: 
+- Live Search with Debouncing: Provides real-time suggestions as the user types, using the useLiveSearch hook to efficiently query data. The search query is debounced by 500ms to prevent excessive API calls while the user is actively typing.
+
+- Form Validation: Uses SearchSchema for client-side validation of the search input, displaying immediate error messages when invalid input is detected.
+
+- Dismissal Outside: Uses the useDismissalOutside hook to close the live search dropdown when the user clicks or focuses anywhere outside the search input and dropdown area.
+
+- GPS Integration: Allows users to automatically use their current location with the "Locate me" button, utilizing the useGpsLocation hook.
+
+- Speech Recognition: Includes a dedicated button for voice input, enhancing accessibility and ease of use.
+
+- Location Context Management: Updates the global application state for the user's current location (city and/or coords) via the useLocation context.
+
+### useDismissalOutside hook
+  A React hook to manage the dismissal of components (like dropdowns, modals, or tooltips) when a user clicks or focuses outside of the component and its associated trigger element. This hook is reusable on all dropdowns from search dropdowns to any select dropdown.
+
+### Voice search features 
   - Starts listening when the button is clicked.
   - Automatically stops after 10 seconds.
   - Updates the search query live while listening.
@@ -67,9 +88,12 @@ Users can:
   - Shows toast notifications for errors and info.
 
 ### Error handling
-Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.
-This setup ensures query errors and runtime errors are gracefully isolated to their component scope.
-The Retry button in the fallback UI calls both the local ErrorBoundary.reset() and React Query’s reset() to trigger automatic re-fetching of failed data.
+  Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.
+  This setup ensures query errors and runtime errors are gracefully isolated to their component scope.
+  The Retry button in the fallback UI calls both the local ErrorBoundary.reset() and React Query’s reset() to trigger automatic re-fetching of failed data.
+
+### Testing
+  Vitest for the test runner and React Testing Library (RTL) to ensure the hook functions correctly from a user's perspective.
 
 ### What I Learned
 - Efficient data fetching and caching using React Query.  
@@ -110,8 +134,6 @@ for testing
 
 ```bash
 pnpm test 
-pnpm coverage
-pnpm test:preview
 ```
 for build and preview
 ```bash
