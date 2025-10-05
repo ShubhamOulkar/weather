@@ -12,6 +12,7 @@ A modern weather web application that provides real-time weather data, forecasts
   - [Links](#links)
 - [My Process](#my-process)
   - [Built With](#built-with)
+  - [Voice search features](#voice-search-features)
   - [Error handling](#error-handling)
   - [What I Learned](#what-i-learned)
   - [Useful Resources](#useful-resources)
@@ -60,6 +61,13 @@ Users can:
 - 📱 **Mobile-first workflow**  
 - 🌗 Light/Dark mode via system preference  
 - 🧪 **Vitest** + **React Testing Library** for testing
+
+### Voice search features
+  - Starts listening when the button is clicked.
+  - Automatically stops after 10 seconds.
+  - Updates the search query live while listening.
+  - Validates the search input using `SearchSchema`.
+  - Shows toast notifications for errors and info.
 
 ### Error handling
 Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.
