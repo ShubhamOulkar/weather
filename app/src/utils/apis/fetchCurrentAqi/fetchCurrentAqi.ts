@@ -1,13 +1,12 @@
 import { fetchWeatherApi } from "openmeteo";
 import type { Cooradinates } from "../../../types/types";
 
-
 /**
  * Fetches current US AQI data from the OpenMeteo API using coordinates.
  * @param coordinates The coordinates object {latitude, longitude}.
  * @returns A promise that resolves to current AQI.
  */
-export async function fetchCurrentAqi({ latitude, longitude }: Cooradinates):Promise<number | undefined> {
+export async function fetchCurrentAqi({ latitude, longitude }: Cooradinates): Promise<number | undefined> {
 
     const url: string = import.meta.env.VITE_OPEN_METEO_AQI;
 
@@ -24,7 +23,7 @@ export async function fetchCurrentAqi({ latitude, longitude }: Cooradinates):Pro
     try {
         // retries is 0 because tanstack query do that
         const responses = await fetchWeatherApi(url, params, 0, 1000, 2000, { method: 'GET' });
-    
+
         if (!responses || responses.length === 0) {
             throw new Error("OpenMeteo API returned an empty AQI response array.");
         }
