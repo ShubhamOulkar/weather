@@ -25,7 +25,7 @@ export default function SearchForm() {
     const { coord, gpsErr, getLocation } = useGpsLocation()
     // debounce search
     const { data: liveData, isFetching, flush } = useLiveSearch(validateSearch)
-
+    // global dismissal for drop down
     const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLDivElement>({
         onDismissalEvent: () => setOpen(false),
     })
@@ -41,13 +41,11 @@ export default function SearchForm() {
         }
     }, [coord, setLocation])
 
-    // this error should be set on toast not on search error
     useEffect(() => {
         if (gpsErr) addToast(gpsErr)
     }, [gpsErr])
 
     const handleSubmit = (e: FormEvent) => {
-        console.log("handleSubmit")
         e.preventDefault()
         // get latest debounced value
         flush()
@@ -71,7 +69,6 @@ export default function SearchForm() {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
-        console.log("handleChange", newValue)
         setOpen(true)
         // clear previous errors 
         setError(null)
@@ -133,7 +130,12 @@ export default function SearchForm() {
                     </p>
                 )}
                 <div ref={userRef}
-                    className={cnr('flex', styles.input_container)} >
+                    className={cnr('flex', styles.input_container)}
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-haspopup="listbox"
+                    aria-expanded={open}
+                    aria-controls="searchDropdown">
                     <label htmlFor="search">
                         <IconSearch aria-hidden="true" />
                         <span className="sr_only">Search for a place</span>
@@ -148,11 +150,6 @@ export default function SearchForm() {
                         onFocus={() => setOpen(true)}
                         onKeyDown={handleKeyDown}
                         onChange={handleChange}
-                        role="combobox"
-                        aria-autocomplete="list"
-                        aria-haspopup="listbox"
-                        aria-expanded={open}
-                        aria-controls="searchDropdown"
                         autoComplete="off" />
 
                     <SpeechRecognitionMic
@@ -172,8 +169,7 @@ export default function SearchForm() {
                 <button type="button"
                     className="flex flexcenter"
                     onClick={handlerGpsLocation}
-                    title="use my location"
-                    aria-label="use GPS location">
+                    title="use my location">
                     <IconLocation /> Locate me
                 </button>
             </div>
