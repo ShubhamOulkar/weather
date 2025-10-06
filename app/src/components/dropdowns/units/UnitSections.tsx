@@ -12,11 +12,11 @@ interface UnitsSectionsArg {
 }
 
 function UnitsSections({ title, unit1, unit2, unit1Setter, unit2Setter, showCheck }: UnitsSectionsArg) {
-    return <li className={styles.unit_sections}>
+    return <div className={styles.unit_sections}>
         <li><p className={styles.unit_title}>{title}</p></li>
         <li><DropBtn btnTitle={unit1} onClick={unit1Setter} showCheck={showCheck} /></li>
         <li><DropBtn btnTitle={unit2} onClick={unit2Setter} showCheck={!showCheck} /></li>
-    </li>
+    </div>
 }
 
 export const SubUnitSections = memo(UnitsSections, (p, n) => {
