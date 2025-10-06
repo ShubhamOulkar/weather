@@ -50,7 +50,7 @@ Users can:
 - 🖱 Experience hover/focus states for all interactive elements.  
 - 📍 Detect current location automatically (first visit).  
 - ⭐ Save favorite locations for quick access.   
-- 🎙 Use voice search to find weather quickly(🚧).   
+- 🎙 Use voice search to find weather quickly.   
 
 ---
 
@@ -89,6 +89,9 @@ Key Features:
   - Updates the search query live while listening.
   - Validates the search input using `SearchSchema`.
   - Shows toast notifications for errors and info.
+
+### useSpeechRecognitionNative hook
+ A custom React hook that provides continuous speech recognition using the **native Web Speech API** (`webkitSpeechRecognition`). This hook manages the entire speech recognition lifecycle — including setup, start/stop control, cleanup, and automatic text updates.
 
 ### Error handling
   Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.

@@ -47,6 +47,7 @@ export default function SearchForm() {
     }, [gpsErr])
 
     const handleSubmit = (e: FormEvent) => {
+        console.log("handleSubmit")
         e.preventDefault()
         // get latest debounced value
         flush()
@@ -70,7 +71,7 @@ export default function SearchForm() {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
-        console.log("new value", newValue)
+        console.log("handleChange", newValue)
         setOpen(true)
         // clear previous errors 
         setError(null)
@@ -156,7 +157,6 @@ export default function SearchForm() {
 
                     <SpeechRecognitionMic
                         setOpen={setOpen}
-                        setError={setError}
                         setSearch={setSearch}
                         setValidateSearch={setValidateSearch} />
                 </div>
