@@ -92,6 +92,10 @@ Key Features:
 
 ### useSpeechRecognitionNative hook
  A custom React hook that provides continuous speech recognition using the **native Web Speech API** (`webkitSpeechRecognition`). This hook manages the entire speech recognition lifecycle — including setup, start/stop control, cleanup, and automatic text updates.
+> Support: - ✅ Chrome (desktop & Android)
+           - ⚠️ Edge (Chromium-based)
+           - ⚠️ Safari (partial, experimental)
+           - ❌ Firefox (not supported) 
 
 ### Error handling
   Used a class-based ErrorBoundary integrated with React Query’s QueryErrorResetBoundary and useQueryErrorResetBoundary hook.
