@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "@testing-library/jest-dom/vitest";
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, fireEvent, screen, type RenderResult } from "@testing-library/react";
+import {
+  fireEvent,
+  type RenderResult,
+  render,
+  screen,
+} from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useDismissalOutside } from "./useDismissalOutside";
 
 interface TestComponentProp {
@@ -35,7 +40,9 @@ function TestComponent({
       <a href="#" data-testid="focusoutside">
         Focus me
       </a>
-      <button ref={userRef} data-testid="opendropdown">Toggle</button>
+      <button ref={userRef} data-testid="opendropdown">
+        Toggle
+      </button>
       {open && (
         <div ref={nodeRef} data-testid="dropdown">
           Dropdown content
@@ -66,7 +73,7 @@ describe("useDismissalOutside", () => {
         onPointerDownOutside={onPointerDownOutside}
         onFocusOutside={onFocusOutside}
         onDismissal={onDismissal}
-      />
+      />,
     );
   }
 
@@ -76,13 +83,11 @@ describe("useDismissalOutside", () => {
     const dropdown = screen.getByText("Dropdown content");
     expect(dropdown).toBeVisible();
 
-
     fireEvent.pointerDown(getByTestId("outside"));
     expect(onDismissal).toHaveBeenCalledTimes(1);
     expect(onPointerDownOutside).toHaveBeenCalledTimes(1);
     expect(onFocusOutside).not.toBeCalled();
     expect(dropdown).not.toBeVisible();
-
   });
 
   it("should call onDismissalEvent when focus outside the nodeRef component", () => {
@@ -106,13 +111,12 @@ describe("useDismissalOutside", () => {
     const dropdown = screen.getByText("Dropdown content");
     expect(dropdown).toBeVisible();
 
-    fireEvent.pointerDown(outsideEle, { pointerType: 'touch' });
-    fireEvent.click(outsideEle)
+    fireEvent.pointerDown(outsideEle, { pointerType: "touch" });
+    fireEvent.click(outsideEle);
     expect(onDismissal).toHaveBeenCalledTimes(1);
     expect(onPointerDownOutside).toHaveBeenCalledTimes(1);
     expect(onFocusOutside).not.toBeCalled();
     expect(dropdown).not.toBeVisible();
-
   });
 
   it("should not call onDismissalEvent when focus event happed on userRef component", () => {
@@ -142,12 +146,11 @@ describe("useDismissalOutside", () => {
     expect(onFocusOutside).not.toBeCalled();
     expect(onPointerDownOutside).not.toBeCalled();
     expect(dropdown).toBeVisible();
-
   });
 
   it("should not call onDismissalEvent two times on the same element", () => {
     const { getByTestId } = renderComponent();
-    
+
     const ele = getByTestId("both-event-ele");
     const dropdown = screen.getByText("Dropdown content");
     expect(dropdown).toBeVisible();

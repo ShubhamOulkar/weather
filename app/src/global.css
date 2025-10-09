@@ -1,8 +1,8 @@
 /* Fonts */
 /* DM Sans – variable normal */
 @font-face {
-  font-family: 'DM Sans';
-  src: url('/fonts/DM_Sans/dm-sans-latin-wght-normal.woff2') format('woff2');
+  font-family: "DM Sans";
+  src: url("/fonts/DM_Sans/dm-sans-latin-wght-normal.woff2") format("woff2");
   font-weight: 300 700;
   font-style: normal;
   font-display: swap;
@@ -10,8 +10,8 @@
 
 /* DM Sans – variable italic */
 @font-face {
-  font-family: 'DM Sans';
-  src: url('/fonts/DM_Sans/dm-sans-latin-wght-italic.woff2') format('woff2');
+  font-family: "DM Sans";
+  src: url("/fonts/DM_Sans/dm-sans-latin-wght-italic.woff2") format("woff2");
   font-weight: 300 700;
   font-style: italic;
   font-display: swap;
@@ -19,8 +19,9 @@
 
 /* Bricolage Grotesque – variable (bold range) */
 @font-face {
-  font-family: 'Bricolage Grotesque';
-  src: url('/fonts/Bricolage_Grotesque/bricolage-grotesque-latin-700-normal.woff2') format('woff2');
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/Bricolage_Grotesque/bricolage-grotesque-latin-700-normal.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -28,8 +29,8 @@
 
 :root {
   /* fonts */
-  --font-sans: 'DM Sans', system-ui, Helvetica, Arial, sans-serif;
-  --font-display: 'Bricolage Grotesque', 'DM Sans', system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, Helvetica, Arial, sans-serif;
+  --font-display: "Bricolage Grotesque", "DM Sans", system-ui, sans-serif;
 
   /* Layout breakpoints */
   --container-mobile: 320px;
@@ -49,7 +50,7 @@
 
   /* Typography */
   --font-size-body: 18px;
-  --font-size-btn: 0.90rem;
+  --font-size-btn: 0.9rem;
 
   /* text color */
   --color-text: var(--neutral-0);
@@ -106,7 +107,6 @@ html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
 }
-
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul,
@@ -182,7 +182,7 @@ body {
 }
 
 /* do not change */
-main[id='root'] {
+main[id="root"] {
   width: 100%;
   min-width: var(--container-mobile);
   max-width: var(--container-desktop);
@@ -314,8 +314,6 @@ h4 {
   overflow: hidden;
 }
 
-
-
 .loader-sm {
   width: 6rem;
   height: 2rem;
@@ -359,16 +357,18 @@ h4 {
 
 /* shimmer overlay */
 .loader::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 200%;
   height: 100%;
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   animation: shimmer 1.5s infinite;
 }
 
@@ -385,11 +385,11 @@ h4 {
   height: 100%;
   padding: 1.5rem;
 
-  >h1 {
+  > h1 {
     font-size: 1.2rem;
   }
 
-  >p {
+  > p {
     font-size: 1rem;
   }
 }

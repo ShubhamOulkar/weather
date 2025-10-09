@@ -57,7 +57,7 @@ export function useSpeechRecognitionNative({
   // Initialize the SpeechRecognition object
   const initRecognition = useCallback(() => {
     const SpeechRecognition =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
       console.error("SpeechRecognition API not supported in this browser.");

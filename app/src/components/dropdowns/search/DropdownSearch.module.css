@@ -1,62 +1,64 @@
 .drop_places {
-    background-color: var(--btn-color-bg);
-    border-radius: var(--border-radius);
-    position: absolute;
-    left: 0;
-    top: 100%;
-    height: fit-content;
-    max-height: 152px;
-    z-index: var(--dropdown-z-index);
-    max-height: 150px;
-    overflow-y: auto;
-    margin-top: 0.5rem;
-    width: 100%;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  background-color: var(--btn-color-bg);
+  border-radius: var(--border-radius);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  height: fit-content;
+  z-index: var(--dropdown-z-index);
+  max-height: 150px;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+  width: 100%;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
 }
 
-ul{
-    padding: 0.5rem;
-    font-size: 0.9rem;
+ul {
+  padding: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .search_btn {
-    width: 100%;
+  width: 100%;
 }
 
 .message {
-    padding: 1rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: currentColor;
+  padding: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: currentColor;
 }
 
 .alert {
-    color: var(--orange-500);
+  color: var(--orange-500);
 }
 
 /* The spinner element */
 
 .loading_spinner {
-    display: flex;
-    animation: spin 1.5s linear infinite; 
-    width: 1rem; 
-    height: 1rem;
+  display: flex;
+  animation: spin 1.5s linear infinite;
+  width: 1rem;
+  height: 1rem;
 }
 
 .loading_spinner svg {
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
 }
 
 /* Keyframes for the rotation animation */
 @keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

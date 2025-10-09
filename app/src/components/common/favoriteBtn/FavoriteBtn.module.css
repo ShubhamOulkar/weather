@@ -1,56 +1,64 @@
 @keyframes heart-pop {
-    0% { transform: scale(0.8); opacity: 0.5; }
-    50% { transform: scale(1.4); opacity: 1; }
-    100% { transform: scale(1); }
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .favorite_btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.2rem;
-    border-radius: var(--border-radius);
-    transition: transform var(--animation-duration) var(--transition-timing); 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: var(--border-radius);
+  transition: transform var(--animation-duration) var(--transition-timing);
 
-    &:disabled {
-        cursor: default;
-        opacity: 0.9;
-    }
+  &:disabled {
+    cursor: default;
+    opacity: 0.9;
+  }
+
+  > svg {
+    width: 2rem;
+    fill: #333;
+    transition:
+      fill var(--animation-duration) var(--transition-timing),
+      transform var(--animation-duration) var(--transition-timing);
+  }
+
+  &:not(:disabled):is(:hover, :focus) {
+    outline: none;
 
     > svg {
-        width: 2rem;
-        fill: #333;
-        transition: 
-            fill var(--animation-duration) var(--transition-timing),
-            transform var(--animation-duration) var(--transition-timing);
+      fill: var(--neutral-0);
+      transform: scale(1.3);
     }
+  }
 
-    &:not(:disabled):is(:hover, :focus) {
-        outline: none; 
-        
-        > svg {
-            fill: var(--neutral-0);
-            transform: scale(1.3);
-        }
-    }
-
-    &:focus-visible {
-        outline: var(--focus-outline);
-        outline-offset: var(--btn-outline-offset);
-    }
+  &:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: var(--btn-outline-offset);
+  }
 }
 
 .itsFav {
-    fill: var(--orange-500); 
-    transform: scale(1);
+  fill: var(--orange-500);
+  transform: scale(1);
 
-    .favorite_btn:is(:hover, :focus) & {
-        fill: color-mix(in srgb, var(--orange-500) 80%, black);
-        transform: scale(1.1);
-    }
+  .favorite_btn:is(:hover, :focus) & {
+    fill: color-mix(in srgb, var(--orange-500) 80%, black);
+    transform: scale(1.1);
+  }
 }
 
 .addingFav {
-    fill: var(--orange-500);
-    animation: heart-pop 0.4s var(--transition-timing) forwards;
+  fill: var(--orange-500);
+  animation: heart-pop 0.4s var(--transition-timing) forwards;
 }

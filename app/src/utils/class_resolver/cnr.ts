@@ -1,6 +1,13 @@
-type ClassValues = string | null | undefined | false | ClassDict | ClassArr
-type ClassArr = ClassValues[]
-type ClassDict = Record<string, boolean | null | undefined>
+type ClassValues =
+  | string
+  | null
+  | undefined
+  | number
+  | false
+  | ClassDict
+  | ClassArr;
+type ClassArr = ClassValues[];
+type ClassDict = Record<string, boolean | null | undefined | number>;
 
 /**
  * Class name resolver (cnr)
@@ -10,34 +17,34 @@ type ClassDict = Record<string, boolean | null | undefined>
  */
 
 export default function cnr(...args: ClassValues[]): string {
-    let classes: string = ''
+  let classes = "";
 
-    function concatString(str: string): void {
-        classes += (classes ? " " : "") + str
-    }
+  function concatString(str: string): void {
+    classes += (classes ? " " : "") + str;
+  }
 
-    for (const arg of args) {
-        if (!arg) continue;
+  for (const arg of args) {
+    if (!arg) continue;
 
-        switch (typeof arg) {
-            case "string":
-                concatString(arg);
-                break
-            case "object":
-                if (Array.isArray(arg)) {
-                    const nested = cnr(...arg)
-                    if (nested) concatString(nested)
-                } else {
-                    for (const key in arg) {
-                        if (arg[key]) concatString(key)
-                    }
-                }
-                break
-            default:
-                console.error("Classname is not valid type")
-                break
+    switch (typeof arg) {
+      case "string":
+        concatString(arg);
+        break;
+      case "object":
+        if (Array.isArray(arg)) {
+          const nested = cnr(...arg);
+          if (nested) concatString(nested);
+        } else {
+          for (const key in arg) {
+            if (arg[key]) concatString(key);
+          }
         }
+        break;
+      default:
+        console.error("Classname is not valid type");
+        break;
     }
+  }
 
-    return classes
+  return classes;
 }

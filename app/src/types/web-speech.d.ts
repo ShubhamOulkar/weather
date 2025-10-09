@@ -1,5 +1,4 @@
-// src/types/web-speech.d.ts
-
+// --- Web Speech API typings (custom global augmentation) ---
 interface SpeechRecognition extends EventTarget {
   continuous: boolean;
   interimResults: boolean;
@@ -9,17 +8,17 @@ interface SpeechRecognition extends EventTarget {
   stop(): void;
   abort(): void;
 
-  onaudiostart?: (this: SpeechRecognition, ev: Event) => any;
-  onsoundstart?: (this: SpeechRecognition, ev: Event) => any;
-  onspeechstart?: (this: SpeechRecognition, ev: Event) => any;
-  onspeechend?: (this: SpeechRecognition, ev: Event) => any;
-  onsoundend?: (this: SpeechRecognition, ev: Event) => any;
-  onaudioend?: (this: SpeechRecognition, ev: Event) => any;
-  onresult?: (this: SpeechRecognition, ev: SpeechRecognitionEvent) => any;
-  onnomatch?: (this: SpeechRecognition, ev: SpeechRecognitionEvent) => any;
-  onerror?: (this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any;
-  onstart?: (this: SpeechRecognition, ev: Event) => any;
-  onend?: (this: SpeechRecognition, ev: Event) => any;
+  onaudiostart?: (this: SpeechRecognition, ev: Event) => void;
+  onsoundstart?: (this: SpeechRecognition, ev: Event) => void;
+  onspeechstart?: (this: SpeechRecognition, ev: Event) => void;
+  onspeechend?: (this: SpeechRecognition, ev: Event) => void;
+  onsoundend?: (this: SpeechRecognition, ev: Event) => void;
+  onaudioend?: (this: SpeechRecognition, ev: Event) => void;
+  onresult?: (this: SpeechRecognition, ev: SpeechRecognitionEvent) => void;
+  onnomatch?: (this: SpeechRecognition, ev: SpeechRecognitionEvent) => void;
+  onerror?: (this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => void;
+  onstart?: (this: SpeechRecognition, ev: Event) => void;
+  onend?: (this: SpeechRecognition, ev: Event) => void;
 }
 
 interface SpeechRecognitionAlternative {
@@ -49,10 +48,34 @@ interface SpeechRecognitionErrorEvent extends Event {
 }
 
 interface SpeechGrammarList {
-  addFromString(string: string, weight?: number): void;
+  addFromString(src: string, weight?: number): void;
 }
 
+// --- Constructor types for runtime usage ---
+declare var SpeechRecognition: {
+  prototype: SpeechRecognition;
+  new (): SpeechRecognition;
+};
+
+declare var webkitSpeechRecognition: {
+  prototype: SpeechRecognition;
+  new (): SpeechRecognition;
+};
+
+declare var SpeechGrammarList: {
+  prototype: SpeechGrammarList;
+  new (): SpeechGrammarList;
+};
+
+declare var webkitSpeechGrammarList: {
+  prototype: SpeechGrammarList;
+  new (): SpeechGrammarList;
+};
+
+// --- Extend window type ---
 interface Window {
-  webkitSpeechRecognition: typeof SpeechRecognition;
-  webkitSpeechGrammarList: typeof SpeechGrammarList;
+  SpeechRecognition?: typeof SpeechRecognition;
+  webkitSpeechRecognition?: typeof webkitSpeechRecognition;
+  SpeechGrammarList?: typeof SpeechGrammarList;
+  webkitSpeechGrammarList?: typeof webkitSpeechGrammarList;
 }

@@ -1,14 +1,21 @@
-import { describe, it, expect, afterEach, vi, type Mock, beforeEach } from 'vitest';
-import { renderHook, waitFor } from '@testing-library/react';
-import type { ReactNode, JSX } from 'react';
-import { createQueryWrapper, testQueryClient } from '../../testQueryUtils';
-import { useAQI } from './useAQI';
-import { fetchCurrentAqi } from '../../utils/apis/fetchCurrentAqi/fetchCurrentAqi';
-import type { Cooradinates } from '../../types/types';
+import { renderHook, waitFor } from "@testing-library/react";
+import type { JSX, ReactNode } from "react";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  type Mock,
+  vi,
+} from "vitest";
+import { createQueryWrapper, testQueryClient } from "../../testQueryUtils";
+import type { Cooradinates } from "../../types/types";
+import { fetchCurrentAqi } from "../../utils/apis/fetchCurrentAqi/fetchCurrentAqi";
+import { useAQI } from "./useAQI";
 
-
-vi.mock('../../utils/apis/fetchCurrentAqi/fetchCurrentAqi', () => ({
-    fetchCurrentAqi: vi.fn(),
+vi.mock("../../utils/apis/fetchCurrentAqi/fetchCurrentAqi", () => ({
+  fetchCurrentAqi: vi.fn(),
 }));
 
 const mockFetchCurrentAqi = fetchCurrentAqi as Mock;
@@ -16,44 +23,47 @@ const mockFetchCurrentAqi = fetchCurrentAqi as Mock;
 const mockCoords: Cooradinates = { latitude: 34.0522, longitude: -118.2437 };
 const mockAqiData = 45;
 
-describe('useAQI', () => {
-    let wrapper: ({ children }: { children: ReactNode }) => JSX.Element;
+describe("useAQI", () => {
+  let wrapper: ({ children }: { children: ReactNode }) => JSX.Element;
 
-    beforeEach(() => {
-        wrapper = createQueryWrapper();
-    })
+  beforeEach(() => {
+    wrapper = createQueryWrapper();
+  });
 
-    afterEach(() => {
-        vi.restoreAllMocks();
-        mockFetchCurrentAqi.mockClear();
-        testQueryClient.clear();
-    });
-  
-    it('should successfully fetch and return AQI data', async () => {
-        mockFetchCurrentAqi.mockResolvedValueOnce(mockAqiData);
+  afterEach(() => {
+    vi.restoreAllMocks();
+    mockFetchCurrentAqi.mockClear();
+    testQueryClient.clear();
+  });
 
-        const { result } = renderHook(() => useAQI(mockCoords), { wrapper });
+  it("should successfully fetch and return AQI data", async () => {
+    mockFetchCurrentAqi.mockResolvedValueOnce(mockAqiData);
 
-        expect(result.current.isLoading).toBe(true);
-        expect(result.current.data).toBeUndefined();
+    const { result } = renderHook(() => useAQI(mockCoords), { wrapper });
 
-        await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.data).toBeUndefined();
 
-        expect(result.current.data).toEqual(mockAqiData);
-        expect(result.current.isLoading).toBe(false);
-        expect(mockFetchCurrentAqi).toHaveBeenCalledWith(mockCoords);
-        expect(mockFetchCurrentAqi).toHaveBeenCalledOnce();
-    });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    it('should not run the query when coordinates are falsy', () => {
-        mockFetchCurrentAqi.mockResolvedValue(mockAqiData);
+    expect(result.current.data).toEqual(mockAqiData);
+    expect(result.current.isLoading).toBe(false);
+    expect(mockFetchCurrentAqi).toHaveBeenCalledWith(mockCoords);
+    expect(mockFetchCurrentAqi).toHaveBeenCalledOnce();
+  });
 
-        // Pass null for coords to test the `enabled: !!coords` logic
-        const { result } = renderHook(() => useAQI(null as unknown as Cooradinates), { wrapper });
+  it("should not run the query when coordinates are falsy", () => {
+    mockFetchCurrentAqi.mockResolvedValue(mockAqiData);
 
-        expect(result.current.status).toBe('pending');
+    // Pass null for coords to test the `enabled: !!coords` logic
+    const { result } = renderHook(
+      () => useAQI(null as unknown as Cooradinates),
+      { wrapper },
+    );
 
-        expect(mockFetchCurrentAqi).not.toHaveBeenCalled();
-        expect(result.current.data).toBeUndefined();
-    });
+    expect(result.current.status).toBe("pending");
+
+    expect(mockFetchCurrentAqi).not.toHaveBeenCalled();
+    expect(result.current.data).toBeUndefined();
+  });
 });

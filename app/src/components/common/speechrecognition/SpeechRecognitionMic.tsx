@@ -1,8 +1,8 @@
-import { useSpeechRecognitionNative } from "../../../hooks/useSpeechRecognition/useSpeechRecognition";
-import { useToast } from "../../../context/toast/ToastContext";
-import styles from "./SpeechRecognition.module.css";
-import IconMic from "../../../assets/images/icon-mic-on.svg?react";
 import IconMicOff from "../../../assets/images/icon-mic-off.svg?react";
+import IconMic from "../../../assets/images/icon-mic-on.svg?react";
+import { useToast } from "../../../context/toast/ToastContext";
+import { useSpeechRecognitionNative } from "../../../hooks/useSpeechRecognition/useSpeechRecognition";
+import styles from "./SpeechRecognition.module.css";
 
 interface SpeechRecognitionMicProps {
   setOpen: (value: boolean) => void;
@@ -17,13 +17,16 @@ export default function SpeechRecognitionMic({
 }: SpeechRecognitionMicProps) {
   const { addToast } = useToast();
 
-  const { startListening, stopListening, listening } = useSpeechRecognitionNative({
-    setSearch,
-    setValidatedSearch: setValidateSearch,
-  });
+  const { startListening, stopListening, listening } =
+    useSpeechRecognitionNative({
+      setSearch,
+      setValidatedSearch: setValidateSearch,
+    });
 
   const handleClick = () => {
-    if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+    if (
+      !("webkitSpeechRecognition" in window || "SpeechRecognition" in window)
+    ) {
       addToast("Speech recognition not supported in this browser.", "error");
       return;
     }
@@ -45,8 +48,12 @@ export default function SpeechRecognitionMic({
         onClick={handleClick}
         className="flex flexcenter"
         aria-live="polite"
-        aria-label={listening ? "Stop speech recognition" : "Start speech recognition"}
-        title={listening ? "Stop Speech Recognition" : "Start Speech Recognition"}
+        aria-label={
+          listening ? "Stop speech recognition" : "Start speech recognition"
+        }
+        title={
+          listening ? "Stop Speech Recognition" : "Start Speech Recognition"
+        }
       >
         {listening ? (
           <IconMicOff width={20} height={20} />

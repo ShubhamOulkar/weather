@@ -1,25 +1,27 @@
 .day_drop_down {
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .listBox {
-    background-color: var(--btn-color-bg);
-    width: max-content;
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    z-index: var(--dropdown-z-index);
-    margin-top: 0.5rem;
-    border-radius: var(--border-radius);
-    padding: 0rem;
-    border: var(--border-style);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  background-color: var(--btn-color-bg);
+  width: max-content;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: var(--dropdown-z-index);
+  margin-top: 0.5rem;
+  border-radius: var(--border-radius);
+  border: var(--border-style);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
 
-    >ul {
-        list-style: none;
-        padding: 0.5rem;
-    }
+  > ul {
+    list-style: none;
+    padding: 0.5rem;
+  }
 }

@@ -1,14 +1,14 @@
 import type { Ref } from "react";
 import { useState } from "react";
-import cnr from "../../../utils/class_resolver/cnr";
-import DropBtn from "../../common/dropButton/DropBtn";
-import IconError from "../../../assets/images/icon-error.svg?react"
-import IconLoading from "../../../assets/images/icon-loading.svg?react"
-import styles from "./DropdownSearch.module.css";
+import IconError from "../../../assets/images/icon-error.svg?react";
+import IconLoading from "../../../assets/images/icon-loading.svg?react";
 import type { CityData, Cooradinates } from "../../../types/types";
+import cnr from "../../../utils/class_resolver/cnr";
 import formatBtnTitle from "../../../utils/formatBtnTitle/formatBtnTitle";
+import DropBtn from "../../common/dropButton/DropBtn";
+import styles from "./DropdownSearch.module.css";
 
-interface DropdownSearchProps {
+export interface DropdownSearchProps {
   id: string;
   dismissRef: Ref<HTMLDivElement>;
   dropdown: boolean;
@@ -25,11 +25,11 @@ export default function DropdownSearch({
   isLoading,
   onSelect,
 }: DropdownSearchProps) {
-  const [selectedPlace, setSelectedPlace] = useState<number | null>(null)
+  const [selectedPlace, setSelectedPlace] = useState<number | null>(null);
   const handleClick = (title: string, coords: Cooradinates, i: number) => {
-    onSelect(title, coords)
-    setSelectedPlace(i)
-  }
+    onSelect(title, coords);
+    setSelectedPlace(i);
+  };
   return (
     <div
       id={id}
@@ -41,15 +41,15 @@ export default function DropdownSearch({
       className={cnr(
         "scroll",
         styles.drop_places,
-        dropdown ? 'show' : 'hidden'
+        dropdown ? "show" : "hidden",
       )}
     >
       <ul>
-        {
-          !isLoading && searchData === undefined && (
-            <li className={cnr(styles.message)} role="status">Search format e.g. Mumbai, MH, IN</li>
-          )
-        }
+        {!isLoading && searchData === undefined && (
+          <li className={cnr(styles.message)} role="status">
+            Search format e.g. Mumbai, MH, IN
+          </li>
+        )}
 
         {isLoading && (
           <li className={cnr(styles.message)} role="status">
@@ -68,15 +68,17 @@ export default function DropdownSearch({
 
         {!isLoading &&
           searchData?.map((btn, i) => {
-            const title = formatBtnTitle(btn)
-            return <li key={`${btn.name}-${i}`} role="option">
-              <DropBtn
-                classname={styles.search_btn}
-                btnTitle={title}
-                onClick={() => handleClick(title, btn.coords, i)}
-                showCheck={selectedPlace === i}
-              />
-            </li>
+            const title = formatBtnTitle(btn);
+            return (
+              <li key={`${btn.name}-${i}`} role="option">
+                <DropBtn
+                  classname={styles.search_btn}
+                  btnTitle={title}
+                  onClick={() => handleClick(title, btn.coords, i)}
+                  showCheck={selectedPlace === i}
+                />
+              </li>
+            );
           })}
       </ul>
     </div>

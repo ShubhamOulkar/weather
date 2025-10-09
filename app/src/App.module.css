@@ -1,32 +1,32 @@
 /* this layout is usefull in future */
 .layout {
-    display: grid;
-    grid-template-areas: 
-    'toolbar'
-    'header'
-    'dashboard';
-    gap: 2rem;
-    margin-bottom: 1rem;
-    padding-block-start: 2rem;
-    
-    > :nth-child(1) {
-        grid-area: toolbar;
-    }
+  display: grid;
+  grid-template-areas:
+    "toolbar"
+    "header"
+    "dashboard";
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding-block-start: 2rem;
 
-    > :nth-child(2) {
-        grid-area: header;
-    }
+  > :nth-child(1) {
+    grid-area: toolbar;
+  }
 
-    > :nth-child(3) {
-        grid-area: dashboard;
-    }
+  > :nth-child(2) {
+    grid-area: header;
+  }
+
+  > :nth-child(3) {
+    grid-area: dashboard;
+  }
 }
 
 @media screen and (max-width: 50rem) {
-    .layout {
-        padding-block-start: 0;
-        > :nth-child(2) {
-            justify-self: unset;
-        }
+  .layout {
+    padding-block-start: 0;
+    > :nth-child(2) {
+      justify-self: unset;
     }
+  }
 }

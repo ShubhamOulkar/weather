@@ -148,6 +148,12 @@ cp .env.example .env
 # Start development server
 pnpm dev
 ```
+for formating and linting
+
+```
+pnpm format:lint
+```
+
 for testing
 
 ```bash

@@ -1,178 +1,205 @@
-import { useState, useEffect, type ChangeEvent, type FormEvent, type KeyboardEventHandler } from "react"
-import IconSearch from "../../assets/images/icon-search.svg?react"
-import IconLocation from "../../assets/images/icon-location.svg?react"
-import IconError from "../../assets/images/icon-error.svg?react"
-import DropdownSearch from "../dropdowns/search/DropdownSearch"
-import cnr from "../../utils/class_resolver/cnr"
-import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside"
-import styles from "./Search.module.css"
-import { useLocation } from "../../context/location/Location"
-import { SearchSchema } from "../../validation/searchValidation"
-import { useGpsLocation } from "../../hooks/useGpsLocation/useGpsLocation"
-import { useLiveSearch } from "../../hooks/useLiveSearch/useLiveSearch"
-import type { Cooradinates } from "../../types/types"
-import { useToggle } from "../../hooks/useToggle/useToggle"
-import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic"
-import { useToast } from "../../context/toast/ToastContext"
+import {
+  type ChangeEvent,
+  type FormEvent,
+  type KeyboardEventHandler,
+  useEffect,
+  useState,
+} from "react";
+import IconError from "../../assets/images/icon-error.svg?react";
+import IconLocation from "../../assets/images/icon-location.svg?react";
+import IconSearch from "../../assets/images/icon-search.svg?react";
+import { useLocation } from "../../context/location/Location";
+import { useToast } from "../../context/toast/ToastContext";
+import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside";
+import { useGpsLocation } from "../../hooks/useGpsLocation/useGpsLocation";
+import { useLiveSearch } from "../../hooks/useLiveSearch/useLiveSearch";
+import { useToggle } from "../../hooks/useToggle/useToggle";
+import type { Cooradinates } from "../../types/types";
+import cnr from "../../utils/class_resolver/cnr";
+import { SearchSchema } from "../../validation/searchValidation";
+import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic";
+import DropdownSearch from "../dropdowns/search/DropdownSearch";
+import styles from "./Search.module.css";
 
 export default function SearchForm() {
-    const { addToast } = useToast()
-    const { open, setOpen } = useToggle()
-    const [search, setSearch] = useState("")
-    const [validateSearch, setValidateSearch] = useState("")
-    const { setLocation } = useLocation()
-    const [error, setError] = useState<string | null>(null)
-    const { coord, gpsErr, getLocation } = useGpsLocation()
-    // debounce search
-    const { data: liveData, isFetching, flush } = useLiveSearch(validateSearch)
-    // global dismissal for drop down
-    const { nodeRef, userRef } = useDismissalOutside<HTMLDivElement, HTMLDivElement>({
-        onDismissalEvent: () => setOpen(false),
-    })
+  const { addToast } = useToast();
+  const { open, setOpen } = useToggle();
+  const [search, setSearch] = useState("");
+  const [validateSearch, setValidateSearch] = useState("");
+  const { setLocation } = useLocation();
+  const [error, setError] = useState<string | null>(null);
+  const { coord, gpsErr, getLocation } = useGpsLocation();
+  // debounce search
+  const { data: liveData, isFetching, flush } = useLiveSearch(validateSearch);
+  // global dismissal for drop down
+  const { nodeRef, userRef } = useDismissalOutside<
+    HTMLDivElement,
+    HTMLDivElement
+  >({
+    onDismissalEvent: () => setOpen(false),
+  });
 
-    const handlerGpsLocation = () => {
-        getLocation()
-        setError(null)
+  const handlerGpsLocation = () => {
+    getLocation();
+    setError(null);
+  };
+
+  useEffect(() => {
+    if (coord) {
+      setLocation({ coords: coord });
+    }
+  }, [coord, setLocation]);
+
+  useEffect(() => {
+    if (gpsErr) addToast(gpsErr);
+  }, [gpsErr, addToast]);
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    // get latest debounced value
+    flush();
+    // clear previous errors
+    setError(null);
+    // validate
+    const results = SearchSchema.safeParse({ search: search });
+
+    if (!results.success) {
+      const errMsg = results.error.issues[0].message;
+      setError(errMsg);
+      return;
     }
 
-    useEffect(() => {
-        if (coord) {
-            setLocation({ coords: coord })
-        }
-    }, [coord, setLocation])
+    // on validation success
+    setSearch("");
+    setLocation({ city: search });
+    setError(null);
+    setValidateSearch("");
+  };
 
-    useEffect(() => {
-        if (gpsErr) addToast(gpsErr)
-    }, [gpsErr])
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setOpen(true);
+    // clear previous errors
+    setError(null);
+    // set new value
+    setSearch(newValue);
+    // validate
+    const results = SearchSchema.safeParse({ search: newValue });
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault()
-        // get latest debounced value
-        flush()
-        // clear previous errors 
-        setError(null)
-        // validate
-        const results = SearchSchema.safeParse({ search: search })
-
-        if (!results.success) {
-            const errMsg = results.error.issues[0].message
-            setError(errMsg)
-            return
-        }
-
-        // on validation success
-        setSearch("")
-        setLocation({ city: search })
-        setError(null)
-        setValidateSearch("")
+    if (!results.success) {
+      const errMsg = results.error.issues[0].message;
+      setError(errMsg);
+      setValidateSearch("");
+      return;
     }
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value;
-        setOpen(true)
-        // clear previous errors 
-        setError(null)
-        // set new value 
-        setSearch(newValue)
-        // validate
-        const results = SearchSchema.safeParse({ search: newValue })
+    setValidateSearch(newValue);
+    setError(null);
+  };
 
-        if (!results.success) {
-            const errMsg = results.error.issues[0].message
-            setError(errMsg)
-            setValidateSearch("")
-            return
-        }
+  // set search field and close drop down
+  const handleSelect = (place: string, coords: Cooradinates) => {
+    setSearch(place);
+    setLocation({
+      city: place,
+      coords: coords,
+    });
+    setOpen(false);
+  };
 
-        setValidateSearch(newValue)
-        setError(null)
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    // If the Escape key is pressed, close the dropdown
+    if (e.key === "Escape") {
+      setOpen(false);
+      e.preventDefault();
     }
 
-    // set search field and close drop down
-    const handleSelect = (place: string, coords: Cooradinates) => {
-        setSearch(place)
-        setLocation({
-            city: place,
-            coords: coords
-        })
-        setOpen(false)
-    }
+    // if the enter key pressed open the dropdown if it is closed
+    if (e.key === "Enter" && !open) setOpen(true);
+  };
 
-    const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
-        // If the Escape key is pressed, close the dropdown
-        if (e.key === 'Escape') {
-            setOpen(false)
-            e.preventDefault()
-        }
+  return (
+    <search className={styles.form_container}>
+      <form
+        onSubmit={handleSubmit}
+        className={cnr("flexcol", styles.search_form)}
+      >
+        <div
+          title="search"
+          className={cnr(styles.search_container, error && styles.input_error)}
+        >
+          {error && (
+            <p
+              className={cnr("flex", "flexcenter", "gap-0_3", styles.error)}
+              aria-label={`${error}`}
+              role="alert"
+              aria-live="polite"
+              title="error"
+            >
+              <IconError
+                aria-hidden="true"
+                width={12}
+                height={12}
+                fill="white"
+              />
+              {error}
+            </p>
+          )}
+          <div
+            ref={userRef}
+            className={cnr("flex", styles.input_container)}
+            role="combobox"
+            aria-autocomplete="list"
+            aria-haspopup="listbox"
+            aria-expanded={open}
+            aria-controls="searchDropdown"
+          >
+            <label htmlFor="search">
+              <IconSearch aria-hidden="true" />
+              <span className="sr_only">Search for a place</span>
+            </label>
 
-        // if the enter key pressed open the dropdown if it is closed
-        if (e.key === 'Enter' && !open) setOpen(true)
-    }
+            <input
+              type="search"
+              id="search"
+              name="search"
+              value={search}
+              placeholder="Search for place..."
+              onFocus={() => setOpen(true)}
+              onKeyDown={handleKeyDown}
+              onChange={handleChange}
+              autoComplete="off"
+            />
 
-    return <search className={styles.form_container}>
-        <form onSubmit={handleSubmit}
-            className={cnr('flexcol', styles.search_form)} >
-            <div title="search"
-                className={cnr(styles.search_container, error && styles.input_error)}>
-                {error && (
-                    <p
-                        className={cnr('flex', 'flexcenter', 'gap-0_3', styles.error)}
-                        aria-label={`${error}`}
-                        role="alert"
-                        aria-live="polite"
-                        title="error"
-                    >
-                        <IconError
-                            aria-hidden="true"
-                            width={12} height={12}
-                            fill="white" />
-                        {error}
-                    </p>
-                )}
-                <div ref={userRef}
-                    className={cnr('flex', styles.input_container)}
-                    role="combobox"
-                    aria-autocomplete="list"
-                    aria-haspopup="listbox"
-                    aria-expanded={open}
-                    aria-controls="searchDropdown">
-                    <label htmlFor="search">
-                        <IconSearch aria-hidden="true" />
-                        <span className="sr_only">Search for a place</span>
-                    </label>
-
-                    <input
-                        type="search"
-                        id="search"
-                        name="search"
-                        value={search}
-                        placeholder="Search for place..."
-                        onFocus={() => setOpen(true)}
-                        onKeyDown={handleKeyDown}
-                        onChange={handleChange}
-                        autoComplete="off" />
-
-                    <SpeechRecognitionMic
-                        setOpen={setOpen}
-                        setSearch={setSearch}
-                        setValidateSearch={setValidateSearch} />
-                </div>
-                <DropdownSearch id="searchDropdown"
-                    dismissRef={nodeRef}
-                    dropdown={open}
-                    searchData={liveData}
-                    isLoading={isFetching}
-                    onSelect={handleSelect} />
-            </div>
-            <div className={cnr('flex', 'gap-1rem', styles.form_btn_container)}>
-                <button type="submit" title="search location">Search</button>
-                <button type="button"
-                    className="flex flexcenter"
-                    onClick={handlerGpsLocation}
-                    title="use my location">
-                    <IconLocation /> Locate me
-                </button>
-            </div>
-        </form>
+            <SpeechRecognitionMic
+              setOpen={setOpen}
+              setSearch={setSearch}
+              setValidateSearch={setValidateSearch}
+            />
+          </div>
+          <DropdownSearch
+            id="searchDropdown"
+            dismissRef={nodeRef}
+            dropdown={open}
+            searchData={liveData}
+            isLoading={isFetching}
+            onSelect={handleSelect}
+          />
+        </div>
+        <div className={cnr("flex", "gap-1rem", styles.form_btn_container)}>
+          <button type="submit" title="search location">
+            Search
+          </button>
+          <button
+            type="button"
+            className="flex flexcenter"
+            onClick={handlerGpsLocation}
+            title="use my location"
+          >
+            <IconLocation /> Locate me
+          </button>
+        </div>
+      </form>
     </search>
+  );
 }

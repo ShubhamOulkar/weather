@@ -10,37 +10,40 @@ export const IP_LOOKUP_QUERY_KEY = ["ipLookup"];
  * @throws An Error if the fetch fails (network) or the API reports an error (business logic).
  */
 export async function doIpLookUp(): Promise<LookUpReturn> {
-    const url: string = import.meta.env.VITE_IP_LOOKUP;
+  const url: string = import.meta.env.VITE_IP_LOOKUP;
 
-    try {
-        const res = await fetch(url, { method: 'GET' });
+  try {
+    const res = await fetch(url, { method: "GET" });
 
-        // HTTP Status Check
-        if (!res.ok) {
-            throw new Error(`HTTP Error: Failed to fetch IP data. Status: ${res.status} ${res.statusText}`);
-        }
-
-        // Parse JSON Data
-        const resObj: IpData = await res.json();
-
-        // API check
-        if (!resObj.success) {
-            const apiMessage = 'Unknown API failure reported in response body.';
-            throw new Error(`API Error: IP Lookup failed. Message: ${apiMessage}`);
-        }
-        
-        // Data Transformation
-        return {
-            capital: resObj.data.capital,
-            country: resObj.data.country,
-            country_code: resObj.data.countryCode,
-            country_icon: resObj.data.flag.flag_Icon,
-        };
-
-    } catch (error) {
-        if (error instanceof Error) {
-            throw error;
-        }
-        throw new Error(`An unexpected error occurred during the IP lookup process.`);
+    // HTTP Status Check
+    if (!res.ok) {
+      throw new Error(
+        `HTTP Error: Failed to fetch IP data. Status: ${res.status} ${res.statusText}`,
+      );
     }
+
+    // Parse JSON Data
+    const resObj: IpData = await res.json();
+
+    // API check
+    if (!resObj.success) {
+      const apiMessage = "Unknown API failure reported in response body.";
+      throw new Error(`API Error: IP Lookup failed. Message: ${apiMessage}`);
+    }
+
+    // Data Transformation
+    return {
+      capital: resObj.data.capital,
+      country: resObj.data.country,
+      country_code: resObj.data.countryCode,
+      country_icon: resObj.data.flag.flag_Icon,
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error(
+      `An unexpected error occurred during the IP lookup process.`,
+    );
+  }
 }

@@ -5,52 +5,56 @@ import type { FormattedDateParts } from "../../types/types";
  * Defaults to the current date if no valid value is provided.
  */
 export function getLocalDate(
-    dateStr?: string | Date,
-    format?: Intl.DateTimeFormatOptions,
-    locale: string | string[] = "en-US",
-    timezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
+  dateStr?: string | Date,
+  format?: Intl.DateTimeFormatOptions,
+  locale: string | string[] = "en-US",
+  timezone?: string | null,
 ): FormattedDateParts {
-    let date: Date;
+  const timeZone = timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone;
+  let date: Date;
 
-    if (!dateStr) {
-        date = new Date();
-    } else {
-        date = new Date(dateStr);
-        if (isNaN(date.getTime())) {
-            console.error(
-                `getLocalDate received an invalid date string: ${dateStr}. Falling back to current date.`
-            );
-            date = new Date();
-        }
+  if (!dateStr) {
+    date = new Date();
+  } else {
+    date = new Date(dateStr);
+    if (isNaN(date.getTime())) {
+      console.error(
+        `getLocalDate received an invalid date string: ${dateStr}. Falling back to current date.`,
+      );
+      date = new Date();
     }
+  }
 
-    const baseOptions: Intl.DateTimeFormatOptions = { timeZone: timezone, ...format };
+  const baseOptions: Intl.DateTimeFormatOptions = {
+    timeZone: timeZone,
+    ...format,
+  };
 
-    // Helper to format a specific part cleanly
-    const formatter = (opts: Intl.DateTimeFormatOptions): string =>
-        new Intl.DateTimeFormat(locale, { ...baseOptions, ...opts }).format(date);
+  // Helper to format a specific part cleanly
+  const formatter = (opts: Intl.DateTimeFormatOptions): string =>
+    new Intl.DateTimeFormat(locale, { ...baseOptions, ...opts }).format(date);
 
-    const fullOptions: Intl.DateTimeFormatOptions = {
-        weekday: format?.weekday || "long",
-        month: format?.month || "short",
-        day: format?.day || "numeric",
-        year: format?.year || "numeric",
-        timeZone: timezone,
-    };
+  const fullOptions: Intl.DateTimeFormatOptions = {
+    weekday: format?.weekday || "long",
+    month: format?.month || "short",
+    day: format?.day || "numeric",
+    year: format?.year || "numeric",
+    timeZone: timeZone,
+  };
 
-    const time = new Intl.DateTimeFormat(locale, {
-        ...baseOptions,
-        hour: "2-digit",
-        hour12: true,
-    }).format(date);
+  const time = new Intl.DateTimeFormat(locale, {
+    ...baseOptions,
+    hour: "2-digit",
+    hour12: true,
+  }).format(date);
 
-    return {
-        date: date,
-        weekday: formatter({ weekday: format?.weekday || "long" }),
-        day: formatter({ day: format?.day || "numeric" }),
-        month: formatter({ month: format?.month || "short" }),
-        year: formatter({ year: format?.year || "numeric" }),
-        fullDate: new Intl.DateTimeFormat(locale, fullOptions).format(date),
-        time,
-    };
+  return {
+    date: date,
+    weekday: formatter({ weekday: format?.weekday || "long" }),
+    day: formatter({ day: format?.day || "numeric" }),
+    month: formatter({ month: format?.month || "short" }),
+    year: formatter({ year: format?.year || "numeric" }),
+    fullDate: new Intl.DateTimeFormat(locale, fullOptions).format(date),
+    time,
+  };
 }

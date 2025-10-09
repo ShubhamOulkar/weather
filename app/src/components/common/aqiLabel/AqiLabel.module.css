@@ -1,64 +1,64 @@
 .aqi {
-    font-family: var(--font-display);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding-inline: 0.3em;
-    padding-block: 0.2em;
-    border-radius: var(--border-radius);
-    font-size: 0.7em;
-    min-width: fit-content;
-    text-align: center;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-    color: var(--neutral-900);
-    width: fit-content;
-    cursor: pointer;
+  font-family: var(--font-display);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.3em;
+  padding-block: 0.2em;
+  border-radius: var(--border-radius);
+  font-size: 0.7em;
+  min-width: fit-content;
+  text-align: center;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  color: var(--neutral-900);
+  width: fit-content;
+  cursor: pointer;
 }
 
 /* Background colors based on AQI category */
 .Good {
-    background-color: #00e400;
+  background-color: #00e400;
 }
 
 .Moderate {
-    background-color: #ffff00;
+  background-color: #ffff00;
 }
 
 .Bad {
-    background-color: #ff7e00;
+  background-color: #ff7e00;
 }
 
 .Unhealthy {
-    background-color: #ff0000;
+  background-color: #ff0000;
 }
 
 .Danger {
-    background-color: #8f3f97;
+  background-color: #8f3f97;
 }
 
 .Hazardous {
-    background-color: #7e0023;
+  background-color: #7e0023;
 }
 
 /* Optional pulse animation */
 .pulse {
-    animation: pulse 2s infinite ease-in-out;
+  animation: pulse 2s infinite ease-in-out;
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
 
-    50% {
-        transform: scale(1.05);
-        opacity: 0.9;
-    }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
 
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

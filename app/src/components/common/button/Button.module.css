@@ -1,44 +1,44 @@
 .btn {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: var(--font-size-btn);
-    gap: 0.5rem;
-    color: var(--btn-color-text);
-    border: none;
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    width: 6rem;
-    transition: transform 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-btn);
+  gap: 0.5rem;
+  color: var(--btn-color-text);
+  border: none;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 6rem;
+  transition: transform 0.2s ease;
 
-    &:focus {
-        outline: var(--focus-outline);
-        outline-offset: var(--btn-outline-offset);
-    }
+  &:focus {
+    outline: var(--focus-outline);
+    outline-offset: var(--btn-outline-offset);
+  }
 
-    &:hover {
-        transform: scale(1.02)
-    }
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .unit {
-   background-color: var(--btn-color-bg);
+  background-color: var(--btn-color-bg);
 }
 
 .day {
-    background-color: var(--neutral-600);
+  background-color: var(--neutral-600);
 }
 
-@media screen and (min-width:768px) {
-    .btn {
-        padding-block: 0.8rem;
-        padding-inline: 1rem;
-        width: 8rem;
-    }
+@media screen and (min-width: 768px) {
+  .btn {
+    padding-block: 0.8rem;
+    padding-inline: 1rem;
+    width: 8rem;
+  }
 
-    .day {
-        padding-block: 0.6rem;
-        padding-inline: 0.8rem;
-    }
+  .day {
+    padding-block: 0.6rem;
+    padding-inline: 0.8rem;
+  }
 }

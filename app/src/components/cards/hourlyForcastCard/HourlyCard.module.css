@@ -1,31 +1,31 @@
 .hourly_forcast_container {
-    padding: 1rem;
-    height: inherit;
+  padding: 1rem;
+  height: inherit;
 }
 
 .hourly_forcast_card {
-    height: clamp(50px, 5vh, 100px);
-    background-color: var(--neutral-700);
-    border-radius: var(--border-radius);
-    margin-right: 0.5rem;
-    padding-inline: 1rem;
-    padding-block: 0.5rem;
-    align-items: center;
-    justify-content: space-between;
-    border: var(--border-style);
+  height: clamp(50px, 5vh, 100px);
+  background-color: var(--neutral-700);
+  border-radius: var(--border-radius);
+  margin-right: 0.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  border: var(--border-style);
 }
 
 .hourly_icon {
-    width: 2rem;
-    aspect-ratio: 1;
+  width: 2rem;
+  aspect-ratio: 1;
 }
 
 @media screen and (max-width: 59.37rem) {
-    .hourly_forcast_card {
-        width: 97%;
-    }
+  .hourly_forcast_card {
+    width: 97%;
+  }
 
-    .hourly_forcast_container {
-        height: 60dvh;
-    }
+  .hourly_forcast_container {
+    height: 60dvh;
+  }
 }

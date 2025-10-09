@@ -1,109 +1,110 @@
 .fav_container {
-    position: relative;
+  position: relative;
 }
 
 .tool_fav_btn {
-    position: relative;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: var(--border-radius);
-    transition: background-color 0.2s ease-in-out;
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s ease-in-out;
 
-    >svg {
-        width: 2.2rem;
-        aspect-ratio: 1;
-    }
+  > svg {
+    width: 2.2rem;
+    aspect-ratio: 1;
+  }
 
-    &:is(:hover, :focus) {
-        fill: var(--neutral-0);
-        background-color: var(--btn-color-bg);
-    }
+  &:is(:hover, :focus) {
+    fill: var(--neutral-0);
+    background-color: var(--btn-color-bg);
+  }
 
-    &:focus {
-        outline: var(--focus-outline);
-        outline-offset: var(--btn-outline-offset);
-    }
+  &:focus {
+    outline: var(--focus-outline);
+    outline-offset: var(--btn-outline-offset);
+  }
 }
-
 
 .fav_count_badge {
-    position: absolute;
-    top: 10%;
-    right: 20%;
-    background-color: var(--orange-500);
-    color: white;
-    font-size: 0.7rem;
-    font-weight: bold;
-    min-width: 1.4em;
-    height: 1.4em;
-    line-height: 1.2em;
-    text-align: center;
-    border-radius: 50%;
-    padding: 0 0.1em;
-    z-index: 10;
-    box-shadow: -1px 1px 2px 0 black;
+  position: absolute;
+  top: 10%;
+  right: 20%;
+  background-color: var(--orange-500);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 1.4em;
+  height: 1.4em;
+  line-height: 1.2em;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0 0.1em;
+  z-index: 10;
+  box-shadow: -1px 1px 2px 0 black;
 }
 
-
 .fav_loc_drop {
-    --width: 15rem;
-    background-color: var(--btn-color-bg);
-    width: var(--width);
-    position: absolute;
-    left: -6rem;
-    top: 100%;
-    z-index: var(--dropdown-z-index);
-    margin-top: 0.5rem;
-    border-radius: var(--border-radius);
-    padding: 0.2rem;
-    border: var(--border-style);
-    height: fit-content;
-    max-height: 10rem;
-    overflow-y: scroll;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  --width: 15rem;
+  background-color: var(--btn-color-bg);
+  width: var(--width);
+  position: absolute;
+  left: -6rem;
+  top: 100%;
+  z-index: var(--dropdown-z-index);
+  margin-top: 0.5rem;
+  border-radius: var(--border-radius);
+  padding: 0.2rem;
+  border: var(--border-style);
+  height: fit-content;
+  max-height: 10rem;
+  overflow-y: scroll;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
 
-    >ul {
-        padding: 0;
+  > ul {
+    padding: 0;
 
-        >li:is(:hover, :focus, :focus-within) {
-            .remove_btn {
-                opacity: 1;
-            }
+    > li:is(:hover, :focus, :focus-within) {
+      .remove_btn {
+        opacity: 1;
+      }
 
-            background-color: var(--neutral-700);
-            border-radius: var(--border-radius);
-        }
+      background-color: var(--neutral-700);
+      border-radius: var(--border-radius);
     }
+  }
 }
 
 .favorite_dropdown_btn {
-    width: 100%;
-    padding: 0.3rem;
-    gap: 1rem;
-    background-color: transparent;
+  width: 100%;
+  padding: 0.3rem;
+  gap: 1rem;
+  background-color: transparent;
 }
 
 .remove_btn {
-    border: none;
-    background: transparent;
-    color: red;
-    cursor: pointer;
-    opacity: 0;
+  border: none;
+  background: transparent;
+  color: red;
+  cursor: pointer;
+  opacity: 0;
 }
 
 .empty_msg {
-    padding: 0.5rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: currentColor;
+  padding: 0.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: currentColor;
 }
 
 @media screen and (max-width: 400px) {
-    .fav_loc_drop {
-        left: -50px;
-    }
+  .fav_loc_drop {
+    left: -50px;
+  }
 }

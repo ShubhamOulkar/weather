@@ -1,5 +1,11 @@
+import {
+  Component,
+  cloneElement,
+  isValidElement,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import IconRetry from "../../../../assets/images/icon-retry.svg?react";
-import { Component, type ReactNode, isValidElement, cloneElement, type ReactElement } from "react";
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -12,7 +18,10 @@ interface ErrorBoundaryState {
   error?: Error;
 }
 
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: undefined };
@@ -43,10 +52,16 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       }
 
       return (
-        <div role="alert" className="flexcol flexcenter error gap-1rem error_boundary">
+        <div
+          role="alert"
+          className="flexcol flexcenter error gap-1rem error_boundary"
+        >
           <h1>⚠️ {this.state.error?.message || "Something went wrong"}</h1>
           <p>We couldn't connect to the API server. Please try again later.</p>
-          <button onClick={this.handleReset} className="flex flexcenter retry_btn gap-1rem">
+          <button
+            onClick={this.handleReset}
+            className="flex flexcenter retry_btn gap-1rem"
+          >
             <IconRetry /> Retry
           </button>
         </div>

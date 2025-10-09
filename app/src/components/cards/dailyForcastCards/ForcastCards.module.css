@@ -1,21 +1,21 @@
 .forcast_container {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 90px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 90px), 1fr));
 }
 
 .daily_forcast_card {
-    padding: 0.5rem;
-    align-items: center;
-    cursor: pointer;
-    border: var(--border-style);
+  padding: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+  border: var(--border-style);
 
-    >div {
-        width: 100%;
-        justify-content: space-between;
-        font-size: 1rem;
-    }
+  > div {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 1rem;
+  }
 }
 
 .daily_icon {
-    width: 2.5rem;
-    aspect-ratio: 1;
+  width: 2.5rem;
+  aspect-ratio: 1;
 }

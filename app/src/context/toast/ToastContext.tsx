@@ -1,4 +1,10 @@
-import { createContext, useState, useContext, type ReactNode } from "react";
+import {
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 import styles from "./Toast.module.css";
 
 interface Toast {
@@ -16,15 +22,17 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const addToast = (message: string, type: Toast["type"] = "info") => {
-    const id = Date.now();
-    setToasts((prev) => [...prev, { id, message, type }]);
+  const addToast = useCallback(
+    (message: string, type: Toast["type"] = "info") => {
+      const id = Date.now();
+      setToasts((prev) => [...prev, { id, message, type }]);
 
-    // Auto remove toast after 3 seconds
-    setTimeout(() => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 3000);
-  };
+      setTimeout(() => {
+        setToasts((prev) => prev.filter((t) => t.id !== id));
+      }, 3000);
+    },
+    [],
+  );
 
   return (
     <ToastContext.Provider value={{ addToast }}>

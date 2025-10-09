@@ -1,23 +1,22 @@
 .toolbar_right_container {
-    margin-left: auto;
-    position: relative;
+  margin-left: auto;
+  position: relative;
 }
 
 .user_time_country {
-    font-size: var(--font-size-btn);
-    color: var(--btn-color-text);
-    border: none;
-    padding-block: 0.4rem;
-    padding-inline: 0.5rem;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    background-color: var(--btn-color-bg);
+  font-size: var(--font-size-btn);
+  color: var(--btn-color-text);
+  border: none;
+  padding-block: 0.4rem;
+  padding-inline: 0.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  background-color: var(--btn-color-bg);
 }
 
-
-@media screen and (min-width:48rem) {
-    .user_time_country {
-        padding-block: 0.6rem;
-        padding-inline: 0.5rem;
-    }
+@media screen and (min-width: 48rem) {
+  .user_time_country {
+    padding-block: 0.6rem;
+    padding-inline: 0.5rem;
+  }
 }

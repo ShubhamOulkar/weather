@@ -1,0 +1,2 @@
+pnpm format:lint
+pnpm test

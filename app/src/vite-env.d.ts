@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-svgr/client" />
 
-
 interface ImportMetaEnv {
   // Weather API Keys/IDs
   readonly VITE_OPEN_WEATHER_MAP_ID: string;
