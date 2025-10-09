@@ -1,3 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
 cd app
+# Ensure pnpm is in the PATH or use the full path if necessary
 pnpm format:lint
 pnpm test
