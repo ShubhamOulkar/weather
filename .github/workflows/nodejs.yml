@@ -87,6 +87,7 @@ jobs:
 
       - name: Run Biome (format and lint)
         run: pnpm clean:ci
+        working-directory: ./app
 
       - name: Run Unit Tests
         run: pnpm test
