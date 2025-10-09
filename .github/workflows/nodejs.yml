@@ -10,12 +10,6 @@ permissions:
   contents: read
   actions: read
 
-defaults:
-  run:
-    # This ensures that the working directory is the app of the repository
-    working-directory: ./app
-  
-# jobs running parallel
 jobs:
   # 1️⃣ Build job
   build:
@@ -35,25 +29,25 @@ jobs:
 
       - name: Git Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        
-      - name: Set up pnpm
-        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
-        with:
-          version: 10.9.0
 
       - name: Set up Node.js
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: './app/.nvmrc'
           cache: 'pnpm'
-          
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: 10.9.0
+
       - name: Install packages
-        # We only want to install required production packages
         run: pnpm install --prod --frozen-lockfile
         working-directory: ./app
-        
+
       - name: Build
         run: pnpm run build --if-present
+        working-directory: ./app
 
   # 2️⃣ Test job
   test:
@@ -64,7 +58,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
@@ -74,16 +68,16 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
-      - name: Set up pnpm
-        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
-        with:
-          version: 10.9.0
-
       - name: Set up Node.js
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: './app/.nvmrc'
           cache: 'pnpm'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+        with:
+          version: 10.9.0
 
       - name: Install packages
         run: pnpm install --frozen-lockfile
@@ -91,11 +85,13 @@ jobs:
 
       - name: Run Unit Tests
         run: pnpm test
-        
+        working-directory: ./app
+
+  # 3️⃣ Log success
   log-success:
     name: Log success
     runs-on: ubuntu-latest
-    needs: [build, test]  # Wait for both jobs to pass
+    needs: [build, test]
     steps:
       - name: Echo success message
         run: echo "🎉 Both build and test jobs passed successfully!"
