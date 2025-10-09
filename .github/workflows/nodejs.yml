@@ -50,10 +50,10 @@ jobs:
       - name: Install packages
         # We only want to install required production packages
         run: pnpm install --prod --frozen-lockfile
+        working-directory: ./app
         
       - name: Build
         run: pnpm run build --if-present
-
 
   # 2️⃣ Test job
   test:
@@ -87,6 +87,7 @@ jobs:
 
       - name: Install packages
         run: pnpm install --frozen-lockfile
+        working-directory: ./app
 
       - name: Run Unit Tests
         run: pnpm test
