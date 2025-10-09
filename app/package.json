@@ -17,7 +17,7 @@
     "format:lint": "biome check --staged --write ./src",
     "format": "biome format --write ./src",
     "lint": "biome lint ./src",
-    "clean:ci": "biome ci",
+    "clean:ci": "biome ci ./src",
     "migrate:eslint": "biome migrate eslint --write",
     "prepare": "husky"
   },
