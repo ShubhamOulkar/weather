@@ -137,7 +137,7 @@ Clone and set up the project locally:
 git clone https://github.com/ShubhamOulkar/weather.git
 
 # Navigate to project
-cd weather-app
+cd weather/app
 
 # Install dependencies
 pnpm install
