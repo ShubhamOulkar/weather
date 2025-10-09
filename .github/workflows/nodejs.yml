@@ -43,7 +43,7 @@ jobs:
           cache-dependency-path: './app/pnpm-lock.yaml'
 
       - name: Install packages
-        run: pnpm install --prod --frozen-lockfile
+        run: pnpm install --frozen-lockfile
         working-directory: ./app
 
       - name: Build
