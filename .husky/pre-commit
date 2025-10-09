@@ -1,0 +1,3 @@
+cd app
+pnpm format:lint
+pnpm test
