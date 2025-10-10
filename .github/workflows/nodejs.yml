@@ -120,8 +120,8 @@ jobs:
         cache-dependency-path: './app/pnpm-lock.yaml'
 
     - name: Install packages
-        run: pnpm install --frozen-lockfile
-        working-directory: ./app
+      run: pnpm install --frozen-lockfile
+      working-directory: ./app
 
     - name: Run tests
       run: pnpm test:ci
