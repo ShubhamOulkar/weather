@@ -10,9 +10,6 @@ A modern weather web application that provides real-time weather data, forecasts
     </picture>
   </a>
   <img src="https://github.com/ShubhamOulkar/weather/actions/workflows/nodejs.yml/badge.svg" alt="Build and Analysis Checks" />
-  <a title="scorecard" href="https://securityscorecards.dev/viewer/?uri=github.com/ShubhamOulkar/weather">
-    <img src="https://api.securityscorecards.dev/projects/github.com/ShubhamOulkar/weather/badge" alt="weather scorecard badge" />
-  </a>
 </p>
 
 [![Test Coverage][coveralls-image]][coveralls-url]
