@@ -2,6 +2,21 @@
 
 A modern weather web application that provides real-time weather data, forecasts, and interactive features to enhance the user experience. Design is focused on separation of concerns and maintainability.
 
+<p>
+  <a title="Vercel" href="https://vercel.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/powered%20by-Vercel%20%E2%96%B2-white">
+      <img src="https://img.shields.io/badge/powered%20by-Vercel%20%E2%96%B2-black" alt="Powered by Vercel">
+    </picture>
+  </a>
+  <img src="https://github.com/ShubhamOulkar/weather/actions/workflows/nodejs.yml/badge.svg" alt="Build and Analysis Checks" />
+  <a title="scorecard" href="https://securityscorecards.dev/viewer/?uri=github.com/ShubhamOulkar/weather">
+    <img src="https://api.securityscorecards.dev/projects/github.com/ShubhamOulkar/weather/badge" alt="weather scorecard badge" />
+  </a>
+</p>
+
+[![Test Coverage][coveralls-image]][coveralls-url]
+
 ---
 
 ## Table of Contents
@@ -111,7 +126,7 @@ Key Features:
   > Note: Keep separate for learning purpose. And I am still learning and experimenting with react API `renderToPipeableStream()`.
 
 ### Testing
-  Vitest for the test runner and React Testing Library (RTL) to ensure the hook functions correctly from a user's perspective.
+  Vitest for the test runner and React Testing Library (RTL) to ensure the hook functions correctly from a user's perspective. [Get test coverage on codecov.io](https://app.codecov.io/gh/ShubhamOulkar/weather/tree/new-feature)
 
 ### What I Learned
 - Efficient data fetching and caching using React Query.  
@@ -174,3 +189,6 @@ pnpm preview
 ## License
 
 Content submitted by [shubham oulkar](https://github.com/ShubhamOulkar) is Creative Commons Attribution 4.0 International licensed, as found in the [LICENSE](/LICENSE) file.
+
+[coveralls-image]: https://badgen.net/coveralls/c/github/expressjs/session/master
+[coveralls-url]: https://coveralls.io/r/expressjs/session?branch=master
