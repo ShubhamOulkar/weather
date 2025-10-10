@@ -89,9 +89,14 @@ jobs:
         run: pnpm clean:ci
         working-directory: ./app
 
-      - name: Run Unit Tests
-        run: pnpm test
+      - name: Run tests
+        run: pnpm test:ci
         working-directory: ./app
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   # 3️⃣ Log success
   log-success:
