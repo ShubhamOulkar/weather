@@ -8,7 +8,7 @@ import { codecovVitePlugin } from "@codecov/vite-plugin";
 export default defineConfig({
   plugins: [react(), svgr(), codecovVitePlugin({
     enableBundleAnalysis: process.env.VITE_CODECOV_TOKEN !== undefined,
-    bundleName: "weather bundle size",
+    bundleName: "weather-bundle-size",
     uploadToken: process.env.VITE_CODECOV_TOKEN,
   })],
   test: {
