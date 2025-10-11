@@ -10,9 +10,14 @@ A modern weather web application that provides real-time weather data, forecasts
     </picture>
   </a>
   <img src="https://github.com/ShubhamOulkar/weather/actions/workflows/nodejs.yml/badge.svg" alt="Build and Analysis Checks" />
-</p>
+  <a href="https://codecov.io/gh/ShubhamOulkar/weather" > 
+    <img src="https://codecov.io/gh/ShubhamOulkar/weather/branch/new-feature/graph/badge.svg?token=7ZJTY5KL61"/> 
+  </a>
+  <a href="https://app.codecov.io/gh/ShubhamOulkar/weather/bundles/new-feature/weather-bundle-size" >
+    <img src="https://codecov.io/github/ShubhamOulkar/weather/branch/new-feature/graph/bundle/weather-bundle-size/badge.svg" />
+  </a>
 
-[![Test Coverage][coveralls-image]][coveralls-url]
+</p>
 
 ---
 
@@ -186,6 +191,3 @@ pnpm preview
 ## License
 
 Content submitted by [shubham oulkar](https://github.com/ShubhamOulkar) is Creative Commons Attribution 4.0 International licensed, as found in the [LICENSE](/LICENSE) file.
-
-[coveralls-image]: https://badgen.net/coveralls/c/github/expressjs/session/master
-[coveralls-url]: https://coveralls.io/r/expressjs/session?branch=master
