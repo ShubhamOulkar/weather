@@ -13,8 +13,8 @@ A modern weather web application that provides real-time weather data, forecasts
   <a href="https://codecov.io/gh/ShubhamOulkar/weather" > 
     <img src="https://codecov.io/gh/ShubhamOulkar/weather/branch/new-feature/graph/badge.svg?token=7ZJTY5KL61"/> 
   </a>
-  <a href="https://app.codecov.io/gh/ShubhamOulkar/weather/bundles/new-feature/weather-bundle-size" >
-    <img src="https://codecov.io/github/ShubhamOulkar/weather/branch/new-feature/graph/bundle/weather-bundle-size/badge.svg" />
+  <a href="https://app.codecov.io/gh/ShubhamOulkar/weather/bundles/new-feature/weather-bundle-size-esm" >
+    <img src="https://codecov.io/github/ShubhamOulkar/weather/branch/new-feature/graph/bundle/weather-bundle-size-esm/badge.svg" />
   </a>
 
 </p>
