@@ -17,7 +17,7 @@ interface WeatherData {
 export async function generateImage(data: WeatherData) {
   const { city, temperature, wmo } = data;
 
-  const weatherMeta = getWeatherIcon[wmo]
+  const weatherMeta = getWeatherIcon[wmo];
 
   const iconPath = path.resolve(`./public/icons/${weatherMeta.file}`);
 
@@ -95,7 +95,9 @@ export async function generateImage(data: WeatherData) {
       {
         name: "Inter",
         data: await fs.promises.readFile(
-          path.resolve("./public/fonts/noto_sans/noto-sans-latin-700-normal.woff")
+          path.resolve(
+            "./public/fonts/noto_sans/noto-sans-latin-700-normal.woff",
+          ),
         ),
         weight: 400,
         style: "normal",
@@ -109,7 +111,5 @@ export async function generateImage(data: WeatherData) {
   // await fs.promises.writeFile(webpPath, webp);
 
   const webp = await sharp(Buffer.from(svg)).webp({ quality: 90 }).toBuffer();
-  return { webp }
+  return { webp };
 }
-
-

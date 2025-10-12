@@ -3,7 +3,7 @@ import {
   TwitterShareButton,
   XIcon,
   LinkedinShareButton,
-  LinkedinIcon
+  LinkedinIcon,
 } from "react-share";
 import { useToggle } from "../../hooks/useToggle/useToggle";
 import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside";
@@ -19,22 +19,22 @@ export default function ShareOnTwitter() {
   >({
     onDismissalEvent: () => setOpen(false),
   });
-  const { data: { place, temp, wmo } } = useLocation()
+  const {
+    data: { place, temp, wmo },
+  } = useLocation();
 
   const title = useCallback(() => {
-    const title = encodeURIComponent(`Todays weather at ${place} is ${temp}.`)
-    return title
-  }, [place, temp])
+    const title = encodeURIComponent(`Todays weather at ${place} is ${temp}.`);
+    return title;
+  }, [place, temp]);
 
   const urlToShare = useCallback(() => {
-    const href = window.location.href
-    return `${href}/weather?name=${encodeURIComponent(place)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}`
-  }, [place, temp, wmo])
+    const href = window.location.href;
+    return `${href}/weather?name=${encodeURIComponent(place)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}`;
+  }, [place, temp, wmo]);
 
   return (
-    <div
-      className={style.share_container}
-    >
+    <div className={style.share_container}>
       <button
         type="button"
         ref={userRef}

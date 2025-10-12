@@ -20,7 +20,8 @@
 /* Bricolage Grotesque – variable (bold range) */
 @font-face {
   font-family: "Bricolage Grotesque";
-  src: url("/fonts/Bricolage_Grotesque/bricolage-grotesque-latin-700-normal.woff2") format("woff2");
+  src: url("/fonts/Bricolage_Grotesque/bricolage-grotesque-latin-700-normal.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -374,10 +375,12 @@ h4 {
   left: -100%;
   width: 200%;
   height: 100%;
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
   animation: shimmer 1.5s infinite;
 }
 
@@ -394,11 +397,11 @@ h4 {
   height: 100%;
   padding: 1.5rem;
 
-  >h1 {
+  > h1 {
     font-size: 1.2rem;
   }
 
-  >p {
+  > p {
     font-size: 1rem;
   }
 }
