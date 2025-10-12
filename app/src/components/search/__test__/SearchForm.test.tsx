@@ -86,7 +86,7 @@ describe("SearchForm", () => {
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /search/i })).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /locate me/i }),
+      screen.getByRole("button", { name: /GPS/i }),
     ).toBeInTheDocument();
     expect(screen.getByTestId("mic-button")).toBeInTheDocument();
   });
@@ -137,7 +137,7 @@ describe("SearchForm", () => {
     });
 
     render(<SearchForm />);
-    const locateBtn = screen.getByRole("button", { name: /locate me/i });
+    const locateBtn = screen.getByRole("button", { name: /gps/i });
     fireEvent.click(locateBtn);
 
     expect(mockGetLocation).toHaveBeenCalled();
