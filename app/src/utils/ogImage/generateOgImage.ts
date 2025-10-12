@@ -63,7 +63,7 @@ export async function generateImage(data: WeatherData) {
                 type: "div",
                 props: {
                   style: {
-                    display: "inline-block",
+                    display: "block",
                     fontSize: "48px",
                     fontWeight: 600,
                   },
@@ -74,7 +74,7 @@ export async function generateImage(data: WeatherData) {
                 type: "div",
                 props: {
                   style: {
-                    display: "inline-block",
+                    display: "block",
                     fontSize: "36px",
                     marginTop: "10px",
                   },

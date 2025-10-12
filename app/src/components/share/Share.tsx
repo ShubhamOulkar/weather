@@ -30,7 +30,7 @@ export default function ShareOnTwitter() {
 
   const urlToShare = useCallback(() => {
     const href = window.location.href;
-    return `${href}weather?name=${encodeURIComponent(place)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}`;
+    return `${href}weather?name=${encodeURIComponent(place)}&temp=${encodeURIComponent(temp.toFixed())}&wmo=${encodeURIComponent(wmo)}`;
   }, [place, temp, wmo]);
 
   return (
