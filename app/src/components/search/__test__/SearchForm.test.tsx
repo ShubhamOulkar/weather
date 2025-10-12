@@ -85,9 +85,7 @@ describe("SearchForm", () => {
       screen.getByRole("searchbox", { name: /search for a place/i }),
     ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /search/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /GPS/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /GPS/i })).toBeInTheDocument();
     expect(screen.getByTestId("mic-button")).toBeInTheDocument();
   });
 
