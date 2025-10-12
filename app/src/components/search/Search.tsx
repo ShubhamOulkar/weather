@@ -20,6 +20,7 @@ import { SearchSchema } from "../../validation/searchValidation";
 import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic";
 import DropdownSearch from "../dropdowns/search/DropdownSearch";
 import styles from "./Search.module.css";
+import ShareOnTwitter from "../share/Share";
 
 export default function SearchForm() {
   const { addToast } = useToast();
@@ -187,17 +188,18 @@ export default function SearchForm() {
           />
         </div>
         <div className={cnr("flex", "gap-1rem", styles.form_btn_container)}>
-          <button type="submit" title="search location">
+          <button type="submit" title="search location" className="btn">
             Search
           </button>
           <button
             type="button"
-            className="flex flexcenter"
+            className="btn flex flexcenter"
             onClick={handlerGpsLocation}
             title="use my location"
           >
-            <IconLocation /> Locate me
+            <IconLocation /> GPS
           </button>
+          <ShareOnTwitter />
         </div>
       </form>
     </search>

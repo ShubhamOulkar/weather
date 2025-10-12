@@ -1,0 +1,86 @@
+import { useCallback } from "react";
+import {
+  TwitterShareButton,
+  XIcon,
+  LinkedinShareButton,
+  LinkedinIcon
+} from "react-share";
+import { useToggle } from "../../hooks/useToggle/useToggle";
+import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside";
+import { useLocation } from "../../context/location/Location";
+import cnr from "../../utils/class_resolver/cnr";
+import style from "./Share.module.css";
+
+export default function ShareOnTwitter() {
+  const { open, toggle, setOpen } = useToggle();
+  const { nodeRef, userRef } = useDismissalOutside<
+    HTMLDivElement,
+    HTMLButtonElement
+  >({
+    onDismissalEvent: () => setOpen(false),
+  });
+  const { data } = useLocation()
+
+  const title = useCallback(() => {
+    const title = encodeURI(`Todays weather at ${data.place} is ${data.temp}.`)
+    return title
+  }, [data.place, data.temp])
+
+  const urlToShare = useCallback(() => {
+    const href = location.href
+    return `${href}/place?name=${data.place},temp=${data.temp},wmo=${data.wmo}`
+  }, [data.place, data.temp])
+
+  return (
+    <div
+      className={style.share_container}
+      role="combobox"
+      aria-autocomplete="list"
+      aria-haspopup="listbox"
+      aria-expanded={open}
+      aria-controls="searchDropdown"
+    >
+      <button
+        type="button"
+        ref={userRef}
+        onClick={toggle}
+        className="btn"
+      >
+        Share
+      </button>
+      <div
+        ref={nodeRef}
+        id="shareDropdown"
+        role="listbox"
+        className={cnr(open ? "show" : "hidden", "dropdown", "left-0")}
+        aria-hidden={!open}
+        aria-live="polite"
+      >
+        <ul className="flex gap-1rem flexcenter pad-0">
+          <li>
+            <TwitterShareButton
+              title={title()}
+              url={urlToShare()}
+              className="flex flexcenter"
+              htmlTitle="share on X"
+              aria-label="share on X"
+            >
+              <XIcon size="32" borderRadius={16} />
+            </TwitterShareButton>
+          </li>
+          <li>
+            <LinkedinShareButton
+              title={title()}
+              url={urlToShare()}
+              htmlTitle="share on linkedIn"
+              className="flex flexcenter"
+              aria-label="share on linkedIn"
+            >
+              <LinkedinIcon size="32" borderRadius={16} />
+            </LinkedinShareButton>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+}
