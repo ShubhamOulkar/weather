@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import {
+  LinkedinIcon,
+  LinkedinShareButton,
   TwitterShareButton,
   XIcon,
-  LinkedinShareButton,
-  LinkedinIcon,
 } from "react-share";
-import { useToggle } from "../../hooks/useToggle/useToggle";
-import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside";
 import { useLocation } from "../../context/location/Location";
+import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside";
+import { useToggle } from "../../hooks/useToggle/useToggle";
 import cnr from "../../utils/class_resolver/cnr";
 import style from "./Share.module.css";
 

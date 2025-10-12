@@ -19,8 +19,8 @@ import cnr from "../../utils/class_resolver/cnr";
 import { SearchSchema } from "../../validation/searchValidation";
 import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic";
 import DropdownSearch from "../dropdowns/search/DropdownSearch";
-import styles from "./Search.module.css";
 import ShareOnTwitter from "../share/Share";
+import styles from "./Search.module.css";
 
 export default function SearchForm() {
   const { addToast } = useToast();
