@@ -19,32 +19,32 @@ export default function ShareOnTwitter() {
   >({
     onDismissalEvent: () => setOpen(false),
   });
-  const { data } = useLocation()
+  const { data: { place, temp, wmo } } = useLocation()
 
   const title = useCallback(() => {
-    const title = encodeURI(`Todays weather at ${data.place} is ${data.temp}.`)
+    const title = encodeURIComponent(`Todays weather at ${place} is ${temp}.`)
     return title
-  }, [data.place, data.temp])
+  }, [place, temp])
 
   const urlToShare = useCallback(() => {
-    const href = location.href
-    return `${href}/place?name=${data.place},temp=${data.temp},wmo=${data.wmo}`
-  }, [data.place, data.temp])
+    const href = window.location.href
+    return `${href}/weather?name=${encodeURIComponent(place)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}`
+  }, [place, temp, wmo])
 
   return (
     <div
       className={style.share_container}
-      role="combobox"
-      aria-autocomplete="list"
-      aria-haspopup="listbox"
-      aria-expanded={open}
-      aria-controls="searchDropdown"
     >
       <button
         type="button"
         ref={userRef}
         onClick={toggle}
         className="btn"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls="shareDropdown"
       >
         Share
       </button>
