@@ -44,11 +44,11 @@ export default function DaysDropDown({
         ref={nodeRef}
         id="daysList"
         role="listbox"
-        className={cnr(open ? "show" : "hidden", styles.listBox)}
+        className={cnr(open ? "show" : "hidden", "dropdown", "right-0")}
         aria-hidden={!open}
         aria-live="polite"
       >
-        <ul>
+        <ul className="pad-0">
           {weekDays.map((d, i) => (
             <li key={d}>
               <DropBtn

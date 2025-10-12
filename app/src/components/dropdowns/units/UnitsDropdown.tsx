@@ -46,7 +46,7 @@ export default function UnitsDropdown({ id, dismissRef, open }: CompArg) {
       ref={dismissRef}
       id={id}
       role="listbox"
-      className={cnr(open ? "show" : "hidden", styles.units_dropdown)}
+      className={cnr(open ? "show" : "hidden", "dropdown", "right-0")}
       aria-hidden={!open}
       aria-live="polite"
     >

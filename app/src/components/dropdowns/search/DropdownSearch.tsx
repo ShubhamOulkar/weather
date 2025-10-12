@@ -40,7 +40,7 @@ export default function DropdownSearch({
       aria-live="polite"
       className={cnr(
         "scroll",
-        styles.drop_places,
+        "dropdown", "left-0",
         dropdown ? "show" : "hidden",
       )}
     >

@@ -1,20 +1,3 @@
-.units_dropdown {
-  background-color: var(--btn-color-bg);
-  width: max-content;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  z-index: var(--dropdown-z-index);
-  margin-top: 0.5rem;
-  border-radius: var(--border-radius);
-  padding: 0.5rem;
-  border: var(--border-style);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    visibility 0.3s;
-}
-
 .unit_sections {
   list-style: none;
   padding: 0;
