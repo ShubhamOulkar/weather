@@ -12,7 +12,7 @@
     "build": "tsc -b && vite build",
     "build:app": "vite build",
     "build:api": "tsc --project tsconfig.server.json",
-    "vercel:build": "npm run build:app && npm run build:api",
+    "vercel:build": "pnpm run build:app && pnpm run build:api",
     "preview": "pnpm run build && vite preview",
     "test": "vitest --ui",
     "test:ci": "vitest run --coverage",
