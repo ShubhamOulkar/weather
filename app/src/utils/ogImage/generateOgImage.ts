@@ -6,8 +6,8 @@ import { getWeatherIcon } from "../getWeatherIcon/getWeatherIcon";
 
 // Define weather data type
 interface WeatherData {
-  city: string;
-  temperature: string;
+  city: string | string[];
+  temperature: string | string[];
   wmo: number;
 }
 

@@ -24,6 +24,8 @@ app/dist
 app/.next
 app/out
 
+app/src/middleware
+
 # IDEs and editors
 /.idea
 /.vscode
