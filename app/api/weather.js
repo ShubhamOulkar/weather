@@ -1,4 +1,4 @@
-import { generateImage } from "./ogImage/generateOgImage.ts";
+import { generateImage } from "./ogImage/generateOgImage.js";
 
 export default async function handler(req, res) {
   try {
