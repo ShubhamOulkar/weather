@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { generateImage } from "./ogImage/generateOgImage";
+import { generateImage } from "./ogImage/generateOgImage.ts";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
