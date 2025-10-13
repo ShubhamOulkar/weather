@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import satori from "satori";
 import sharp from "sharp";
-import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon";
+import { getWeatherIcon } from "@/utils/getWeatherIcon/getWeatherIcon";
 
 // Define weather data type
 interface WeatherData {
