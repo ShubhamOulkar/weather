@@ -1,0 +1,22 @@
+// tsconfig.server.json
+{
+  // Extend your existing base tsconfig for common settings
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Override the settings that conflict with Vercel's runtime:
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+
+    // IMPORTANT: Enable output for the API files
+    "noEmit": false,
+    "outDir": "./.vercel/output/api", // Vercel looks for output here
+    "rootDir": "./api",
+
+    // Disable path aliases for the API to enforce relative imports
+    "baseUrl": "./",
+    "paths": {}
+  },
+  "include": ["api/**/*.ts"], // Only compile files within the 'api' directory
+  "exclude": ["src", "node_modules", "dist", "coverage", "html"]
+}

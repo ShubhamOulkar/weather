@@ -10,6 +10,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:app": "vite build",
+    "build:api": "tsc --project tsconfig.server.json",
+    "vercel:build": "npm run build:app && npm run build:api",
     "preview": "pnpm run build && vite preview",
     "test": "vitest --ui",
     "test:ci": "vitest run --coverage",
@@ -43,7 +46,6 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@types/react-speech-recognition": "^3.9.6",
-    "@vercel/node": "^5.3.26",
     "@vitejs/plugin-react-swc": "^4.0.0",
     "@vitest/coverage-v8": "3.2.4",
     "@vitest/ui": "^3.2.4",
