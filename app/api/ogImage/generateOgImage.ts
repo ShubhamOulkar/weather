@@ -2,7 +2,11 @@ import fs from "fs";
 import path from "path";
 import satori from "satori";
 import sharp from "sharp";
+import { fileURLToPath } from "url";
 import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Define weather data type
 interface WeatherData {
@@ -20,7 +24,7 @@ export async function generateImage(data: WeatherData) {
   const weatherMeta = getWeatherIcon[wmo];
 
   const iconPath = path.resolve(
-    path.join(__dirname, `./icons/${weatherMeta.file}`),
+    path.join(__dirname, `../../icons/${weatherMeta.file}`),
   );
 
   const pngBuffer = (await sharp(iconPath).png().toBuffer()).toString("base64");
@@ -100,7 +104,7 @@ export async function generateImage(data: WeatherData) {
           path.resolve(
             path.join(
               __dirname,
-              "/fonts/noto_sans/noto-sans-latin-700-normal.woff",
+              "../../fonts/noto_sans/noto-sans-latin-700-normal.woff",
             ),
           ),
         ),
