@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/**/*.[jt]s": {
-      "includeFiles": ["public/icons/**", "public/fonts/**"]
+      "includeFiles": "public/{icons,fonts}/**"
     }
   }
 }
