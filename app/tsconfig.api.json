@@ -6,8 +6,6 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2022",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
     // IMPORTANT: Enable output for the API files
     "noEmit": false,
     "outDir": "./.vercel/output/api", // Vercel looks for output here
