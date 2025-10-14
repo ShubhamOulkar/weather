@@ -2,12 +2,19 @@ import fs from "fs";
 import path from "path";
 import satori from "satori";
 import sharp from "sharp";
-import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.js";
+import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.ts";
+
+// Define weather data type
+interface WeatherData {
+  city: string | string[];
+  temperature: string | string[];
+  wmo: number;
+}
 
 /**
  * Generate OG image for weather data
  */
-export async function generateImage(data) {
+export async function generateImage(data: WeatherData) {
   const { city, temperature, wmo } = data;
 
   const weatherMeta = getWeatherIcon[wmo];
@@ -81,7 +88,7 @@ export async function generateImage(data) {
     },
   };
 
-  const svg = await satori(element, {
+  const svg = await satori(element as React.ReactNode, {
     width: 800,
     height: 400,
     fonts: [

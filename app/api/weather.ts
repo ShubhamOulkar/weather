@@ -1,6 +1,7 @@
-import { generateImage } from "./ogImage/generateOgImage.js";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { generateImage } from "./ogImage/generateOgImage.ts";
 
-export default async function handler(req, res) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { name = "Hupari", temp = "25", wmo = "61" } = req.query;
     const data = { city: name, temperature: temp, wmo: Number(wmo) };

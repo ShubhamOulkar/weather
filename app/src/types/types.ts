@@ -1,3 +1,7 @@
+import { fetchWeatherApi } from "openmeteo";
+
+export type FetchWeatherApiReturn = Awaited<ReturnType<typeof fetchWeatherApi>>;
+
 export interface IpData {
   success: boolean;
   data: {

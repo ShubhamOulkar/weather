@@ -1,5 +1,9 @@
 import { fetchWeatherApi } from "openmeteo";
-import type { Cooradinates, FormattedDateParts } from "../../../types/types";
+import type {
+  Cooradinates,
+  FetchWeatherApiReturn,
+  FormattedDateParts,
+} from "../../../types/types";
 import { getLocalDate } from "../../local_date/getLocalDate";
 
 interface MetricData {
@@ -57,9 +61,16 @@ export async function fetchCurrentWeatherData({
 
   try {
     // retries is 0 because tanstack query do that
-    const responses = await fetchWeatherApi(url, params, 0, 1000, 2000, {
-      method: "GET",
-    });
+    const responses: FetchWeatherApiReturn = await fetchWeatherApi(
+      url,
+      params,
+      0,
+      1000,
+      2000,
+      {
+        method: "GET",
+      },
+    );
 
     if (!responses || responses.length === 0) {
       throw new Error("OpenMeteo API returned an empty response array.");
