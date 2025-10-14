@@ -24,7 +24,7 @@ export async function generateImage(data: WeatherData) {
   const weatherMeta = getWeatherIcon[wmo];
 
   const iconPath = path.resolve(
-    path.join(__dirname, `../../icons/${weatherMeta.file}`),
+    path.join(__dirname, `../../public/icons/${weatherMeta.file}`),
   );
 
   const pngBuffer = (await sharp(iconPath).png().toBuffer()).toString("base64");
@@ -104,7 +104,7 @@ export async function generateImage(data: WeatherData) {
           path.resolve(
             path.join(
               __dirname,
-              "../../fonts/noto_sans/noto-sans-latin-700-normal.woff",
+              "../../public/fonts/noto_sans/noto-sans-latin-700-normal.woff",
             ),
           ),
         ),
