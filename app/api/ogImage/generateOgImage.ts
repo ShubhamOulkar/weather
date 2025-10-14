@@ -19,7 +19,7 @@ export async function generateImage(data: WeatherData) {
 
   const weatherMeta = getWeatherIcon[wmo];
 
-  const iconPath = path.resolve(`./public/icons/${weatherMeta.file}`);
+  const iconPath = path.resolve(`./icons/${weatherMeta.file}`);
 
   const pngBuffer = (await sharp(iconPath).png().toBuffer()).toString("base64");
 
