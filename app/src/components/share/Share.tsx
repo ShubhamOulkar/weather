@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useMemo } from "react";
 import {
   LinkedinIcon,
   LinkedinShareButton,
@@ -6,77 +6,84 @@ import {
   XIcon,
 } from "react-share";
 import { useLocation } from "@/context/location/Location";
+import { useUnits } from "@/context/unitsSystem/UnitsSystem";
 import { useDismissalOutside } from "@/hooks/useDismissalOutside/useDismissalOutside";
 import { useToggle } from "@/hooks/useToggle/useToggle";
 import cnr from "@/utils/class_resolver/cnr";
+import { convertTemperature } from "@/utils/valueConversion/helpers";
 import style from "./Share.module.css";
 
 export default function ShareOnTwitter() {
   const { open, toggle, setOpen } = useToggle();
-  const { nodeRef, userRef } = useDismissalOutside<
+  const { nodeRef: menuRef, userRef: buttonRef } = useDismissalOutside<
     HTMLDivElement,
     HTMLButtonElement
-  >({
-    onDismissalEvent: () => setOpen(false),
-  });
+  >({ onDismissalEvent: () => setOpen(false) });
+  const {
+    unitSystem: { temperature: unit },
+  } = useUnits();
+
   const {
     data: { place, temp, wmo },
   } = useLocation();
 
-  const title = useCallback(() => {
-    const title = encodeURIComponent(`Todays weather at ${place} is ${temp}.`);
-    return title;
-  }, [place, temp]);
+  const title = useMemo(
+    () =>
+      `Today's weather at ${place} is ${convertTemperature(temp, unit).join("")}.`,
+    [place, temp, unit],
+  );
 
-  const urlToShare = useCallback(() => {
+  const urlToShare = useMemo(() => {
     const href = window.location.href;
-    return `${href}api/weather?name=${encodeURIComponent(place)}&temp=${encodeURIComponent(temp.toFixed())}&wmo=${encodeURIComponent(wmo)}`;
+    return `${href}api/weather-card?name=${encodeURIComponent(place)}&temp=${temp.toFixed()}&wmo=${wmo}`;
   }, [place, temp, wmo]);
+
+  const handleShareClick = () => setOpen(false);
 
   return (
     <div className={style.share_container}>
       <button
         type="button"
-        ref={userRef}
+        ref={buttonRef}
         onClick={toggle}
         className="btn"
-        role="combobox"
-        aria-autocomplete="list"
-        aria-haspopup="listbox"
+        aria-haspopup="menu"
         aria-expanded={open}
         aria-controls="shareDropdown"
       >
         Share
       </button>
+
       <div
-        ref={nodeRef}
+        ref={menuRef}
         id="shareDropdown"
-        role="listbox"
+        role="menu"
         className={cnr(open ? "show" : "hidden", "dropdown", "left-0")}
         aria-hidden={!open}
-        aria-live="polite"
       >
         <ul className="flex gap-1rem flexcenter pad-0">
-          <li>
+          <li role="menuitem">
             <TwitterShareButton
-              title={title()}
-              url={urlToShare()}
+              title={title}
+              url={urlToShare}
               className="flex flexcenter"
-              htmlTitle="share on X"
-              aria-label="share on X"
+              htmlTitle="Share on X"
+              aria-label="Share on X"
+              onClick={handleShareClick}
             >
-              <XIcon size="32" borderRadius={16} />
+              <XIcon size={32} borderRadius={16} />
             </TwitterShareButton>
           </li>
-          <li>
+          <li role="menuitem">
             <LinkedinShareButton
-              title={title()}
-              url={urlToShare()}
-              htmlTitle="share on linkedIn"
+              title={title}
+              url={urlToShare}
+              htmlTitle="Share on LinkedIn"
               className="flex flexcenter"
-              aria-label="share on linkedIn"
+              aria-label="Share on LinkedIn"
+              onClick={handleShareClick}
             >
-              <LinkedinIcon size="32" borderRadius={16} />
+              <LinkedinIcon size={32} borderRadius={16} />
             </LinkedinShareButton>
           </li>
         </ul>

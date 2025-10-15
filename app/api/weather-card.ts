@@ -1,0 +1,42 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+
+interface query {
+  [key: string]: string;
+}
+
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  const { name = "Hupari", temp = "25", wmo = "61" } = req.query as query;
+  const title = `Today's weather at ${name} is ${temp}°C.`;
+  const imageUrl = `${
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000"
+  }/api/weather?name=${encodeURIComponent(name)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>${title}</title>
+        <meta property="og:title" content="${title}" />
+        <meta property="og:description" content="Check out the latest weather update for ${name}" />
+        <meta property="og:image" content="${imageUrl}" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="${title}" />
+        <meta name="twitter:description" content="Check out the latest weather update for ${name}" />
+        <meta name="twitter:image" content="${imageUrl}" />
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
+      <body>
+        <script>
+          // Redirect normal users to the actual app page
+          window.location.href = "/?name=${encodeURIComponent(name)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}";
+        </script>
+      </body>
+    </html>
+  `;
+
+  res.setHeader("Content-Type", "text/html");
+  res.status(200).end(html);
+}
