@@ -7,7 +7,11 @@ interface query {
 export default function handler(req: VercelRequest, res: VercelResponse) {
   const { name = "Hupari", temp = "25", wmo = "61" } = req.query as query;
   const title = `Today's weather at ${name} is ${temp}°C.`;
-  const ogImageUrl = `/api/og-image?name=${encodeURIComponent(name)}&temp=${temp}&wmo=${wmo}`;
+  const ogImageUrl = `${
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000"}/api/og-image?name=${encodeURIComponent(name)}&temp=${temp}&wmo=${wmo}`;
+
   const html = `
     <!DOCTYPE html>
     <html lang="en">
