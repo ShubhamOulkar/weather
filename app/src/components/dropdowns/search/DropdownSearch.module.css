@@ -1,21 +1,3 @@
-.drop_places {
-  background-color: var(--btn-color-bg);
-  border-radius: var(--border-radius);
-  position: absolute;
-  left: 0;
-  top: 100%;
-  height: fit-content;
-  z-index: var(--dropdown-z-index);
-  max-height: 150px;
-  overflow-y: auto;
-  margin-top: 0.5rem;
-  width: 100%;
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    visibility 0.3s;
-}
-
 ul {
   padding: 0.5rem;
   font-size: 0.9rem;

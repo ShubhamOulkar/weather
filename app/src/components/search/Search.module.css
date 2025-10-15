@@ -7,31 +7,6 @@
   position: relative;
 }
 
-.form_btn_container {
-  --height: 3rem;
-
-  > button {
-    padding-inline: 1rem;
-    height: var(--height);
-    border-radius: var(--border-radius);
-    border: none;
-    background-color: var(--blue-500);
-    cursor: pointer;
-    gap: 0.5rem;
-    width: 100%;
-    transition: transform 0.2s ease-in-out;
-
-    &:focus {
-      outline: var(--btn-outline-size) solid var(--blue-500);
-      outline-offset: var(--btn-outline-offset);
-    }
-
-    &:hover {
-      transform: scale(1.01);
-    }
-  }
-}
-
 .search_container {
   --height: 3rem;
   position: relative;

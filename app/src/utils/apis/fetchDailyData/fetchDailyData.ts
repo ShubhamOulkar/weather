@@ -1,5 +1,5 @@
 import { fetchWeatherApi } from "openmeteo";
-import type { Cooradinates } from "../../../types/types";
+import type { Cooradinates, FetchWeatherApiReturn } from "../../../types/types";
 
 export const DAILY_DATA_QUERY_KEY = ["dailyData"];
 
@@ -25,9 +25,16 @@ export async function fetchDailyWeather({ latitude, longitude }: Cooradinates) {
   };
 
   try {
-    const responses = await fetchWeatherApi(url, params, 0, 1000, 2000, {
-      method: "GET",
-    });
+    const responses: FetchWeatherApiReturn = await fetchWeatherApi(
+      url,
+      params,
+      0,
+      1000,
+      2000,
+      {
+        method: "GET",
+      },
+    );
 
     if (!responses || responses.length === 0) {
       throw new Error(
