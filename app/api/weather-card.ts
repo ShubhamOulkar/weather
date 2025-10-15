@@ -1,18 +1,19 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { generateImage } from "./ogImage/generateOgImage.js";
 
 interface query {
   [key: string]: string;
 }
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   const { name = "Hupari", temp = "25", wmo = "61" } = req.query as query;
+  await generateImage({ city: name, temperature: temp, wmo: Number(wmo) });
   const title = `Today's weather at ${name} is ${temp}°C.`;
   const imageUrl = `${
     process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000"
-  }/api/weather?name=${encodeURIComponent(name)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}`;
-
+  }/public/weather/${name}.png`;
   const html = `
     <!DOCTYPE html>
     <html lang="en">

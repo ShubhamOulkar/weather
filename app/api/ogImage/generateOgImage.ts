@@ -10,8 +10,8 @@ const __dirname = path.dirname(__filename);
 
 // Define weather data type
 interface WeatherData {
-  city: string | string[];
-  temperature: string | string[];
+  city: string;
+  temperature: string;
   wmo: number;
 }
 
@@ -120,5 +120,7 @@ export async function generateImage(data: WeatherData) {
   // await fs.promises.writeFile(webpPath, webp);
 
   const png = await sharp(Buffer.from(svg)).png({ quality: 100 }).toBuffer();
-  return { png };
+
+  const svgPath = `./public/weather/${city}.png`;
+  await fs.promises.writeFile(svgPath, png);
 }
