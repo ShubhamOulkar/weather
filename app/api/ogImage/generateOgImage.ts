@@ -121,6 +121,6 @@ export async function generateImage(data: WeatherData) {
 
   const png = await sharp(Buffer.from(svg)).png({ quality: 100 }).toBuffer();
 
-  const svgPath = `./public/weather/${city}.png`;
+  const svgPath = path.join(__dirname, `../../public/weather/${city}.png`);
   await fs.promises.writeFile(svgPath, png);
 }
