@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import satori from "satori";
-import sharp, { format } from "sharp";
+import sharp from "sharp";
 import { fileURLToPath } from "url";
 import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.js";
 
@@ -120,7 +120,5 @@ export async function generateImage(data: WeatherData) {
   // await fs.promises.writeFile(webpPath, webp);
 
   const png = await sharp(Buffer.from(svg)).png({ quality: 100 }).toBuffer();
-
-  const svgPath = path.join(__dirname, `../../public/weather/${city}.png`);
-  await fs.promises.writeFile(svgPath, png);
+  return png;
 }
