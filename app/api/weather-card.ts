@@ -29,10 +29,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
         <meta name="robots" content="noindex, nofollow" />
       </head>
       <body>
-        <script>
-          // Redirect normal users to the actual app page
-          window.location.href = "/?name=${encodeURIComponent(name)}&temp=${encodeURIComponent(temp)}&wmo=${encodeURIComponent(wmo)}";
-        </script>
+        <p>Preview page for weather in ${name}</p>
       </body>
     </html>
   `;
