@@ -29,11 +29,17 @@ export async function generateImage(data: WeatherData) {
     path.join(__dirname, `../../public/icons/${weatherMeta.file}`),
   );
 
-  // const backGround = path.resolve(
-  //   path.join(__dirname, "../../public/bg-today-small.svg"),
-  // );
+  const backGroundPath = path.resolve(
+    path.join(__dirname, "../../public/bg-today-small.svg"),
+  );
 
-  // const backgroundBuffer = `data:image/svg+xml;base64,${Buffer.from(backGround).toString("base64")}`;
+  const backgroundSvgContent = await fs.promises.readFile(
+    backGroundPath,
+    "utf-8",
+  );
+
+  const backgroundBase64 = Buffer.from(backgroundSvgContent).toString("base64");
+  const backgroundDataUrl = `data:image/svg+xml;base64,${backgroundBase64}`;
 
   const iconBuffer = (await sharp(iconPath).png().toBuffer()).toString(
     "base64",
@@ -50,9 +56,12 @@ export async function generateImage(data: WeatherData) {
         gap: "16px",
         width: "100%",
         height: "100%",
-        background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
+        background: `url(${backgroundDataUrl})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
         borderRadius: "8px",
-        padding: "32px 16px",
+        padding: "16px",
         color: "white",
         fontFamily: "Noto-Sans",
       },
