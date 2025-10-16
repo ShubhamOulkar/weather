@@ -41,8 +41,8 @@ export async function generateImage(data: WeatherData) {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        width: "600px",
-        height: "266px",
+        width: "100%",
+        height: "100%",
         background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
         borderRadius: "24px",
         padding: "40px 60px",
@@ -142,8 +142,8 @@ export async function generateImage(data: WeatherData) {
   };
 
   const svg = await satori(element as React.ReactNode, {
-    width: 600,
-    height: 266,
+    width: 989,
+    height: 366,
     fonts: [
       {
         name: "Inter",
