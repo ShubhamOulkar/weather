@@ -55,10 +55,26 @@ export async function generateImage(data: WeatherData) {
         padding: "32px 16px",
         color: "white",
         fontFamily: "Noto-Sans",
-        position: "relative",
       },
       children: [
-        // Left side — city and date
+        // Top badge
+        {
+          type: "div",
+          props: {
+            style: {
+              backgroundColor: "rgba(255,255,255,0.15)",
+              borderRadius: "8px",
+              padding: "3px 6px",
+              fontSize: "14px",
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+              backdropFilter: "blur(4px)",
+            },
+            children: `${weatherMeta.alt} | ${time}`,
+          },
+        },
+        // city and date
         {
           type: "div",
           props: {
@@ -94,7 +110,7 @@ export async function generateImage(data: WeatherData) {
           },
         },
 
-        // Right side — temperature + icon
+        // temperature + icon
         {
           type: "div",
           props: {
@@ -128,33 +144,12 @@ export async function generateImage(data: WeatherData) {
             ],
           },
         },
-
-        // Top-right badge
-        {
-          type: "div",
-          props: {
-            style: {
-              position: "absolute",
-              top: "14px",
-              left: "16px",
-              backgroundColor: "rgba(255,255,255,0.15)",
-              borderRadius: "8px",
-              padding: "3px 6px",
-              fontSize: "14px",
-              display: "flex",
-              alignItems: "center",
-              gap: "4px",
-              backdropFilter: "blur(4px)",
-            },
-            children: `${weatherMeta.alt} | ${time}`,
-          },
-        },
       ],
     },
   };
 
   const svg = await satori(element as React.ReactNode, {
-    width: 400,
+    width: 300,
     height: 200,
     fonts: [
       {
