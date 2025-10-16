@@ -44,14 +44,15 @@ export async function generateImage(data: WeatherData) {
     props: {
       style: {
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
-        gap: "32px",
+        justifyContent: "center",
+        gap: "16px",
         width: "100%",
         height: "100%",
         background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
         borderRadius: "8px",
-        padding: "16px 40px",
+        padding: "16px",
         color: "white",
         fontFamily: "Noto-Sans",
         position: "relative",
@@ -135,7 +136,7 @@ export async function generateImage(data: WeatherData) {
             style: {
               position: "absolute",
               top: "14px",
-              left: "0px",
+              left: "16px",
               backgroundColor: "rgba(255,255,255,0.15)",
               borderRadius: "8px",
               padding: "3px 6px",
@@ -154,7 +155,7 @@ export async function generateImage(data: WeatherData) {
 
   const svg = await satori(element as React.ReactNode, {
     width: 342,
-    height: 286,
+    height: 200,
     fonts: [
       {
         name: "Noto-Sans",
