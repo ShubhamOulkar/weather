@@ -3,7 +3,7 @@ import path from "path";
 import satori from "satori";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
-import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.ts";
+import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
