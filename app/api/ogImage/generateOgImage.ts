@@ -29,6 +29,14 @@ export async function generateImage(data: WeatherData) {
     path.join(__dirname, `../../public/icons/${weatherMeta.file}`),
   );
 
+  const backGround = path.resolve(
+    path.join(__dirname, "../../public/bg-toady-small.svg"),
+  );
+
+  const backgroundBuffer = (await sharp(backGround).png().toBuffer()).toString(
+    "base64",
+  );
+
   const iconBuffer = (await sharp(iconPath).png().toBuffer()).toString(
     "base64",
   );
@@ -43,7 +51,9 @@ export async function generateImage(data: WeatherData) {
         gap: "32px",
         width: "100%",
         height: "100%",
-        background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
+        backgroundImage: `data:image/png;base64,${backgroundBuffer}`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         borderRadius: "8px",
         padding: "16px 40px",
         color: "white",
@@ -93,6 +103,7 @@ export async function generateImage(data: WeatherData) {
           props: {
             style: {
               display: "flex",
+              flexDirection: "row",
               alignItems: "center",
               gap: "12px",
             },
@@ -128,10 +139,10 @@ export async function generateImage(data: WeatherData) {
             style: {
               position: "absolute",
               top: "14px",
-              right: "25px",
+              left: "0px",
               backgroundColor: "rgba(255,255,255,0.15)",
               borderRadius: "8px",
-              padding: "6px 3px",
+              padding: "3px 6px",
               fontSize: "14px",
               display: "flex",
               alignItems: "center",
@@ -146,8 +157,8 @@ export async function generateImage(data: WeatherData) {
   };
 
   const svg = await satori(element as React.ReactNode, {
-    width: 600,
-    height: 166,
+    width: 342,
+    height: 286,
     fonts: [
       {
         name: "Noto-Sans",
