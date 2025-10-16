@@ -60,7 +60,7 @@ export async function generateImage(data: WeatherData) {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "100% 100%",
-        padding: "16px",
+        padding: "32px",
         color: "white",
         fontFamily: "Noto-Sans",
       },
@@ -158,7 +158,7 @@ export async function generateImage(data: WeatherData) {
 
   const svg = await satori(element as React.ReactNode, {
     width: 500,
-    height: 200,
+    height: 220,
     fonts: [
       {
         name: "Noto-Sans",
