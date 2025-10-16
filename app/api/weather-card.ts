@@ -30,7 +30,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
         <meta property="og:description" content="Check out the latest weather update for ${name}" />
         <meta property="og:image" content="${ogImageUrl}" />
         <meta property="og:type" content="website" />
-        <meat property="og:url" content="${domain}" />
+        <meat property="og:url" content="https://weather-inky-delta.vercel.app/" />
         <meta property="og:image:alt" content="Weather at ${name}: ${temp}°C — automatically generated forecast card" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="${title}" />
