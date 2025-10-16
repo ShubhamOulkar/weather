@@ -77,7 +77,7 @@ export async function generateImage(data: WeatherData) {
               display: "flex",
               alignItems: "center",
               gap: "4px",
-              backdropFilter: "blur(4px)",
+              backdropFilter: "blur(2px)",
             },
             children: `${weatherMeta.alt} | ${time}`,
           },
@@ -157,8 +157,8 @@ export async function generateImage(data: WeatherData) {
   };
 
   const svg = await satori(element as React.ReactNode, {
-    width: 300,
-    height: 300,
+    width: 500,
+    height: 200,
     fonts: [
       {
         name: "Noto-Sans",
