@@ -142,8 +142,8 @@ export async function generateImage(data: WeatherData) {
   };
 
   const svg = await satori(element as React.ReactNode, {
-    width: 989,
-    height: 366,
+    width: 600,
+    height: 266,
     fonts: [
       {
         name: "Inter",
