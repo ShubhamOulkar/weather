@@ -33,9 +33,7 @@ export async function generateImage(data: WeatherData) {
     path.join(__dirname, "../../public/bg-today-small.svg"),
   );
 
-  const backgroundBuffer = (await sharp(backGround).png().toBuffer()).toString(
-    "base64",
-  );
+  const backgroundBuffer = Buffer.from(backGround).toString("base64");
 
   const iconBuffer = (await sharp(iconPath).png().toBuffer()).toString(
     "base64",
@@ -51,7 +49,7 @@ export async function generateImage(data: WeatherData) {
         gap: "32px",
         width: "100%",
         height: "100%",
-        backgroundImage: `data:image/png;base64,${backgroundBuffer}`,
+        backgroundImage: `data:image/svg+xml;base64,${backgroundBuffer}`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         borderRadius: "8px",
