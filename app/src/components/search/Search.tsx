@@ -19,7 +19,7 @@ import cnr from "../../utils/class_resolver/cnr";
 import { SearchSchema } from "../../validation/searchValidation";
 import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic";
 import DropdownSearch from "../dropdowns/search/DropdownSearch";
-import ShareOnTwitter from "../share/Share";
+import Share from "../share/Share";
 import styles from "./Search.module.css";
 
 export default function SearchForm() {
@@ -195,11 +195,11 @@ export default function SearchForm() {
             type="button"
             className="btn flex flexcenter"
             onClick={handlerGpsLocation}
-            title="use my location"
+            title="use gps location"
           >
-            <IconLocation /> GPS
+            <IconLocation />
           </button>
-          <ShareOnTwitter />
+          <Share />
         </div>
       </form>
     </search>

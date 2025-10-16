@@ -1,42 +1,26 @@
-import { useMemo } from "react";
 import {
   LinkedinIcon,
   LinkedinShareButton,
   TwitterShareButton,
   XIcon,
 } from "react-share";
-import { useLocation } from "@/context/location/Location";
-import { useUnits } from "@/context/unitsSystem/UnitsSystem";
+import IconShare from "@/assets/images/icon-share.svg?react";
+import CopyBtn from "@/components/common/copyBtn/CopyBtn";
 import { useDismissalOutside } from "@/hooks/useDismissalOutside/useDismissalOutside";
+import { useShareUrl } from "@/hooks/useShareUrl/useShareUrl";
 import { useToggle } from "@/hooks/useToggle/useToggle";
 import cnr from "@/utils/class_resolver/cnr";
-import { convertTemperature } from "@/utils/valueConversion/helpers";
 import style from "./Share.module.css";
 
-export default function ShareOnTwitter() {
+export default function Share() {
   const { open, toggle, setOpen } = useToggle();
+
   const { nodeRef: menuRef, userRef: buttonRef } = useDismissalOutside<
     HTMLDivElement,
     HTMLButtonElement
   >({ onDismissalEvent: () => setOpen(false) });
-  const {
-    unitSystem: { temperature: unit },
-  } = useUnits();
 
-  const {
-    data: { place, temp, wmo, locDate },
-  } = useLocation();
-
-  const title = useMemo(
-    () =>
-      `Today's weather at ${place} is ${convertTemperature(temp, unit).join("")}.`,
-    [place, temp, unit],
-  );
-
-  const urlToShare = useMemo(() => {
-    const href = window.location.href;
-    return `${href}api/weather-card?name=${encodeURIComponent(place)}&temp=${temp.toFixed()}&wmo=${wmo}&date=${encodeURIComponent(locDate.fullDate)}&time=${encodeURIComponent(locDate.time)}`;
-  }, [place, temp, wmo, locDate.time, locDate.fullDate]);
+  const { title, urlToShare, place } = useShareUrl();
 
   const handleShareClick = () => setOpen(false);
 
@@ -50,18 +34,23 @@ export default function ShareOnTwitter() {
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls="shareDropdown"
+        title={`share ${place} weather`}
+        aria-label={`share ${place} weather`}
       >
-        Share
+        <IconShare />
       </button>
 
       <div
         ref={menuRef}
         id="shareDropdown"
         role="menu"
-        className={cnr(open ? "show" : "hidden", "dropdown", "left-0")}
+        className={cnr(open ? "show" : "hidden", "dropdown", "right-80")}
         aria-hidden={!open}
       >
         <ul className="flex gap-1rem flexcenter pad-0">
+          <li role="menuitem">
+            <CopyBtn />
+          </li>
           <li role="menuitem">
             <TwitterShareButton
               title={title}
