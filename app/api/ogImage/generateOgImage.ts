@@ -45,7 +45,7 @@ export async function generateImage(data: WeatherData) {
         height: "100%",
         background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
         borderRadius: "8px",
-        padding: "16px",
+        padding: "16px 40px",
         color: "white",
         fontFamily: "Noto-Sans",
         position: "relative",
@@ -65,6 +65,7 @@ export async function generateImage(data: WeatherData) {
                 type: "div",
                 props: {
                   style: {
+                    textWrap: "wrap",
                     fontSize: "16px",
                     fontWeight: 700,
                     marginBottom: "6px",
