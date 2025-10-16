@@ -42,6 +42,7 @@ export default function DropdownSearch({
         "scroll",
         "dropdown",
         "left-0",
+        "wd-100",
         dropdown ? "show" : "hidden",
       )}
     >

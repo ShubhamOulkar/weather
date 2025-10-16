@@ -11,13 +11,21 @@ export default async function ogImageHandler(
   res: VercelResponse,
 ) {
   try {
-    const { name = "Hupari", temp = "25", wmo = "61" } = req.query as query;
+    const {
+      name = "Hupari",
+      temp = "25",
+      wmo = "61",
+      date,
+      time,
+    } = req.query as query;
 
     // 1. Generate the image and get the raw PNG Buffer
     const pngBuffer = await generateImage({
       city: name,
       temperature: temp,
       wmo: Number(wmo),
+      date: date,
+      time: time,
     });
 
     // 2. Set the Content-Type header to image/png

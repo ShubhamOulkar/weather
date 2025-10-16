@@ -3,7 +3,7 @@ import path from "path";
 import satori from "satori";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
-import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.js";
+import { getWeatherIcon } from "../../src/utils/getWeatherIcon/getWeatherIcon.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,13 +13,15 @@ interface WeatherData {
   city: string;
   temperature: string;
   wmo: number;
+  date: string;
+  time: string;
 }
 
 /**
  * Generate OG image for weather data
  */
 export async function generateImage(data: WeatherData) {
-  const { city, temperature, wmo } = data;
+  const { city, temperature, wmo, date, time } = data;
 
   const weatherMeta = getWeatherIcon[wmo];
 
@@ -27,51 +29,45 @@ export async function generateImage(data: WeatherData) {
     path.join(__dirname, `../../public/icons/${weatherMeta.file}`),
   );
 
-  const pngBuffer = (await sharp(iconPath).png().toBuffer()).toString("base64");
+  const iconBuffer = (await sharp(iconPath).png().toBuffer()).toString(
+    "base64",
+  );
 
   const element = {
     type: "div",
     props: {
       style: {
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        height: "100%",
-        background: "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)",
+        justifyContent: "space-between",
+        width: "989px",
+        height: "366px",
+        background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
+        borderRadius: "24px",
+        padding: "40px 60px",
+        color: "white",
         fontFamily: "Inter",
-        color: "#1a1a1a",
-        textAlign: "center",
-        padding: "20px",
+        position: "relative",
       },
       children: [
-        {
-          type: "img",
-          props: {
-            src: `data:image/png;base64,${pngBuffer}`,
-            width: 120,
-            height: 120,
-            alt: "weather icon",
-            style: { marginBottom: 10 },
-          },
-        },
+        // LEFT SIDE: city + date
         {
           type: "div",
           props: {
             style: {
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              justifyContent: "center",
             },
             children: [
               {
                 type: "div",
                 props: {
                   style: {
-                    display: "block",
-                    fontSize: "48px",
-                    fontWeight: 600,
+                    fontSize: "36px",
+                    fontWeight: 700,
+                    marginBottom: "12px",
                   },
                   children: city,
                 },
@@ -80,14 +76,65 @@ export async function generateImage(data: WeatherData) {
                 type: "div",
                 props: {
                   style: {
-                    display: "block",
-                    fontSize: "36px",
-                    marginTop: "10px",
+                    fontSize: "20px",
+                    opacity: 0.8,
                   },
-                  children: `${temperature}°C — ${weatherMeta.alt}`,
+                  children: date,
                 },
               },
             ],
+          },
+        },
+        // RIGHT SIDE: temperature + icon
+        {
+          type: "div",
+          props: {
+            style: {
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+            },
+            children: [
+              {
+                type: "img",
+                props: {
+                  src: `data:image/png;base64,${iconBuffer}`,
+                  width: 100,
+                  height: 100,
+                  alt: "weather icon",
+                },
+              },
+              {
+                type: "div",
+                props: {
+                  style: {
+                    fontSize: "64px",
+                    fontWeight: 700,
+                  },
+                  children: `${temperature}°C`,
+                },
+              },
+            ],
+          },
+        },
+        // TOP RIGHT BADGE
+        {
+          type: "div",
+          props: {
+            style: {
+              position: "absolute",
+              top: "25px",
+              right: "30px",
+              backgroundColor: "rgba(255,255,255,0.15)",
+              borderRadius: "12px",
+              padding: "8px 14px",
+              fontSize: "18px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              backdropFilter: "blur(5px)",
+            },
+            children: `${weatherMeta.alt} | ${time}`,
           },
         },
       ],
@@ -95,8 +142,8 @@ export async function generateImage(data: WeatherData) {
   };
 
   const svg = await satori(element as React.ReactNode, {
-    width: 800,
-    height: 400,
+    width: 989,
+    height: 366,
     fonts: [
       {
         name: "Inter",

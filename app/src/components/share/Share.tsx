@@ -24,7 +24,7 @@ export default function ShareOnTwitter() {
   } = useUnits();
 
   const {
-    data: { place, temp, wmo },
+    data: { place, temp, wmo, locDate },
   } = useLocation();
 
   const title = useMemo(
@@ -35,8 +35,8 @@ export default function ShareOnTwitter() {
 
   const urlToShare = useMemo(() => {
     const href = window.location.href;
-    return `${href}api/weather-card?name=${encodeURIComponent(place)}&temp=${temp.toFixed()}&wmo=${wmo}`;
-  }, [place, temp, wmo]);
+    return `${href}api/weather-card?name=${encodeURIComponent(place)}&temp=${temp.toFixed()}&wmo=${wmo}&date=${encodeURIComponent(locDate.fullDate)}&time=${encodeURIComponent(locDate.time)}`;
+  }, [place, temp, wmo, locDate.time, locDate.fullDate]);
 
   const handleShareClick = () => setOpen(false);
 

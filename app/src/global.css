@@ -307,10 +307,6 @@ h4 {
   aspect-ratio: 1;
 }
 
-.wd-100 {
-  width: 100%;
-}
-
 .txt-no-wrap {
   text-wrap: nowrap;
 }
@@ -460,4 +456,8 @@ h4 {
     opacity 0.3s ease,
     transform 0.3s ease,
     visibility 0.3s;
+}
+
+.wd-100 {
+  width: 100%;
 }
