@@ -44,14 +44,14 @@ export async function generateImage(data: WeatherData) {
         width: "100%",
         height: "100%",
         background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
-        borderRadius: "24px",
-        padding: "40px 60px",
+        borderRadius: "8px",
+        padding: "16px",
         color: "white",
-        fontFamily: "Inter",
+        fontFamily: "Noto-Sans",
         position: "relative",
       },
       children: [
-        // LEFT SIDE: city + date
+        // Left side — city and date
         {
           type: "div",
           props: {
@@ -65,9 +65,9 @@ export async function generateImage(data: WeatherData) {
                 type: "div",
                 props: {
                   style: {
-                    fontSize: "36px",
+                    fontSize: "16px",
                     fontWeight: 700,
-                    marginBottom: "12px",
+                    marginBottom: "6px",
                   },
                   children: city,
                 },
@@ -76,8 +76,8 @@ export async function generateImage(data: WeatherData) {
                 type: "div",
                 props: {
                   style: {
-                    fontSize: "20px",
-                    opacity: 0.8,
+                    fontSize: "16px",
+                    opacity: 0.85,
                   },
                   children: date,
                 },
@@ -85,22 +85,23 @@ export async function generateImage(data: WeatherData) {
             ],
           },
         },
-        // RIGHT SIDE: temperature + icon
+
+        // Right side — temperature + icon
         {
           type: "div",
           props: {
             style: {
               display: "flex",
               alignItems: "center",
-              gap: "20px",
+              gap: "12px",
             },
             children: [
               {
                 type: "img",
                 props: {
                   src: `data:image/png;base64,${iconBuffer}`,
-                  width: 100,
-                  height: 100,
+                  width: 32,
+                  height: 32,
                   alt: "weather icon",
                 },
               },
@@ -108,8 +109,9 @@ export async function generateImage(data: WeatherData) {
                 type: "div",
                 props: {
                   style: {
-                    fontSize: "64px",
+                    fontSize: "32px",
                     fontWeight: 700,
+                    lineHeight: 1,
                   },
                   children: `${temperature}°C`,
                 },
@@ -117,22 +119,23 @@ export async function generateImage(data: WeatherData) {
             ],
           },
         },
-        // TOP RIGHT BADGE
+
+        // Top-right badge
         {
           type: "div",
           props: {
             style: {
               position: "absolute",
-              top: "25px",
-              right: "30px",
+              top: "14px",
+              right: "18px",
               backgroundColor: "rgba(255,255,255,0.15)",
-              borderRadius: "12px",
-              padding: "8px 14px",
-              fontSize: "18px",
+              borderRadius: "8px",
+              padding: "6px 3px",
+              fontSize: "14px",
               display: "flex",
               alignItems: "center",
-              gap: "6px",
-              backdropFilter: "blur(5px)",
+              gap: "4px",
+              backdropFilter: "blur(4px)",
             },
             children: `${weatherMeta.alt} | ${time}`,
           },
@@ -146,7 +149,7 @@ export async function generateImage(data: WeatherData) {
     height: 266,
     fonts: [
       {
-        name: "Inter",
+        name: "Noto-Sans",
         data: await fs.promises.readFile(
           path.resolve(
             path.join(
