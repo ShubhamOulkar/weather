@@ -40,7 +40,7 @@ export async function generateImage(data: WeatherData) {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        gap: "32px",
         width: "100%",
         height: "100%",
         background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
