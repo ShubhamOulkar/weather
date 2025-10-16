@@ -49,7 +49,7 @@ export async function generateImage(data: WeatherData) {
         gap: "32px",
         width: "100%",
         height: "100%",
-        backGround: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
+        background: "linear-gradient(135deg, #283EFA 0%, #3C00A0 100%)",
         borderRadius: "8px",
         padding: "16px 40px",
         color: "white",
