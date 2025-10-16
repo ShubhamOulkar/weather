@@ -30,7 +30,7 @@ export async function generateImage(data: WeatherData) {
   );
 
   const backGround = path.resolve(
-    path.join(__dirname, "../../public/bg-toady-small.svg"),
+    path.join(__dirname, "../../public/bg-today-small.svg"),
   );
 
   const backgroundBuffer = (await sharp(backGround).png().toBuffer()).toString(
