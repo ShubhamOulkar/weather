@@ -5,21 +5,21 @@ import {
   useEffect,
   useState,
 } from "react";
-import IconError from "../../assets/images/icon-error.svg?react";
-import IconLocation from "../../assets/images/icon-location.svg?react";
-import IconSearch from "../../assets/images/icon-search.svg?react";
-import { useLocation } from "../../context/location/Location";
-import { useToast } from "../../context/toast/ToastContext";
-import { useDismissalOutside } from "../../hooks/useDismissalOutside/useDismissalOutside";
-import { useGpsLocation } from "../../hooks/useGpsLocation/useGpsLocation";
-import { useLiveSearch } from "../../hooks/useLiveSearch/useLiveSearch";
-import { useToggle } from "../../hooks/useToggle/useToggle";
-import type { Cooradinates } from "../../types/types";
-import cnr from "../../utils/class_resolver/cnr";
-import { SearchSchema } from "../../validation/searchValidation";
+import IconError from "@/assets/images/icon-error.svg?react";
+import IconLocation from "@/assets/images/icon-location.svg?react";
+import IconSearch from "@/assets/images/icon-search.svg?react";
+import { useLocation } from "@/context/location/Location";
+import { useToast } from "@/context/toast/ToastContext";
+import { useDismissalOutside } from "@/hooks/useDismissalOutside/useDismissalOutside";
+import { useGpsLocation } from "@/hooks/useGpsLocation/useGpsLocation";
+import { useLiveSearch } from "@/hooks/useLiveSearch/useLiveSearch";
+import { useToggle } from "@/hooks/useToggle/useToggle";
+import type { Cooradinates } from "@/types/types";
+import cnr from "@/utils/class_resolver/cnr";
+import { SearchSchema } from "@/validation/searchValidation";
 import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic";
 import DropdownSearch from "../dropdowns/search/DropdownSearch";
-import ShareOnTwitter from "../share/Share";
+import Share from "../share/Share";
 import styles from "./Search.module.css";
 
 export default function SearchForm() {
@@ -195,11 +195,11 @@ export default function SearchForm() {
             type="button"
             className="btn flex flexcenter"
             onClick={handlerGpsLocation}
-            title="use my location"
+            title="use gps location"
           >
-            <IconLocation /> GPS
+            <IconLocation />
           </button>
-          <ShareOnTwitter />
+          <Share />
         </div>
       </form>
     </search>

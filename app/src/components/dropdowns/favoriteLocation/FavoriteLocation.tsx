@@ -56,7 +56,7 @@ export default function FavoriteLocationDropdown() {
         aria-expanded={open}
         aria-controls="favoriteDropdown"
         aria-label={`Favorite Locations. Currently ${favoriteCount} saved.`}
-        className={cnr("flex", "flexcenter", style.tool_fav_btn)}
+        className="flex flexcenter share_fav_btn"
         type="button"
         ref={userRef}
         onClick={toggle}
