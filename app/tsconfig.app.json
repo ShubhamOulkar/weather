@@ -27,5 +27,5 @@
     }
   },
   "include": ["src", "src/types"],
-  "exclude": ["node_modules", "dist", "coverage", "html"]
+  "exclude": ["node_modules", "dist", "coverage", "html", "src/middleware"]
 }
