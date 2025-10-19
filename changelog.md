@@ -1,3 +1,5 @@
+- 19-10-2025: feat: Share weather data on any social platform
+
 - 06-10-2025 : feat : native useSpeechRecognitionNative hook [PR#16](https://github.com/ShubhamOulkar/weather/pull/16)
 
 - 05-10-2025 : feat + testing [PR#13](https://github.com/ShubhamOulkar/weather/pull/13)
