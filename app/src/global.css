@@ -192,85 +192,6 @@ h4 {
   font-weight: 400;
 }
 
-/* global classes */
-.sr_only {
-  display: none;
-}
-
-.hidden {
-  opacity: 0;
-  transform: translateY(-10px);
-  visibility: hidden;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-bet {
-  justify-content: space-between;
-}
-
-.flexcol {
-  display: flex;
-  flex-direction: column;
-}
-
-.flexcenter {
-  justify-content: center;
-  align-items: center;
-}
-
-.align-items-center {
-  align-items: center;
-}
-
-.margin-block-auto {
-  margin-block: auto;
-}
-
-.gap-0_3 {
-  gap: 0.3rem;
-}
-
-.gap-1rem {
-  gap: 1rem;
-}
-
-.gap-2rem {
-  gap: 2rem;
-}
-
-.gap-4rem {
-  gap: 4rem;
-}
-
-.pad-0 {
-  padding: 0;
-}
-
-.left-0 {
-  left: 0;
-}
-
-.right-0 {
-  right: 0;
-}
-
-.margin-top {
-  margin-top: 1rem;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
 .flex_container {
   display: flex;
   flex-direction: column;
@@ -305,10 +226,6 @@ h4 {
 .icon-3rem {
   width: 3rem;
   aspect-ratio: 1;
-}
-
-.wd-100 {
-  width: 100%;
 }
 
 .txt-no-wrap {
@@ -445,6 +362,32 @@ h4 {
   }
 }
 
+/* share and favorite btn */
+.share_fav_btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s ease-in-out;
+
+  > svg {
+    width: 2.2rem;
+    aspect-ratio: 1;
+  }
+
+  &:is(:hover, :focus) {
+    fill: var(--neutral-0);
+    background-color: var(--btn-color-bg);
+  }
+
+  &:focus {
+    outline: var(--focus-outline);
+    outline-offset: var(--btn-outline-offset);
+  }
+}
+
 /* dropdowns */
 .dropdown {
   background-color: var(--btn-color-bg);
@@ -460,4 +403,99 @@ h4 {
     opacity 0.3s ease,
     transform 0.3s ease,
     visibility 0.3s;
+}
+
+/* global classes */
+.sr_only {
+  display: none;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-bet {
+  justify-content: space-between;
+}
+
+.flexcol {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexcenter {
+  justify-content: center;
+  align-items: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.margin-block-auto {
+  margin-block: auto;
+}
+
+.gap-0_3 {
+  gap: 0.3rem;
+}
+
+.gap-1rem {
+  gap: 1rem;
+}
+
+.gap-2rem {
+  gap: 2rem;
+}
+
+.gap-4rem {
+  gap: 4rem;
+}
+
+.pad-0 {
+  padding: 0;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.right-80 {
+  right: -80%;
+
+  @media screen and (max-width: 900px) {
+    right: 0;
+  }
+}
+
+.left-50 {
+  left: -50%;
+}
+
+.margin-top {
+  margin-top: 1rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.wd-100 {
+  width: 100%;
 }

@@ -128,7 +128,9 @@ Key Features:
   > Note: Keep separate for learning purpose. And I am still learning and experimenting with react API `renderToPipeableStream()`.
 
 ### Testing
-  Vitest for the test runner and React Testing Library (RTL) to ensure the hook functions correctly from a user's perspective. [Get test coverage on codecov.io](https://app.codecov.io/gh/ShubhamOulkar/weather/tree/new-feature)
+  - **Unit Test :** Written using Vitest and React Testing Library to validate core utility functions and reusable hooks.
+  - **Integration Test :** Focused on user behavior and component interactions. Most of the components are are covered through integration testing.
+  - [Test coverage is tracked continuously on codecov.io](https://app.codecov.io/gh/ShubhamOulkar/weather/tree/new-feature)
 
 ### What I Learned
 - Efficient data fetching and caching using React Query.  

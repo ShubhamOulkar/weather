@@ -2,31 +2,6 @@
   position: relative;
 }
 
-.tool_fav_btn {
-  position: relative;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: var(--border-radius);
-  transition: background-color 0.2s ease-in-out;
-
-  > svg {
-    width: 2.2rem;
-    aspect-ratio: 1;
-  }
-
-  &:is(:hover, :focus) {
-    fill: var(--neutral-0);
-    background-color: var(--btn-color-bg);
-  }
-
-  &:focus {
-    outline: var(--focus-outline);
-    outline-offset: var(--btn-outline-offset);
-  }
-}
-
 .fav_count_badge {
   position: absolute;
   top: 10%;
