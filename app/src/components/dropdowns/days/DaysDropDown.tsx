@@ -1,9 +1,10 @@
 import type { Dispatch, SetStateAction } from "react";
-import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismissalOutside";
-import { useToggle } from "../../../hooks/useToggle/useToggle";
-import cnr from "../../../utils/class_resolver/cnr";
-import Button from "../../common/button/Button";
-import DropBtn from "../../common/dropButton/DropBtn";
+import { Activity } from "react";
+import Button from "@/components/common/button/Button";
+import DropBtn from "@/components/common/dropButton/DropBtn";
+import { useDismissalOutside } from "@/hooks/useDismissalOutside/useDismissalOutside";
+import { useToggle } from "@/hooks/useToggle/useToggle";
+import cnr from "@/utils/class_resolver/cnr";
 import styles from "./DaysDropDown.module.css";
 
 interface DaysDropDown {
@@ -17,7 +18,7 @@ export default function DaysDropDown({
   today,
   setToday,
 }: DaysDropDown) {
-  const { open, setOpen, toggle } = useToggle();
+  const { open, setOpen, toggle, activityMode } = useToggle();
 
   const { nodeRef, userRef } = useDismissalOutside<
     HTMLDivElement,
@@ -40,26 +41,28 @@ export default function DaysDropDown({
         styleType="day"
       />
 
-      <div
-        ref={nodeRef}
-        id="daysList"
-        role="listbox"
-        className={cnr(open ? "show" : "hidden", "dropdown", "right-0")}
-        aria-hidden={!open}
-        aria-live="polite"
-      >
-        <ul className="pad-0">
-          {weekDays.map((d, i) => (
-            <li key={d}>
-              <DropBtn
-                btnTitle={d}
-                onClick={() => setToday(i)}
-                showCheck={today === i}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Activity mode={activityMode}>
+        <div
+          ref={nodeRef}
+          id="daysList"
+          role="listbox"
+          className="dropdown right-0"
+          aria-hidden={!open}
+          aria-live="polite"
+        >
+          <ul className="pad-0">
+            {weekDays.map((d, i) => (
+              <li key={d}>
+                <DropBtn
+                  btnTitle={d}
+                  onClick={() => setToday(i)}
+                  showCheck={today === i}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Activity>
     </div>
   );
 }

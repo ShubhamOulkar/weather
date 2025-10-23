@@ -1,16 +1,17 @@
-import IconDelete from "../../../assets/images/icon-delete.svg?react";
-import IconFavorite from "../../../assets/images/icon-favorite.svg?react";
-import { useFavorites } from "../../../context/favoritesLocation/FavoritesContext";
-import { useLocation } from "../../../context/location/Location";
-import { useDismissalOutside } from "../../../hooks/useDismissalOutside/useDismissalOutside";
-import { useToggle } from "../../../hooks/useToggle/useToggle";
-import type { FavoriteLocation } from "../../../types/types";
-import cnr from "../../../utils/class_resolver/cnr";
-import DropBtn from "../../common/dropButton/DropBtn";
+import { Activity } from "react";
+import IconDelete from "@/assets/images/icon-delete.svg?react";
+import IconFavorite from "@/assets/images/icon-favorite.svg?react";
+import DropBtn from "@/components/common/dropButton/DropBtn";
+import { useFavorites } from "@/context/favoritesLocation/FavoritesContext";
+import { useLocation } from "@/context/location/Location";
+import { useDismissalOutside } from "@/hooks/useDismissalOutside/useDismissalOutside";
+import { useToggle } from "@/hooks/useToggle/useToggle";
+import type { FavoriteLocation } from "@/types/types";
+import cnr from "@/utils/class_resolver/cnr";
 import style from "./FavoriteLocation.module.css";
 
 export default function FavoriteLocationDropdown() {
-  const { open, setOpen, toggle } = useToggle();
+  const { open, setOpen, toggle, activityMode } = useToggle();
   const { favorites, removeFavorite } = useFavorites();
   const { data: currentLocation, setLocation } = useLocation();
 
@@ -37,8 +38,8 @@ export default function FavoriteLocationDropdown() {
     removeFavorite(lat, lon);
   };
 
-  const hasFavorites = favorites.length > 0;
   const favoriteCount = favorites.length;
+  const hasFavorites = favoriteCount > 0;
 
   const isLocationSelected = (loc: FavoriteLocation) => {
     return (
@@ -71,49 +72,50 @@ export default function FavoriteLocationDropdown() {
           {favoriteCount}
         </span>
       </button>
-
-      <div
-        id="favoriteDropdown"
-        role="listbox"
-        aria-label="list of places"
-        aria-hidden={!open}
-        aria-live="polite"
-        className={cnr(open ? "show" : "hidden", style.fav_loc_drop)}
-        ref={nodeRef}
-      >
-        <ul>
-          {hasFavorites ? (
-            favorites.map((loc) => (
-              <li
-                key={`${loc.lat}-${loc.lon}`}
-                role="option"
-                className="flex"
-                onClick={() => handleSelectFavorite(loc)}
-              >
-                <DropBtn
-                  btnTitle={loc.name}
+      <Activity mode={activityMode}>
+        <div
+          id="favoriteDropdown"
+          role="listbox"
+          aria-label="list of places"
+          aria-hidden={!open}
+          aria-live="polite"
+          className={style.fav_loc_drop}
+          ref={nodeRef}
+        >
+          <ul>
+            {hasFavorites ? (
+              favorites.map((loc) => (
+                <li
+                  key={`${loc.lat}-${loc.lon}`}
+                  role="option"
+                  className="flex"
                   onClick={() => handleSelectFavorite(loc)}
-                  showCheck={isLocationSelected(loc)}
-                  classname={style.favorite_dropdown_btn}
-                />
-                <button
-                  type="button"
-                  title={`Remove ${loc.name} from favorites`}
-                  aria-label={`Remove ${loc.name} from favorites`}
-                  className={style.remove_btn}
-                  onClick={(e) => handleRemoveFavorite(e, loc.lat, loc.lon)}
                 >
-                  <IconDelete />
-                </button>
+                  <DropBtn
+                    btnTitle={loc.name}
+                    onClick={() => handleSelectFavorite(loc)}
+                    showCheck={isLocationSelected(loc)}
+                    classname={style.favorite_dropdown_btn}
+                  />
+                  <button
+                    type="button"
+                    title={`Remove ${loc.name} from favorites`}
+                    aria-label={`Remove ${loc.name} from favorites`}
+                    className={style.remove_btn}
+                    onClick={(e) => handleRemoveFavorite(e, loc.lat, loc.lon)}
+                  >
+                    <IconDelete />
+                  </button>
+                </li>
+              ))
+            ) : (
+              <li role="status" className={style.empty_msg}>
+                No favorites saved.
               </li>
-            ))
-          ) : (
-            <li role="status" className={style.empty_msg}>
-              No favorites saved.
-            </li>
-          )}
-        </ul>
-      </div>
+            )}
+          </ul>
+        </div>
+      </Activity>
     </div>
   );
 }

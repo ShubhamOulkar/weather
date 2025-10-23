@@ -1,10 +1,10 @@
-import { useLocation } from "../../../context/location/Location";
-import { useUnits } from "../../../context/unitsSystem/UnitsSystem";
-import { useDailyData } from "../../../hooks/useDailyData/useDailyData";
-import cnr from "../../../utils/class_resolver/cnr";
-import { getLocalDate } from "../../../utils/local_date/getLocalDate";
-import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper";
-import WeatherIcon from "../../common/WeatherIcon/WeatherIcon";
+import LoaderWrapper from "@/components/common/LoderWrapper/LoaderWrapper";
+import WeatherIcon from "@/components/common/WeatherIcon/WeatherIcon";
+import { useLocation } from "@/context/location/Location";
+import { useUnits } from "@/context/unitsSystem/UnitsSystem";
+import { useDailyData } from "@/hooks/useDailyData/useDailyData";
+import cnr from "@/utils/class_resolver/cnr";
+import { getLocalDate } from "@/utils/local_date/getLocalDate";
 import styles from "./ForcastCards.module.css";
 
 export default function DailyForcastCards() {
