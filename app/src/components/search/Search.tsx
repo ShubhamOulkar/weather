@@ -52,6 +52,7 @@ export default function SearchForm() {
     },
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: handleCoordChange is a stable useEffectEvent
   useEffect(() => {
     handleCoordChange(coord);
   }, [coord]);
@@ -60,6 +61,7 @@ export default function SearchForm() {
     if (err) addToast(err);
   });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: showGpsError is a stable useEffectEvent
   useEffect(() => {
     showGpsError(gpsErr);
   }, [gpsErr]);
