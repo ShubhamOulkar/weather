@@ -1,5 +1,6 @@
-import IconCheck from "../../../assets/images/icon-checkmark.svg?react";
-import cnr from "../../../utils/class_resolver/cnr";
+import { Activity } from "react";
+import IconCheck from "@/assets/images/icon-checkmark.svg?react";
+import cnr from "@/utils/class_resolver/cnr";
 import styles from "./DropBtn.module.css";
 
 interface DropBtnProps {
@@ -22,7 +23,9 @@ export default function DropBtn({
       onClick={onClick}
     >
       {btnTitle}
-      <IconCheck className={showCheck ? "show" : "hidden"} />
+      <Activity mode={showCheck ? "visible" : "hidden"}>
+        <IconCheck />
+      </Activity>
     </button>
   );
 }

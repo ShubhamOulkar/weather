@@ -409,7 +409,9 @@ h4 {
 .sr_only {
   display: none;
 }
-
+/* 
+This is not required brcause of activity component
+TODO: apply transform on activity
 .hidden {
   opacity: 0;
   transform: translateY(-10px);
@@ -420,7 +422,7 @@ h4 {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
-}
+} */
 
 .flex {
   display: flex;
