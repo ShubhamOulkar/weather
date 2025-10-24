@@ -1,4 +1,5 @@
 import styles from "./App.module.css";
+import Chat from "./components/chat/chat";
 import Dashboard from "./components/dashboard/Dashboard";
 import SearchForm from "./components/search/Search";
 import Title from "./components/title/Title";
@@ -15,6 +16,9 @@ function App() {
           <SearchForm />
         </div>
         <Dashboard />
+      </section>
+      <section>
+        <Chat />
       </section>
     </AllProvider>
   );

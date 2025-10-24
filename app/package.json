@@ -25,7 +25,10 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.53",
+    "@ai-sdk/react": "^2.0.78",
     "@tanstack/react-query": "^5.90.5",
+    "ai": "^5.0.78",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-share": "^5.2.2",
