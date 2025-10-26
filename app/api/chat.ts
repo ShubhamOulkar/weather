@@ -2,7 +2,7 @@ import { openai } from "@ai-sdk/openai";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
     return;
@@ -21,6 +21,10 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
         console.log("Stream finished:", { finishReason, usage });
       },
     });
+
+    for await (const textPart of result.textStream) {
+      console.log(textPart);
+    }
 
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache, no-transform");
