@@ -19,5 +19,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.log(textPart);
   }
 
-  result.pipeTextStreamToResponse(res);
+  result.pipeUIMessageStreamToResponse(res);
 }
