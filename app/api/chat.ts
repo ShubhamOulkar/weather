@@ -11,19 +11,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const { messages } = req.body as { messages: UIMessage[] };
 
-    console.log(messages);
-
     const result = streamText({
       model: openai("gpt-4o"),
       messages: convertToModelMessages(messages),
     });
 
-    res.setHeader("Content-Type", "text/event-stream");
-    let fullResponse = "";
-    for await (const delta of result.textStream) {
-      fullResponse += delta;
-    }
-    res.json({ role: "assistant", content: fullResponse });
+    console.log(messages);
   } catch (err: any) {
     console.error(err);
     res
