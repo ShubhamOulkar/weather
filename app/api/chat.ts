@@ -15,5 +15,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     messages: convertToModelMessages(messages),
   });
 
-  return result.toUIMessageStreamResponse();
+  result.pipeTextStreamToResponse(res);
 }
