@@ -16,7 +16,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       messages: convertToModelMessages(messages),
     });
 
-    console.log(result);
+    console.log(result.textStream);
   } catch (err: any) {
     console.error(err);
     res
