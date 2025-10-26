@@ -8,34 +8,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  try {
-    const { messages } = req.body as { messages: UIMessage[] };
+  const { messages } = req.body as { messages: UIMessage[] };
 
-    const result = streamText({
-      model: openai("gpt-4o"),
-      messages: convertToModelMessages(messages),
-      onError({ error }) {
-        console.error("Streaming error:", error);
-      },
-      onFinish({ text, usage, finishReason }) {
-        console.log("Stream finished:", { finishReason, usage });
-      },
-    });
+  const result = streamText({
+    model: openai("gpt-4o"),
+    messages: convertToModelMessages(messages),
+  });
 
-    for await (const textPart of result.textStream) {
-      console.log(textPart);
-    }
-
-    res.setHeader("Content-Type", "text/event-stream");
-    res.setHeader("Cache-Control", "no-cache, no-transform");
-    res.setHeader("Connection", "keep-alive");
-
-    result.pipeUIMessageStreamToResponse(res);
-  } catch (err: any) {
-    console.error("Handler error:", err);
-    res.status(500).json({
-      error: "Internal Server Error",
-      details: err.message,
-    });
-  }
+  return result.toUIMessageStreamResponse();
 }
