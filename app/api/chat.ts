@@ -1,8 +1,8 @@
 import { openai } from "@ai-sdk/openai";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { convertToModelMessages, streamText, UIMessage } from "ai";
+import { convertToModelMessages, streamText, type UIMessage } from "ai";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
     return;
@@ -14,13 +14,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const result = streamText({
       model: openai("gpt-4o"),
       messages: convertToModelMessages(messages),
+      onError({ error }) {
+        console.error("Streaming error:", error);
+      },
+      onFinish({ text, usage, finishReason }) {
+        console.log("Stream finished:", { finishReason, usage });
+      },
     });
 
-    console.log(result.textStream);
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache, no-transform");
+    res.setHeader("Connection", "keep-alive");
+
+    result.pipeUIMessageStreamToResponse(res);
   } catch (err: any) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ error: "Internal Server Error", details: err.message });
+    console.error("Handler error:", err);
+    res.status(500).json({
+      error: "Internal Server Error",
+      details: err.message,
+    });
   }
 }
