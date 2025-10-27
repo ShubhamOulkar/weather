@@ -270,7 +270,7 @@ h4 {
 
 .loader-xs {
   width: 2rem;
-  height: 1rem;
+  aspect-ratio: 1;
 }
 
 /* Animations */
