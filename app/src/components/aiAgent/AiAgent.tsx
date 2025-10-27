@@ -1,5 +1,5 @@
 import { useChat } from "@ai-sdk/react";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useEffect, useState } from "react";
 import { useLocation } from "@/context/location/Location";
 import styles from "./AiAgent.module.css";
 
@@ -7,6 +7,10 @@ export default function AiAgent() {
   const { messages, sendMessage } = useChat();
   const { data } = useLocation();
   const [input, setInput] = useState(`Compare ${data.place} and `);
+
+  useEffect(() => {
+    setInput(`Compare ${data.place} and `);
+  }, [data.place]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -69,7 +73,6 @@ export default function AiAgent() {
           <input
             type="text"
             value={input}
-            placeholder="e.g., Compare Bangkok and Sydney"
             onChange={(e) => setInput(e.currentTarget.value)}
             className={styles.inputField}
             autoFocus
