@@ -1,0 +1,144 @@
+/* ---------------------------------- */
+/* Global Container and Layout        */
+/* ---------------------------------- */
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  max-height: 50vh;
+  background-color: inherit;
+  position: relative;
+}
+
+.messageList {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 16px 24px 80px 24px; /* Padding, including space for the fixed input area */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------------------------------- */
+/* Message Wrapping and Alignment     */
+/* ---------------------------------- */
+
+.messageWrapper {
+  display: flex;
+}
+
+.userWrapper {
+  justify-content: flex-end; /* Align user messages to the right */
+}
+
+.assistantWrapper {
+  justify-content: flex-start; /* Align AI messages to the left */
+}
+
+/* ---------------------------------- */
+/* Message Bubbles                    */
+/* ---------------------------------- */
+
+.messageBubble {
+  max-width: 70%; /* Limit bubble width */
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
+}
+
+.messageText {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap; /* Handles line breaks and markdown */
+}
+
+/* User Bubble Styles (Blue) */
+.userMessage {
+  background-color: #3b82f6; /* Blue-600 */
+  color: white;
+  border-radius: 12px 12px 0 12px; /* Rounded top-left, top-right, and bottom-left */
+}
+
+.userHeader {
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #93c5fd; /* Blue-300 */
+}
+
+/* Assistant Bubble Styles (Gray) */
+.assistantMessage {
+  background-color: #ffffff; /* White/Light Gray-100 */
+  color: #1f2937; /* Gray-800 */
+  border: 1px solid #e5e7eb; /* Light border */
+  border-radius: 12px 12px 12px 0; /* Rounded top-left, top-right, and bottom-right */
+}
+
+.assistantHeader {
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #6b7280; /* Gray-500 */
+}
+
+/* ---------------------------------- */
+/* Input Form Area                    */
+/* ---------------------------------- */
+
+.inputArea {
+  padding: 16px;
+  background-color: inherit;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.inputForm {
+  display: flex;
+  max-width: 672px; /* max-w-2xl */
+  margin: 0 auto;
+}
+
+.inputField {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #d1d5db; /* Gray-300 */
+  border-radius: 8px 0 0 8px; /* Rounded left side */
+  font-size: 16px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #3b82f6; /* Blue-600 */
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.sendButton {
+  padding: 12px 24px;
+  background-color: #3b82f6; /* Blue-600 */
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 0 8px 8px 0; /* Rounded right side */
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sendButton:hover {
+  background-color: #2563eb; /* Blue-700 */
+}
+
+.sendButton:disabled {
+  background-color: #9ca3af; /* Gray-400 */
+  cursor: not-allowed;
+}
+
+/* Media Query for larger screens (e.g., md:p-6) */
+@media (min-width: 768px) {
+  .messageList {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

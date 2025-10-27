@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import Chat from "./components/chat/chat";
+import AiAgent from "./components/aiAgent/AiAgent";
 import Dashboard from "./components/dashboard/Dashboard";
 import SearchForm from "./components/search/Search";
 import Title from "./components/title/Title";
@@ -18,7 +18,7 @@ function App() {
         <Dashboard />
       </section>
       <section>
-        <Chat />
+        <AiAgent />
       </section>
     </AllProvider>
   );
