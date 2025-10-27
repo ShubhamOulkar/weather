@@ -31,6 +31,7 @@ export default function Chat() {
           placeholder="Say something..."
           onChange={(e) => setInput(e.currentTarget.value)}
         />
+        <button type="submit">send</button>
       </form>
     </div>
   );

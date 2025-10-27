@@ -13,11 +13,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const result = streamText({
     model: google("gemini-2.5-flash"),
     messages: convertToModelMessages(messages),
+    providerOptions: {
+      google: {
+        thinkingConfig: {
+          thinkingBudget: -1, //Turn on dynamic thinking
+        },
+      },
+    },
+    tools: {
+      google_search: google.tools.googleSearch({}),
+    },
   });
-
-  for await (const textPart of result.textStream) {
-    console.log(textPart);
-  }
 
   result.pipeUIMessageStreamToResponse(res);
 }
