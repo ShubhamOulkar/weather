@@ -34,6 +34,7 @@ You are a professional Weather and Travel Health Advisor. Your primary goal is t
 }
 `;
 
+// biome-ignore lint/suspicious/useAwait: This async function is required for API handler compatibility
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
@@ -62,10 +63,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         google_search: google.tools.googleSearch({}),
       },
     });
-
-    console.log(result);
-
-    res.setHeader("Content-Type", "application/json");
 
     result.pipeUIMessageStreamToResponse(res);
   } catch (error) {

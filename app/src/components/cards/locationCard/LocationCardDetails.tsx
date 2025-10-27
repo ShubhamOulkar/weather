@@ -1,11 +1,11 @@
-import IconUpdate from "../../../assets/images/icon-update.svg?react";
-import { useLocation } from "../../../context/location/Location";
-import { useUnits } from "../../../context/unitsSystem/UnitsSystem";
-import cnr from "../../../utils/class_resolver/cnr";
-import { getWeatherIcon } from "../../../utils/getWeatherIcon/getWeatherIcon";
-import FavoritesBtn from "../../common/favoriteBtn/FavoriteBtn";
-import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper";
-import WeatherIcon from "../../common/WeatherIcon/WeatherIcon";
+import IconUpdate from "@/assets/images/icon-update.svg?react";
+import FavoritesBtn from "@/components/common/favoriteBtn/FavoriteBtn";
+import LoaderWrapper from "@/components/common/LoderWrapper/LoaderWrapper";
+import WeatherIcon from "@/components/common/WeatherIcon/WeatherIcon";
+import { useLocation } from "@/context/location/Location";
+import { useUnits } from "@/context/unitsSystem/UnitsSystem";
+import cnr from "@/utils/class_resolver/cnr";
+import { getWeatherIcon } from "@/utils/getWeatherIcon/getWeatherIcon";
 import styles from "./LocationCard.module.css";
 
 export default function LocationCardDetails() {
