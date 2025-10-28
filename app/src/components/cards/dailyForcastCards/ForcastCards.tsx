@@ -26,7 +26,10 @@ export default function DailyForcastCards() {
     return str.replace("C", "");
   };
   return (
-    <div className={cnr("grid_container", styles.forcast_container)}>
+    <div
+      role="grid"
+      className={cnr("grid_container", styles.forcast_container)}
+    >
       {days.map((d, i) => {
         const weekday = dailyData
           ? getLocalDate(d, { weekday: "short" }).weekday

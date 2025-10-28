@@ -34,7 +34,7 @@
 .chatContainer {
   width: 100%;
   height: fit-content;
-  max-height: 50vh;
+  max-height: 65vh;
   border-radius: var(--border-radius);
   padding: 0.3rem;
   gap: 0.5rem;
@@ -109,4 +109,10 @@
   width: 2.5rem;
   height: 2.5rem;
   margin-right: 0.2rem;
+}
+
+@media screen and (max-width: 400px) {
+  .agent {
+    width: fit-content;
+  }
 }

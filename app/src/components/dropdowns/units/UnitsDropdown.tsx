@@ -56,6 +56,7 @@ export default function UnitsDropdown() {
           id="unitsList"
           role="listbox"
           className="dropdown right-0"
+          aria-label="change weather units"
           aria-hidden={!open}
           aria-live="polite"
         >

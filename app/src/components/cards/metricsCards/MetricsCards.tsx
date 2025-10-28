@@ -14,7 +14,10 @@ export default function MetricsCards() {
   const isError = isIpError || isWeatherError;
 
   return (
-    <div className={cnr("grid_container", styles.metrics_container)}>
+    <div
+      role="gridcell"
+      className={cnr("grid_container", styles.metrics_container)}
+    >
       <CommonMetric
         heading={data.metrics[0].key}
         value={getTemp(data.metrics[0].value)}

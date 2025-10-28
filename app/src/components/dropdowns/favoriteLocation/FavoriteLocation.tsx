@@ -76,7 +76,7 @@ export default function FavoriteLocationDropdown() {
         <div
           id="favoriteDropdown"
           role="listbox"
-          aria-label="list of places"
+          aria-label="list of favorite places"
           aria-hidden={!open}
           aria-live="polite"
           className={style.fav_loc_drop}
@@ -89,7 +89,6 @@ export default function FavoriteLocationDropdown() {
                   key={`${loc.lat}-${loc.lon}`}
                   role="option"
                   className="flex"
-                  onClick={() => handleSelectFavorite(loc)}
                 >
                   <DropBtn
                     btnTitle={loc.name}
