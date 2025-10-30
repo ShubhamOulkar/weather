@@ -4,7 +4,7 @@ import LoaderWrapper from "@/components/common/LoderWrapper/LoaderWrapper";
 import { useLocation } from "@/context/location/Location";
 import { useToast } from "@/context/toast/ToastContext";
 import cnr from "@/utils/class_resolver/cnr";
-import styles from "./IpLookUp.module.css"
+import styles from "./IpLookUp.module.css";
 
 export default function IpLookUp() {
   const { data, ipData, ipLoading, isIpError } = useLocation();
