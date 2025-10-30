@@ -1,9 +1,9 @@
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
-import { useLocation } from "../../../context/location/Location";
-import { useUnits } from "../../../context/unitsSystem/UnitsSystem";
-import cnr from "../../../utils/class_resolver/cnr";
-import ErrorCard from "../../common/errors/card/ErrorCard";
-import { ErrorBoundary } from "../../common/errors/ErrorBoundary/ErrorBoundary";
+import ErrorCard from "@/components/common/errors/card/ErrorCard";
+import { ErrorBoundary } from "@/components/common/errors/ErrorBoundary/ErrorBoundary";
+import { useLocation } from "@/context/location/Location";
+import { useUnits } from "@/context/unitsSystem/UnitsSystem";
+import cnr from "@/utils/class_resolver/cnr";
 import AQICard from "./cards/AQI";
 import CommonMetric from "./cards/Comman";
 import styles from "./MetricsCard.module.css";

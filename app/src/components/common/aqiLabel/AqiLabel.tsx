@@ -1,4 +1,4 @@
-import cnr from "../../../utils/class_resolver/cnr";
+import cnr from "@/utils/class_resolver/cnr";
 import styles from "./AqiLabel.module.css";
 
 interface AQIProp {

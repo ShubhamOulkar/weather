@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ReactNode } from "react";
-import { FavoritesProvider } from "../context/favoritesLocation/FavoritesContext.tsx";
-import { LocationProvider } from "../context/location/Location.tsx";
-import { ToastProvider } from "../context/toast/ToastContext.tsx";
-import { UnitsProvider } from "../context/unitsSystem/UnitsSystem.tsx";
+import { FavoritesProvider } from "@/context/favoritesLocation/FavoritesContext.tsx";
+import { LocationProvider } from "@/context/location/Location.tsx";
+import { ToastProvider } from "@/context/toast/ToastContext.tsx";
+import { UnitsProvider } from "@/context/unitsSystem/UnitsSystem.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {

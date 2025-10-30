@@ -25,10 +25,12 @@ export async function fetchCurrentAqi({
   };
 
   try {
-    // retries is 0 because tanstack query do that
+    // retries is 0 because tanstack query also do retries. I set to 3 for production and false for testing environment.
     const responses = await fetchWeatherApi(url, params, 0, 1000, 2000, {
       method: "GET",
     });
+
+    console.log(responses);
 
     if (!responses || responses.length === 0) {
       throw new Error("OpenMeteo API returned an empty AQI response array.");

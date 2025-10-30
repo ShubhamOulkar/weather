@@ -1,6 +1,6 @@
-import cnr from "../../../../utils/class_resolver/cnr";
-import ErrorCard from "../../../common/errors/card/ErrorCard";
-import LoaderWrapper from "../../../common/LoderWrapper/LoaderWrapper";
+import ErrorCard from "@/components/common/errors/card/ErrorCard";
+import LoaderWrapper from "@/components/common/LoderWrapper/LoaderWrapper";
+import cnr from "@/utils/class_resolver/cnr";
 
 interface CommonMetricProps {
   classname: string;

@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 
-// Mock localStorage for all tests
+// Mock localStorage
 Object.defineProperty(global, "localStorage", {
   value: {
     getItem: vi.fn(),
