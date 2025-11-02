@@ -1,4 +1,10 @@
-import { createContext, type ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useIpLookUp } from "../../hooks/useIpLookUp/useIpLookUp";
 import useLocationWeather from "../../hooks/useLocationWeather/useLocationWeather";
 import type { LocationInput, LookUpReturn } from "../../types/types";
@@ -32,12 +38,14 @@ export function LocationProvider({ children }: { children: ReactNode }) {
     error: ipError,
   } = useIpLookUp();
 
-  if (isIpError && ipError) {
-    logger.error("IP lookup failed", {
-      context: "LocationProvider",
-      error: ipError,
-    });
-  }
+  useEffect(() => {
+    if (isIpError && ipError) {
+      logger.error("IP lookup failed", {
+        context: "LocationProvider",
+        error: ipError,
+      });
+    }
+  }, [isIpError, ipError]);
 
   // centralise weather data
   const {
@@ -48,12 +56,14 @@ export function LocationProvider({ children }: { children: ReactNode }) {
     refetch,
   } = useLocationWeather(location, ipData);
 
-  if (isWeatherError && weatherError) {
-    logger.error("Weather fetch failed", {
-      context: "LocationProvider",
-      error: weatherError,
-    });
-  }
+  useEffect(() => {
+    if (isWeatherError && weatherError) {
+      logger.error("Weather fetch failed", {
+        context: "LocationProvider",
+        error: weatherError,
+      });
+    }
+  }, [isWeatherError, weatherError]);
 
   const provideValue = {
     location,

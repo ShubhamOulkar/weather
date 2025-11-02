@@ -6,7 +6,7 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: "jsdom",
-      setupFiles: ["./vitest.setup.ts", "./msw.setup.ts"],
+      setupFiles: ["./vitest.setup.ts"],
       globals: true,
       coverage: {
         provider: "v8",

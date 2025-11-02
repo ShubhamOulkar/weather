@@ -26,6 +26,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "src/types", "vite-env.d.ts"],
+  "include": ["src", "src/types", "src/vite-env.d.ts"],
   "exclude": ["node_modules", "dist", "coverage", "html", "src/middleware"]
 }

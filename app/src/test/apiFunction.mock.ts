@@ -1,16 +1,8 @@
-import { vi } from "vitest";
 import { getLocalDate } from "@/utils/local_date/getLocalDate";
 
-export const mockFetchCurrentAqi = vi.fn();
-export const mockFetchCurrentWeatherData = vi.fn();
-
-vi.mock("@/utils/apis/fetchCurrentAqi/fetchCurrentAqi", () => ({
-  fetchCurrentAqi: mockFetchCurrentAqi,
-}));
-
-vi.mock("@/utils/apis/fetchCurrentWeatherData/fetchCurrentWeatherData", () => ({
-  fetchCurrentWeatherData: mockFetchCurrentWeatherData,
-}));
+const mockFetchCurrentAqi = vi.fn();
+const mockFetchCurrentWeatherData = vi.fn();
+const mockDoIpLookUp = vi.fn();
 
 mockFetchCurrentAqi.mockResolvedValue(45);
 
@@ -25,3 +17,12 @@ mockFetchCurrentWeatherData.mockResolvedValue({
   ],
   locDate: getLocalDate(undefined, { minute: "2-digit" }, "en-US"),
 });
+
+mockDoIpLookUp.mockResolvedValueOnce({
+  capital: "moon",
+  country: "universe",
+  country_code: "000",
+  country_icon: "Un",
+});
+
+export { mockDoIpLookUp, mockFetchCurrentAqi, mockFetchCurrentWeatherData };
