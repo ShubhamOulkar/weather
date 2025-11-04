@@ -9,9 +9,8 @@ import CommonMetric from "./cards/Comman";
 import styles from "./MetricsCard.module.css";
 
 export default function MetricsCards() {
-  const { data, isLoading, isIpError, isWeatherError } = useLocation();
+  const { data, isLoading, isWeatherError } = useLocation();
   const { getTemp, getPrecipitation, getWind } = useUnits();
-  const isError = isIpError || isWeatherError;
 
   return (
     <div
@@ -23,28 +22,28 @@ export default function MetricsCards() {
         value={getTemp(data.metrics[0].value)}
         classname={styles.metric_card}
         isLoading={isLoading}
-        isError={isError}
+        isError={isWeatherError}
       />
       <CommonMetric
         heading={data.metrics[1].key}
         value={`${data.metrics[1].value} %`}
         classname={styles.metric_card}
         isLoading={isLoading}
-        isError={isError}
+        isError={isWeatherError}
       />
       <CommonMetric
         heading={data.metrics[2].key}
         value={getWind(data.metrics[2].value)}
         classname={styles.metric_card}
         isLoading={isLoading}
-        isError={isError}
+        isError={isWeatherError}
       />
       <CommonMetric
         heading={data.metrics[3].key}
         value={getPrecipitation(data.metrics[3].value)}
         classname={styles.metric_card}
         isLoading={isLoading}
-        isError={isError}
+        isError={isWeatherError}
       />
       <QueryErrorResetBoundary>
         {({ reset }) => (
