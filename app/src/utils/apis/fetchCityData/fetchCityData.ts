@@ -1,4 +1,4 @@
-import type { CityData, OwmGeocodingResponse } from "../../../types/types";
+import type { CityData, OwmGeocodingResponse } from "@/types/types";
 
 export const CITY_DATA_QUERY_KEY = ["cityData"];
 

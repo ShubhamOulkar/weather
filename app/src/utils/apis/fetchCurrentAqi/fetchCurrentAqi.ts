@@ -30,8 +30,6 @@ export async function fetchCurrentAqi({
       method: "GET",
     });
 
-    console.log(responses);
-
     if (!responses || responses.length === 0) {
       throw new Error("OpenMeteo API returned an empty AQI response array.");
     }

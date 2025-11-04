@@ -1,6 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { expect } from "vitest";
+import { mockDoIpLookUp } from "@/test/apiFunction.mock";
 import { renderWithClient } from "@/test/testQueryUtils";
 import { getLocalDate } from "@/utils/local_date/getLocalDate";
 import IpLookUp from "../IpLookUp";
@@ -24,15 +25,16 @@ describe("Test IP data component", () => {
     });
   });
 
-  // it("render error icon if ipdata fetch fails", async () => {
-  //   renderWithClient(<IpLookUp />);
+  it("render error icon if ipdata fetch fails", async () => {
+    mockDoIpLookUp.mockRejectedValueOnce(new Error("Error in Ip fetching"));
+    renderWithClient(<IpLookUp />);
 
-  //   await waitFor(() => {
-  //     const errorIcon = screen.getByLabelText("Error in Ip fetching");
-  //     expect(errorIcon).toBeInTheDocument();
-  //     const notification = screen.getByRole("alert");
-  //     expect(notification).toBeInTheDocument();
-  //     expect(notification.textContent).toEqual("Error: Ip look up 👻");
-  //   });
-  // });
+    await waitFor(() => {
+      const errorIcon = screen.getByLabelText("Error in Ip fetching");
+      expect(errorIcon).toBeInTheDocument();
+      const notification = screen.getByRole("alert");
+      expect(notification).toBeInTheDocument();
+      expect(notification.textContent).toEqual("Error: Ip look up 👻");
+    });
+  });
 });

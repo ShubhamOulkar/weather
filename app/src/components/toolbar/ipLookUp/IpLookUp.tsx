@@ -3,22 +3,41 @@ import IconErr from "@/assets/images/icon-error.svg?react";
 import LoaderWrapper from "@/components/common/LoderWrapper/LoaderWrapper";
 import { useLocation } from "@/context/location/Location";
 import { useToast } from "@/context/toast/ToastContext";
+import { useIpLookUp } from "@/hooks/useIpLookUp/useIpLookUp";
 import cnr from "@/utils/class_resolver/cnr";
+import { getLocalDate } from "@/utils/local_date/getLocalDate";
+import { logger } from "@/utils/logger/logger";
 import styles from "./IpLookUp.module.css";
 
 export default function IpLookUp() {
-  const { data, ipData, ipLoading, isIpError } = useLocation();
+  const { storeIpData } = useLocation();
   const { addToast } = useToast();
-  const { date } = data;
-
   const noteToast = useEffectEvent(() => {
     addToast("Error: Ip look up 👻", "error");
   });
+  const date = getLocalDate(undefined, { minute: "2-digit" });
+  const {
+    data: ipData,
+    isSuccess,
+    isLoading: ipLoading,
+    isError: isIpError,
+    error: ipError,
+  } = useIpLookUp();
+
+  useEffect(() => {
+    if (isSuccess) storeIpData(ipData);
+  }, [isSuccess, ipData, storeIpData]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: noteToast is a stable useEffectEvent
   useEffect(() => {
-    if (isIpError) noteToast();
-  }, [isIpError]);
+    if (isIpError && ipError) {
+      logger.error("IP lookup failed", {
+        context: "query useIpLookup hook",
+        error: ipError,
+      });
+      noteToast();
+    }
+  }, [isIpError, ipError]);
 
   const checker = () => {
     if (isIpError) return "Error in Ip fetching";

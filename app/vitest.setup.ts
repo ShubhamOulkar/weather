@@ -15,6 +15,12 @@ Object.defineProperty(global, "localStorage", {
   },
 });
 
+// MOck location
+Object.defineProperty(window, "location", {
+  value: { href: "https://example.com/" },
+  writable: true,
+});
+
 vi.mock("@/utils/apis/fetchCurrentAqi/fetchCurrentAqi", () => ({
   fetchCurrentAqi: mockFetchCurrentAqi,
 }));

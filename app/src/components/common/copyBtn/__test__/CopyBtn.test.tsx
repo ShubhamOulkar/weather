@@ -1,26 +1,13 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import type { ReactNode } from "react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import AllProvider from "@/provider/AllProvider";
+import { describe, expect, it, vi } from "vitest";
+import { renderWithClient } from "@/test/testQueryUtils";
 import { getLocalDate } from "@/utils/local_date/getLocalDate";
 import CopyBtn from "../CopyBtn";
 
-const renderComponent = (children: ReactNode) => {
-  return render(<AllProvider>{children}</AllProvider>);
-};
-
 describe("CopyBtn Integration Test", () => {
-  beforeEach(() => {
-    vi.resetAllMocks();
-    Object.defineProperty(window, "location", {
-      value: { href: "https://example.com/" },
-      writable: true,
-    });
-  });
-
   it("renders correctly in its initial state", () => {
-    renderComponent(<CopyBtn />);
+    renderWithClient(<CopyBtn />);
     const button = screen.getByRole("button", { name: /copy url/i });
     expect(button).toBeInTheDocument();
     expect(button.querySelector("svg")).toBeInTheDocument();
@@ -32,7 +19,7 @@ describe("CopyBtn Integration Test", () => {
       clipboard: { writeText: mockWriteText },
     });
 
-    renderComponent(<CopyBtn />);
+    renderWithClient(<CopyBtn />);
 
     const button = screen.getByRole("button", { name: /copy url/i });
     fireEvent.click(button);
@@ -60,7 +47,7 @@ describe("CopyBtn Integration Test", () => {
       clipboard: { writeText: mockWriteText },
     });
 
-    renderComponent(<CopyBtn />);
+    renderWithClient(<CopyBtn />);
     const button = screen.getByRole("button", { name: /copy url/i });
 
     fireEvent.click(button);
