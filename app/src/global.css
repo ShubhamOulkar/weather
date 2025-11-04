@@ -41,6 +41,7 @@
   --neutral-800: hsl(243, 27%, 20%);
   --neutral-700: hsl(243, 23%, 24%);
   --neutral-600: hsl(243, 23%, 30%);
+  --neutral-400: hsl(240, 6.5%, 72.7%);
   --neutral-300: hsl(240, 6%, 70%);
   --neutral-200: hsl(250, 6%, 84%);
   --neutral-0: hsl(0, 0%, 100%);
@@ -153,6 +154,7 @@ textarea,
 select {
   font-family: inherit;
   font-size: inherit;
+  cursor: pointer;
 }
 
 /* Anything that has been anchored to should have extra scroll margin */
@@ -209,6 +211,13 @@ h4 {
 .card_design {
   border-radius: var(--border-radius);
   background-color: var(--neutral-800);
+}
+
+.scroll-auto {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--neutral-400) var(--neutral-800);
 }
 
 .scroll {
@@ -270,7 +279,7 @@ h4 {
 
 .loader-xs {
   width: 2rem;
-  height: 1rem;
+  aspect-ratio: 1;
 }
 
 /* Animations */
@@ -336,7 +345,6 @@ h4 {
   color: var(--btn-color-text);
   border: none;
   border-radius: var(--border-radius);
-  cursor: pointer;
   background-color: var(--btn-color-bg);
 }
 
@@ -347,7 +355,6 @@ h4 {
   border-radius: var(--border-radius);
   border: none;
   background-color: var(--blue-500);
-  cursor: pointer;
   gap: 0.5rem;
   width: 100%;
   transition: transform 0.2s ease-in-out;
@@ -367,7 +374,6 @@ h4 {
   position: relative;
   background: transparent;
   border: none;
-  cursor: pointer;
   padding: 0.5rem;
   border-radius: var(--border-radius);
   transition: background-color 0.2s ease-in-out;
@@ -409,7 +415,9 @@ h4 {
 .sr_only {
   display: none;
 }
-
+/* 
+This is not required brcause of activity component
+TODO: apply transform on activity
 .hidden {
   opacity: 0;
   transform: translateY(-10px);
@@ -420,7 +428,7 @@ h4 {
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
-}
+} */
 
 .flex {
   display: flex;

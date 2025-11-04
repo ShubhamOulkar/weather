@@ -1,6 +1,6 @@
-import IconErr from "../../../../assets/images/icon-error.svg?react";
-import IconRetry from "../../../../assets/images/icon-retry.svg?react";
-import cnr from "../../../../utils/class_resolver/cnr";
+import IconErr from "@/assets/images/icon-error.svg?react";
+import IconRetry from "@/assets/images/icon-retry.svg?react";
+import cnr from "@/utils/class_resolver/cnr";
 import style from "./ErrorCard.module.css";
 
 interface ReusableErrorProps {

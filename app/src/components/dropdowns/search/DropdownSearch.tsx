@@ -1,11 +1,11 @@
 import type { Ref } from "react";
-import { useState } from "react";
-import IconError from "../../../assets/images/icon-error.svg?react";
-import IconLoading from "../../../assets/images/icon-loading.svg?react";
-import type { CityData, Cooradinates } from "../../../types/types";
-import cnr from "../../../utils/class_resolver/cnr";
-import formatBtnTitle from "../../../utils/formatBtnTitle/formatBtnTitle";
-import DropBtn from "../../common/dropButton/DropBtn";
+import { Activity, useState } from "react";
+import IconError from "@/assets/images/icon-error.svg?react";
+import IconLoading from "@/assets/images/icon-loading.svg?react";
+import DropBtn from "@/components/common/dropButton/DropBtn";
+import type { CityData, Cooradinates } from "@/types/types";
+import cnr from "@/utils/class_resolver/cnr";
+import formatBtnTitle from "@/utils/formatBtnTitle/formatBtnTitle";
 import styles from "./DropdownSearch.module.css";
 
 export interface DropdownSearchProps {
@@ -31,58 +31,54 @@ export default function DropdownSearch({
     setSelectedPlace(i);
   };
   return (
-    <div
-      id={id}
-      ref={dismissRef}
-      role="listbox"
-      aria-label="list of places"
-      aria-hidden={!dropdown}
-      aria-live="polite"
-      className={cnr(
-        "scroll",
-        "dropdown",
-        "left-0",
-        "wd-100",
-        dropdown ? "show" : "hidden",
-      )}
-    >
-      <ul>
-        {!isLoading && searchData === undefined && (
-          <li className={cnr(styles.message)} role="status">
-            Search format e.g. Mumbai, MH, IN
-          </li>
-        )}
+    <Activity mode={dropdown ? "visible" : "hidden"}>
+      <div
+        id={id}
+        ref={dismissRef}
+        role="listbox"
+        aria-label="list of places"
+        aria-hidden={!dropdown}
+        aria-live="polite"
+        className="scroll dropdown left-0 wd-100"
+      >
+        <ul>
+          {!isLoading && searchData === undefined && (
+            <li className={cnr(styles.message)} role="status">
+              Search format e.g. Mumbai, MH, IN
+            </li>
+          )}
 
-        {isLoading && (
-          <li className={cnr(styles.message)} role="status">
-            <span className={styles.loading_spinner}>
-              <IconLoading aria-hidden="true" />
-            </span>
-            Finding...
-          </li>
-        )}
+          {isLoading && (
+            <li className={cnr(styles.message)} role="status">
+              <span className={styles.loading_spinner}>
+                <IconLoading aria-hidden="true" />
+              </span>
+              Finding...
+            </li>
+          )}
 
-        {!isLoading && searchData?.length === 0 && (
-          <li className={cnr(styles.message, styles.alert)} role="alert">
-            <IconError width={12} fill="currentColor" /> Place not found
-          </li>
-        )}
+          {!isLoading && searchData?.length === 0 && (
+            <li className={cnr(styles.message, styles.alert)} role="alert">
+              <IconError width={12} fill="currentColor" /> Place not found
+            </li>
+          )}
 
-        {!isLoading &&
-          searchData?.map((btn, i) => {
-            const title = formatBtnTitle(btn);
-            return (
-              <li key={`${btn.name}-${i}`} role="option">
-                <DropBtn
-                  classname={styles.search_btn}
-                  btnTitle={title}
-                  onClick={() => handleClick(title, btn.coords, i)}
-                  showCheck={selectedPlace === i}
-                />
-              </li>
-            );
-          })}
-      </ul>
-    </div>
+          {!isLoading &&
+            searchData?.map((btn, i) => {
+              const title = formatBtnTitle(btn);
+              return (
+                <li key={`${btn.name}-${i}`} role="option">
+                  <DropBtn
+                    classname={styles.search_btn}
+                    btnTitle={title}
+                    onClick={() => handleClick(title, btn.coords, i)}
+                    showCheck={selectedPlace === i}
+                  />
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    </Activity>
   );
 }

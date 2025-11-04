@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import {
-  doIpLookUp,
-  IP_LOOKUP_QUERY_KEY,
-} from "../../utils/apis/doIpLookUp/doIpLookUp";
+import { doIpLookUp } from "@/utils/apis/doIpLookUp/doIpLookUp";
+
+const IP_LOOKUP_QUERY_KEY = ["ipLookup"];
 
 export function useIpLookUp() {
   return useQuery({

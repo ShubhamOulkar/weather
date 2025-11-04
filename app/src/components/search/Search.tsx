@@ -3,11 +3,15 @@ import {
   type FormEvent,
   type KeyboardEventHandler,
   useEffect,
+  useEffectEvent,
   useState,
 } from "react";
 import IconError from "@/assets/images/icon-error.svg?react";
 import IconLocation from "@/assets/images/icon-location.svg?react";
 import IconSearch from "@/assets/images/icon-search.svg?react";
+import SpeechRecognitionMic from "@/components/common/speechrecognition/SpeechRecognitionMic";
+import DropdownSearch from "@/components/dropdowns/search/DropdownSearch";
+import Share from "@/components/share/Share";
 import { useLocation } from "@/context/location/Location";
 import { useToast } from "@/context/toast/ToastContext";
 import { useDismissalOutside } from "@/hooks/useDismissalOutside/useDismissalOutside";
@@ -17,9 +21,6 @@ import { useToggle } from "@/hooks/useToggle/useToggle";
 import type { Cooradinates } from "@/types/types";
 import cnr from "@/utils/class_resolver/cnr";
 import { SearchSchema } from "@/validation/searchValidation";
-import SpeechRecognitionMic from "../common/speechrecognition/SpeechRecognitionMic";
-import DropdownSearch from "../dropdowns/search/DropdownSearch";
-import Share from "../share/Share";
 import styles from "./Search.module.css";
 
 export default function SearchForm() {
@@ -45,15 +46,25 @@ export default function SearchForm() {
     setError(null);
   };
 
-  useEffect(() => {
-    if (coord) {
-      setLocation({ coords: coord });
-    }
-  }, [coord, setLocation]);
+  const handleCoordChange = useEffectEvent(
+    (coord: Cooradinates | undefined) => {
+      if (coord) setLocation({ coords: coord });
+    },
+  );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: handleCoordChange is a stable useEffectEvent
   useEffect(() => {
-    if (gpsErr) addToast(gpsErr);
-  }, [gpsErr, addToast]);
+    handleCoordChange(coord);
+  }, [coord]);
+
+  const showGpsError = useEffectEvent((err: string | null) => {
+    if (err) addToast(err);
+  });
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: showGpsError is a stable useEffectEvent
+  useEffect(() => {
+    showGpsError(gpsErr);
+  }, [gpsErr]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

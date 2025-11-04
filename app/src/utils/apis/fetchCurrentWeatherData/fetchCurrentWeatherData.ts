@@ -3,8 +3,8 @@ import type {
   Cooradinates,
   FetchWeatherApiReturn,
   FormattedDateParts,
-} from "../../../types/types";
-import { getLocalDate } from "../../local_date/getLocalDate";
+} from "@/types/types";
+import { getLocalDate } from "@/utils/local_date/getLocalDate";
 
 interface MetricData {
   key: string;

@@ -1,13 +1,13 @@
-import { useAQI } from "../../../../hooks/useAQI/useAQI";
-import cnr from "../../../../utils/class_resolver/cnr";
-import getAqiIndex from "../../../../utils/getAqiIndex/getAqiIndex";
-import AQILabel from "../../../common/aqiLabel/AqiLabel";
-import LoaderWrapper from "../../../common/LoderWrapper/LoaderWrapper";
+import AQILabel from "@/components/common/aqiLabel/AqiLabel";
+import LoaderWrapper from "@/components/common/LoderWrapper/LoaderWrapper";
+import { useAQI } from "@/hooks/useAQI/useAQI";
+import cnr from "@/utils/class_resolver/cnr";
+import getAqiIndex from "@/utils/getAqiIndex/getAqiIndex";
 
 interface AQIProp {
   latitude: number;
   longitude: number;
-  classname: string;
+  classname?: string;
 }
 
 export default function AQICard({ latitude, longitude, classname }: AQIProp) {

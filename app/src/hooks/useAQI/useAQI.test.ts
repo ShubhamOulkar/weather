@@ -1,45 +1,20 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import type { JSX, ReactNode } from "react";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  type Mock,
-  vi,
-} from "vitest";
-import { createQueryWrapper, testQueryClient } from "../../testQueryUtils";
-import type { Cooradinates } from "../../types/types";
-import { fetchCurrentAqi } from "../../utils/apis/fetchCurrentAqi/fetchCurrentAqi";
+import { describe, expect, it } from "vitest";
+import { mockFetchCurrentAqi } from "@/test/apiFunction.mock";
+import { createWrapper } from "@/test/testQueryUtils";
+import type { Cooradinates } from "@/types/types";
 import { useAQI } from "./useAQI";
-
-vi.mock("../../utils/apis/fetchCurrentAqi/fetchCurrentAqi", () => ({
-  fetchCurrentAqi: vi.fn(),
-}));
-
-const mockFetchCurrentAqi = fetchCurrentAqi as Mock;
 
 const mockCoords: Cooradinates = { latitude: 34.0522, longitude: -118.2437 };
 const mockAqiData = 45;
 
 describe("useAQI", () => {
-  let wrapper: ({ children }: { children: ReactNode }) => JSX.Element;
-
-  beforeEach(() => {
-    wrapper = createQueryWrapper();
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
-    mockFetchCurrentAqi.mockClear();
-    testQueryClient.clear();
-  });
-
   it("should successfully fetch and return AQI data", async () => {
     mockFetchCurrentAqi.mockResolvedValueOnce(mockAqiData);
 
-    const { result } = renderHook(() => useAQI(mockCoords), { wrapper });
+    const { result } = renderHook(() => useAQI(mockCoords), {
+      wrapper: createWrapper(),
+    });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.data).toBeUndefined();
@@ -58,7 +33,7 @@ describe("useAQI", () => {
     // Pass null for coords to test the `enabled: !!coords` logic
     const { result } = renderHook(
       () => useAQI(null as unknown as Cooradinates),
-      { wrapper },
+      { wrapper: createWrapper() },
     );
 
     expect(result.current.status).toBe("pending");

@@ -1,10 +1,10 @@
 import { useQueryErrorResetBoundary } from "@tanstack/react-query";
-import cnr from "../../utils/class_resolver/cnr";
-import DailyForcastCards from "../cards/dailyForcastCards/ForcastCards";
-import HourlyForcastCard from "../cards/hourlyForcastCard/HourlyCard";
-import LocationCard from "../cards/locationCard/LocationCard";
-import MetricsCards from "../cards/metricsCards/MetricsCards";
-import { ErrorBoundary } from "../common/errors/ErrorBoundary/ErrorBoundary";
+import DailyForcastCards from "@/components/cards/dailyForcastCards/ForcastCards";
+import HourlyForcastCard from "@/components/cards/hourlyForcastCard/HourlyCard";
+import LocationCard from "@/components/cards/locationCard/LocationCard";
+import MetricsCards from "@/components/cards/metricsCards/MetricsCards";
+import { ErrorBoundary } from "@/components/common/errors/ErrorBoundary/ErrorBoundary";
+import cnr from "@/utils/class_resolver/cnr";
 import styles from "./Dashboard.module.css";
 
 export default function Dashboard() {

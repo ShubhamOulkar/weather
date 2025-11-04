@@ -21,9 +21,9 @@
 }
 
 .fav_loc_drop {
-  --width: 15rem;
   background-color: var(--btn-color-bg);
-  width: var(--width);
+  width: max-content;
+  max-width: 30rem;
   position: absolute;
   left: -6rem;
   top: 100%;

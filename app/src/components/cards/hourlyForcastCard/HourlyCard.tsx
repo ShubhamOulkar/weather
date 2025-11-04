@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useLocation } from "../../../context/location/Location";
-import { useUnits } from "../../../context/unitsSystem/UnitsSystem";
-import { useHourlyData } from "../../../hooks/useHourlyData/useHourlyData";
-import type { HourlyEntry } from "../../../types/types";
-import cnr from "../../../utils/class_resolver/cnr";
-import LoaderWrapper from "../../common/LoderWrapper/LoaderWrapper";
-import WeatherIcon from "../../common/WeatherIcon/WeatherIcon";
-import DaysDropDown from "../../dropdowns/days/DaysDropDown";
+import LoaderWrapper from "@/components/common/LoderWrapper/LoaderWrapper";
+import WeatherIcon from "@/components/common/WeatherIcon/WeatherIcon";
+import DaysDropDown from "@/components/dropdowns/days/DaysDropDown";
+import { useLocation } from "@/context/location/Location";
+import { useUnits } from "@/context/unitsSystem/UnitsSystem";
+import { useHourlyData } from "@/hooks/useHourlyData/useHourlyData";
+import type { HourlyEntry } from "@/types/types";
+import cnr from "@/utils/class_resolver/cnr";
 import styles from "./HourlyCard.module.css";
 
 export default function HourlyForcastCard() {

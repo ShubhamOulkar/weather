@@ -1,20 +1,24 @@
-import { createContext, type ReactNode, useContext, useState } from "react";
-import { useIpLookUp } from "../../hooks/useIpLookUp/useIpLookUp";
-import useLocationWeather from "../../hooks/useLocationWeather/useLocationWeather";
-import type { LocationInput, LookUpReturn } from "../../types/types";
-import { logger } from "../../utils/logger/logger";
+import {
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import useLocationWeather from "@/hooks/useLocationWeather/useLocationWeather";
+import type { LocationInput, LookUpReturn } from "@/types/types";
+import { logger } from "@/utils/logger/logger";
 
 interface LocationContext {
   location?: LocationInput;
   setLocation: (loc?: LocationInput) => void;
   data: ReturnType<typeof useLocationWeather>["data"];
   isLoading: boolean;
-  ipData: LookUpReturn | undefined;
-  ipLoading: boolean;
-  isIpError: boolean;
   isWeatherError: boolean;
   error: (Error | null)[];
   refetch: () => void;
+  storeIpData: (data: LookUpReturn) => void;
 }
 
 const LocationContext = createContext<LocationContext | undefined>(undefined);
@@ -24,20 +28,11 @@ export function LocationProvider({ children }: { children: ReactNode }) {
     undefined,
   );
 
-  // ip lookup
-  const {
-    data: ipData,
-    isLoading: ipLoading,
-    isError: isIpError,
-    error: ipError,
-  } = useIpLookUp();
+  const [ipData, setIpData] = useState<LookUpReturn | undefined>(undefined);
 
-  if (isIpError && ipError) {
-    logger.error("IP lookup failed", {
-      context: "LocationProvider",
-      error: ipError,
-    });
-  }
+  const storeIpData = useCallback((data: LookUpReturn) => {
+    if (data) setIpData(data);
+  }, []);
 
   // centralise weather data
   const {
@@ -48,24 +43,24 @@ export function LocationProvider({ children }: { children: ReactNode }) {
     refetch,
   } = useLocationWeather(location, ipData);
 
-  if (isWeatherError && weatherError) {
-    logger.error("Weather fetch failed", {
-      context: "LocationProvider",
-      error: weatherError,
-    });
-  }
+  useEffect(() => {
+    if (isWeatherError && weatherError) {
+      logger.error("Weather fetch failed", {
+        context: "LocationProvider",
+        error: weatherError,
+      });
+    }
+  }, [isWeatherError, weatherError]);
 
   const provideValue = {
     location,
     setLocation,
     data,
     isLoading,
-    ipLoading,
-    ipData,
-    isIpError,
     isWeatherError,
-    error: [ipError, weatherError],
+    error: [weatherError],
     refetch,
+    storeIpData,
   };
 
   return <LocationContext value={provideValue}>{children}</LocationContext>;

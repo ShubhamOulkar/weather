@@ -4,12 +4,12 @@ import type {
   FormattedDateParts,
   LocationInput,
   LookUpReturn,
-} from "../../types/types";
-import { fetchCityData } from "../../utils/apis/fetchCityData/fetchCityData";
-import { fetchCurrentWeatherData } from "../../utils/apis/fetchCurrentWeatherData/fetchCurrentWeatherData";
-import { fetchLocationByCoords } from "../../utils/apis/fetchLocByCoords/fetchLocByCoords";
-import formatBtnTitle from "../../utils/formatBtnTitle/formatBtnTitle";
-import { getLocalDate } from "../../utils/local_date/getLocalDate";
+} from "@/types/types";
+import { fetchCityData } from "@/utils/apis/fetchCityData/fetchCityData";
+import { fetchCurrentWeatherData } from "@/utils/apis/fetchCurrentWeatherData/fetchCurrentWeatherData";
+import { fetchLocationByCoords } from "@/utils/apis/fetchLocByCoords/fetchLocByCoords";
+import formatBtnTitle from "@/utils/formatBtnTitle/formatBtnTitle";
+import { getLocalDate } from "@/utils/local_date/getLocalDate";
 /**
  * This hook return weather data by city name and GPS with fallback to ip address
  */

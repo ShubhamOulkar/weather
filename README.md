@@ -47,7 +47,7 @@ A modern weather web application that provides real-time weather data, forecasts
 ## Overview
 
 ### Screenshot  
-![Project Preview](/docs/project_submission.png)
+![Project Preview](/docs/project_preview.png)
 
 ### Links
 - [Live CSR Demo](https://weather-inky-delta.vercel.app/) 

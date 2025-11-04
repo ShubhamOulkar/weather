@@ -1,6 +1,4 @@
-import type { IpData, LookUpReturn } from "../../../types/types";
-
-export const IP_LOOKUP_QUERY_KEY = ["ipLookup"];
+import type { IpData, LookUpReturn } from "@/types/types";
 
 /**
  * Fetches and processes IP lookup data for production use.
