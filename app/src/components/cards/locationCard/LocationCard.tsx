@@ -5,8 +5,7 @@ import styles from "./LocationCard.module.css";
 import LocationCardDetails from "./LocationCardDetails";
 
 export default function LocationCard() {
-  const { isLoading, isWeatherError, error, refetch } =
-    useLocation();
+  const { isLoading, isWeatherError, error, refetch } = useLocation();
 
   return (
     <div className={cnr("flexcol", styles.location)}>
