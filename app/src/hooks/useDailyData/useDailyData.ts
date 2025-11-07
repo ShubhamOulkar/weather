@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import type { Cooradinates } from "../../types/types";
+import type { Cooradinates } from "@/types/types";
 import {
   DAILY_DATA_QUERY_KEY,
   fetchDailyWeather,
-} from "../../utils/apis/fetchDailyData/fetchDailyData";
+} from "@/utils/apis/fetchDailyData/fetchDailyData";
 
 export function useDailyData(coords: Cooradinates) {
   return useQuery({
